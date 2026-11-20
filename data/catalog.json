@@ -1,0 +1,165 @@
+{
+  "generated_at": "2026-11-20",
+  "total_questions": 2080,
+  "certs": [
+    {
+      "priority": "01",
+      "slug": "azure-ai-901",
+      "vendor": "Microsoft Azure",
+      "code": "AI-901",
+      "title": "Microsoft Azure AI Fundamentals (AI-901) Practice Exams 2026",
+      "subtitle": "4 Full-Length 65-Question Mock Tests (260 Scenarios) · Microsoft Foundry, AI Agents, RAG & Responsible AI",
+      "badge_color": "#0078D4",
+      "duration_min": 90,
+      "pass_pct": 70,
+      "total_questions": 260,
+      "free_questions": 15,
+      "exams": 4,
+      "domains": {
+        "1": "Domain 1: Identify AI Concepts and Capabilities",
+        "2": "Domain 2: Implement AI Solutions by Using Microsoft Foundry"
+      }
+    },
+    {
+      "priority": "02",
+      "slug": "gcp-genai-leader",
+      "vendor": "Google Cloud",
+      "code": "GenAI Leader",
+      "title": "Google Cloud Generative AI Leader Practice Exams (2026-2027)",
+      "subtitle": "4 Full-Length Mock Tests (260 Scenarios) · Gemini, Vertex AI, Grounding, Agentspace & AI Governance",
+      "badge_color": "#1A73E8",
+      "duration_min": 90,
+      "pass_pct": 70,
+      "total_questions": 260,
+      "free_questions": 15,
+      "exams": 4,
+      "domains": {
+        "1": "Domain 1: Fundamentals of Generative AI",
+        "2": "Domain 2: Google Cloud's Generative AI Offerings",
+        "3": "Domain 3: Techniques to Improve Generative AI Model Output",
+        "4": "Domain 4: Business Strategies for Successful GenAI Solutions"
+      }
+    },
+    {
+      "priority": "03",
+      "slug": "aws-aif-c01",
+      "vendor": "AWS",
+      "code": "AIF-C01",
+      "title": "AWS Certified AI Practitioner (AIF-C01) Practice Exams 2026",
+      "subtitle": "4 Full-Length 65-Question Mock Tests (260 Scenarios) · Bedrock, SageMaker, RAG & Responsible AI",
+      "badge_color": "#FF9900",
+      "duration_min": 90,
+      "pass_pct": 70,
+      "total_questions": 260,
+      "free_questions": 15,
+      "exams": 4,
+      "domains": {
+        "1": "Domain 1: Fundamentals of AI and ML",
+        "2": "Domain 2: Fundamentals of Generative AI",
+        "3": "Domain 3: Applications of Foundation Models",
+        "4": "Domain 4: Guidelines for Responsible AI",
+        "5": "Domain 5: Security, Compliance, and Governance for AI Solutions"
+      }
+    },
+    {
+      "priority": "04",
+      "slug": "aws-mla-c01",
+      "vendor": "AWS",
+      "code": "MLA-C01",
+      "title": "AWS Machine Learning Engineer Associate (MLA-C01) Mock Tests",
+      "subtitle": "4 Full-Length 65-Question Practice Exams (260 Scenarios) · SageMaker Pipelines, Feature Store & MLOps",
+      "badge_color": "#D97706",
+      "duration_min": 130,
+      "pass_pct": 72,
+      "total_questions": 260,
+      "free_questions": 15,
+      "exams": 4,
+      "domains": {
+        "1": "Domain 1: Data Preparation for Machine Learning",
+        "2": "Domain 2: ML Model Development",
+        "3": "Domain 3: Deployment and Orchestration of ML Workflows",
+        "4": "Domain 4: ML Solution Monitoring, Maintenance, and Security"
+      }
+    },
+    {
+      "priority": "05",
+      "slug": "aws-dea-c01",
+      "vendor": "AWS",
+      "code": "DEA-C01",
+      "title": "AWS Certified Data Engineer Associate (DEA-C01) Mock Exams",
+      "subtitle": "4 Full-Length 65-Question Practice Tests (260 Scenarios) · Glue, Redshift, Kinesis, Iceberg & Lake Formation",
+      "badge_color": "#0284C7",
+      "duration_min": 130,
+      "pass_pct": 72,
+      "total_questions": 260,
+      "free_questions": 15,
+      "exams": 4,
+      "domains": {
+        "1": "Domain 1: Data Ingestion and Transformation",
+        "2": "Domain 2: Data Store Management",
+        "3": "Domain 3: Data Operations and Support",
+        "4": "Domain 4: Data Security and Governance"
+      }
+    },
+    {
+      "priority": "06",
+      "slug": "aws-dva-c02",
+      "vendor": "AWS",
+      "code": "DVA-C02",
+      "title": "AWS Certified Developer Associate (DVA-C02) Practice Exams",
+      "subtitle": "4 Full-Length 65-Question Mock Tests (260 Scenarios) · Lambda, DynamoDB, API Gateway, SAM & X-Ray",
+      "badge_color": "#7C3AED",
+      "duration_min": 130,
+      "pass_pct": 72,
+      "total_questions": 260,
+      "free_questions": 15,
+      "exams": 4,
+      "domains": {
+        "1": "Domain 1: Development with AWS Services",
+        "2": "Domain 2: Security",
+        "3": "Domain 3: Deployment",
+        "4": "Domain 4: Troubleshooting and Optimization"
+      }
+    },
+    {
+      "priority": "07",
+      "slug": "aws-saa-c03",
+      "vendor": "AWS",
+      "code": "SAA-C03",
+      "title": "AWS Solutions Architect Associate (SAA-C03) Practice Exams",
+      "subtitle": "4 Full-Length 65-Question Mock Tests (260 Scenarios) · High Availability, Security, Performance & Cost",
+      "badge_color": "#059669",
+      "duration_min": 130,
+      "pass_pct": 72,
+      "total_questions": 260,
+      "free_questions": 15,
+      "exams": 4,
+      "domains": {
+        "1": "Domain 1: Design Secure Architectures",
+        "2": "Domain 2: Design Resilient Architectures",
+        "3": "Domain 3: Design High-Performing Architectures",
+        "4": "Domain 4: Design Cost-Optimized Architectures"
+      }
+    },
+    {
+      "priority": "08",
+      "slug": "aws-clf-c02",
+      "vendor": "AWS",
+      "code": "CLF-C02",
+      "title": "AWS Certified Cloud Practitioner (CLF-C02) Practice Exams",
+      "subtitle": "4 Full-Length 65-Question Mock Tests (260 Scenarios) · Cloud Concepts, IAM Security, Core Services & Billing",
+      "badge_color": "#4F46E5",
+      "duration_min": 90,
+      "pass_pct": 70,
+      "total_questions": 260,
+      "free_questions": 15,
+      "exams": 4,
+      "domains": {
+        "1": "Domain 1: Cloud Concepts",
+        "2": "Domain 2: Security and Compliance",
+        "3": "Domain 3: Cloud Technology and Services",
+        "4": "Domain 4: Billing, Pricing, and Support"
+      }
+    }
+  ]
+}

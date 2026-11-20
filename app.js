@@ -1,0 +1,680 @@
+/* ============================================================================
+   CloudCert Lab — Zero-Server Multi-Cloud Exam Simulator Engine
+   Hosting cost: $0/month on Cloudflare Pages + Cloudflare Worker license check
+   ============================================================================ */
+
+const CONFIG = {
+  // Reemplazar con tu link real de checkout de Gumroad / Polar.sh / Whop al publicar el producto:
+  CHECKOUT_URL: "https://gumroad.com/",
+  // Opcional: si despliegas worker/license-worker.js en Cloudflare Workers ($0/mes), pega su URL aqui:
+  LICENSE_API_URL: "",
+};
+
+const PRO_CACHE = {};
+
+function b64ToBytes(b64) {
+  const bin = atob(b64);
+  const bytes = new Uint8Array(bin.length);
+  for (let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+  return bytes;
+}
+
+async function decryptProEnvelope(env, passphrase) {
+  const enc = new TextEncoder();
+  const baseKey = await crypto.subtle.importKey("raw", enc.encode(passphrase), "PBKDF2", false, ["deriveKey"]);
+  const aesKey = await crypto.subtle.deriveKey(
+    { name: "PBKDF2", salt: b64ToBytes(env.salt), iterations: env.iter, hash: "SHA-256" },
+    baseKey,
+    { name: "AES-GCM", length: 256 },
+    false,
+    ["decrypt"]
+  );
+  const plainBuf = await crypto.subtle.decrypt(
+    { name: "AES-GCM", iv: b64ToBytes(env.iv) },
+    aesKey,
+    b64ToBytes(env.ct)
+  );
+  return JSON.parse(new TextDecoder().decode(plainBuf));
+}
+
+async function fetchCertPayload(slug, tier) {
+  if (tier !== "pro") {
+    const resp = await fetch(`data/free/${slug}.json`);
+    return await resp.json();
+  }
+  if (PRO_CACHE[slug]) return PRO_CACHE[slug];
+  // 1) Try AES-256-GCM encrypted vault (zero-server GitHub Pages / Cloudflare Pages safe!)
+  const pass = localStorage.getItem("cloudcert_vault_pass") || "";
+  if (pass) {
+    const encResp = await fetch(`data/pro_enc/${slug}.enc.json`);
+    if (encResp.ok) {
+      const env = await encResp.json();
+      const payload = await decryptProEnvelope(env, pass);
+      PRO_CACHE[slug] = payload;
+      return payload;
+    }
+  }
+  // 2) Fallback for offline Gumroad ZIP edition (plain local data/pro/*.json)
+  const resp = await fetch(`data/pro/${slug}.json`);
+  const payload = await resp.json();
+  PRO_CACHE[slug] = payload;
+  return payload;
+}
+
+const STATE = {
+  catalog: null,
+  vendorFilter: "ALL",
+  searchQuery: "",
+  isPro: localStorage.getItem("cloudcert_pro_unlocked") === "1",
+  licenseKey: localStorage.getItem("cloudcert_license_key") || "",
+  activeCert: null,
+  activeQuestions: [],
+  mode: "study", // 'study' | 'exam'
+  examLabel: "",
+  currentIndex: 0,
+  answers: {}, // idx -> array of selected 0-based option indices
+  checked: {}, // idx -> boolean (study mode)
+  flagged: {}, // idx -> boolean
+  secondsLeft: 0,
+  elapsedSeconds: 0,
+  timerHandle: null,
+};
+
+const $ = (id) => document.getElementById(id);
+
+function showView(viewId) {
+  ["viewCatalog", "viewCertDetail", "viewRunner", "viewResults"].forEach((v) => {
+    $(v).classList.toggle("hidden", v !== viewId);
+  });
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function updatePlanUI() {
+  const badge = $("planBadge");
+  const btnTop = $("btnUnlockTop");
+  if (STATE.isPro) {
+    badge.textContent = "PRO UNLOCKED (2,080 Qs)";
+    badge.className = "badge badge-success";
+    btnTop.textContent = "Pro Active ✓";
+    btnTop.className = "btn btn-success";
+  } else {
+    badge.textContent = "FREE TIER (120 Qs)";
+    badge.className = "badge badge-neutral";
+    btnTop.textContent = "Unlock All 2,080 Qs";
+    btnTop.className = "btn btn-primary";
+  }
+}
+
+function getSavedAttempts() {
+  try {
+    return JSON.parse(localStorage.getItem("cloudcert_attempts") || "[]");
+  } catch {
+    return [];
+  }
+}
+
+function saveAttempt(attempt) {
+  const list = getSavedAttempts();
+  list.unshift(attempt);
+  localStorage.setItem("cloudcert_attempts", JSON.stringify(list.slice(0, 40)));
+  $("statAttempts").textContent = String(list.length);
+}
+
+function renderCatalog() {
+  if (!STATE.catalog) return;
+  const grid = $("certsGrid");
+  const q = STATE.searchQuery.trim().toLowerCase();
+
+  const filtered = STATE.catalog.certs.filter((c) => {
+    const matchVendor = STATE.vendorFilter === "ALL" || c.vendor === STATE.vendorFilter;
+    const matchQuery =
+      !q ||
+      `${c.vendor} ${c.code} ${c.title} ${c.subtitle}`.toLowerCase().includes(q);
+    return matchVendor && matchQuery;
+  });
+
+  $("statCerts").textContent = String(STATE.catalog.certs.length);
+  $("statQuestions").textContent = STATE.catalog.total_questions.toLocaleString("en-US");
+  $("statAttempts").textContent = String(getSavedAttempts().length);
+
+  grid.innerHTML = filtered
+    .map(
+      (c) => `
+      <article class="card cert-card">
+        <div>
+          <div class="cert-head">
+            <span class="badge badge-brand">${escapeHtml(c.vendor)} · ${escapeHtml(c.code)}</span>
+            <span class="badge ${STATE.isPro ? "badge-success" : "badge-neutral"}">
+              ${STATE.isPro ? "260 Qs Unlocked" : "15 Free / 260 Pro"}
+            </span>
+          </div>
+          <h3 class="cert-title">${escapeHtml(c.title)}</h3>
+          <p class="cert-sub">${escapeHtml(c.subtitle)}</p>
+        </div>
+        <div>
+          <div class="cert-meta">
+            <span>⏱ ${c.duration_min} min</span>
+            <span>🎯 Pass ${c.pass_pct}%</span>
+            <span>📝 ${c.exams} Full Mocks</span>
+          </div>
+          <div class="cert-actions" style="margin-top:0.8rem;">
+            <button class="btn btn-primary" type="button" data-action="quick-free" data-slug="${c.slug}">
+              Start Free (15 Qs)
+            </button>
+            <button class="btn" type="button" data-action="open-cert" data-slug="${c.slug}">
+              All 4 Mocks →
+            </button>
+          </div>
+        </div>
+      </article>`
+    )
+    .join("");
+}
+
+function openCertDetail(slug) {
+  const cert = STATE.catalog.certs.find((c) => c.slug === slug);
+  if (!cert) return;
+  STATE.activeCert = cert;
+
+  const domainRows = Object.entries(cert.domains)
+    .map(([k, v]) => `<li><strong>${escapeHtml(v)}</strong></li>`)
+    .join("");
+
+  const examCards = [1, 2, 3, 4]
+    .map((examNum) => {
+      const locked = !STATE.isPro;
+      return `
+        <div class="card" style="padding:1rem; background:var(--surface-2);">
+          <div style="display:flex; justify-content:space-between; align-items:center; gap:0.5rem;">
+            <strong>Mock Exam ${examNum} (65 Questions)</strong>
+            <span class="badge ${locked ? "badge-warning" : "badge-success"}">${locked ? "PRO" : "UNLOCKED"}</span>
+          </div>
+          <div style="font-size:var(--fs-sm); color:var(--muted); margin:0.35rem 0 0.8rem;">
+            Timed ${cert.duration_min} min · Pass bar ${cert.pass_pct}% · Full domain analytics
+          </div>
+          <div style="display:flex; gap:0.5rem; flex-wrap:wrap;">
+            <button class="btn btn-primary" type="button" data-start-exam="${examNum}" data-mode="exam" ${locked ? 'data-locked="1"' : ""}>
+              Timed Exam
+            </button>
+            <button class="btn" type="button" data-start-exam="${examNum}" data-mode="study" ${locked ? 'data-locked="1"' : ""}>
+              Study Mode
+            </button>
+          </div>
+        </div>`;
+    })
+    .join("");
+
+  $("certDetailCard").innerHTML = `
+    <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:1rem; flex-wrap:wrap;">
+      <div>
+        <span class="badge badge-brand">${escapeHtml(cert.vendor)} · ${escapeHtml(cert.code)}</span>
+        <h2 style="margin:0.45rem 0 0.25rem;">${escapeHtml(cert.title)}</h2>
+        <p style="margin:0; color:var(--muted);">${escapeHtml(cert.subtitle)}</p>
+      </div>
+      <div style="display:flex; gap:0.5rem; flex-wrap:wrap;">
+        <button class="btn btn-primary" type="button" id="btnDetailFreeStudy">Try Free 15 Qs (Study)</button>
+        <button class="btn" type="button" id="btnDetailFreeExam">Try Free 15 Qs (Timed)</button>
+      </div>
+    </div>
+
+    <div style="margin:1.1rem 0; padding:0.9rem 1rem; border-radius:var(--radius); background:var(--surface-2); border:1px solid var(--border);">
+      <div style="font-weight:700; font-size:var(--fs-sm); margin-bottom:0.4rem;">Official Blueprint Domains Mapped:</div>
+      <ul style="margin:0; padding-left:1.2rem; font-size:var(--fs-sm); color:var(--muted);">${domainRows}</ul>
+    </div>
+
+    <h3 style="margin:1rem 0 0.7rem; font-size:1rem;">4 Full-Length Practice Exams (260 Total Scenarios)</h3>
+    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:0.85rem;">
+      ${examCards}
+    </div>
+  `;
+
+  $("btnDetailFreeStudy").onclick = () => startSession(cert.slug, "free", null, "study");
+  $("btnDetailFreeExam").onclick = () => startSession(cert.slug, "free", null, "exam");
+  $("certDetailCard").querySelectorAll("[data-start-exam]").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      if (btn.dataset.locked === "1") {
+        openProModal();
+        return;
+      }
+      startSession(cert.slug, "pro", Number(btn.dataset.startExam), btn.dataset.mode);
+    });
+  });
+
+  showView("viewCertDetail");
+}
+
+async function startSession(slug, tier, examNum, mode) {
+  const cert = STATE.catalog.certs.find((c) => c.slug === slug);
+  if (!cert) return;
+  STATE.activeCert = cert;
+
+  const payload = await fetchCertPayload(slug, tier);
+
+  let qs = payload.questions;
+  if (examNum) {
+    qs = qs.filter((q) => q.exam === examNum);
+  }
+
+  STATE.activeQuestions = qs;
+  STATE.mode = mode;
+  STATE.examLabel = examNum
+    ? `${cert.code} — Mock Exam ${examNum} (${qs.length} Qs)`
+    : `${cert.code} — Free Diagnostic (${qs.length} Qs)`;
+  STATE.currentIndex = 0;
+  STATE.answers = {};
+  STATE.checked = {};
+  STATE.flagged = {};
+  STATE.elapsedSeconds = 0;
+  STATE.secondsLeft = examNum ? cert.duration_min * 60 : Math.round((cert.duration_min / 65) * qs.length * 60);
+
+  clearInterval(STATE.timerHandle);
+  STATE.timerHandle = setInterval(() => {
+    STATE.elapsedSeconds += 1;
+    if (STATE.mode === "exam") {
+      STATE.secondsLeft = Math.max(0, STATE.secondsLeft - 1);
+      $("runnerTimer").textContent = formatTime(STATE.secondsLeft);
+      if (STATE.secondsLeft === 0) {
+        finishExam();
+      }
+    } else {
+      $("runnerTimer").textContent = formatTime(STATE.elapsedSeconds);
+    }
+  }, 1000);
+
+  $("runnerBadge").textContent = mode === "exam" ? "TIMED EXAM MODE" : "STUDY MODE (INSTANT FEEDBACK)";
+  $("runnerBadge").className = `badge ${mode === "exam" ? "badge-warning" : "badge-brand"}`;
+  $("runnerTitle").textContent = STATE.examLabel;
+  $("runnerTimer").textContent = formatTime(mode === "exam" ? STATE.secondsLeft : 0);
+
+  renderQuestion();
+  showView("viewRunner");
+}
+
+function renderQuestion() {
+  const q = STATE.activeQuestions[STATE.currentIndex];
+  const total = STATE.activeQuestions.length;
+  const idx = STATE.currentIndex;
+  const selected = STATE.answers[idx] || [];
+  const isChecked = Boolean(STATE.checked[idx]);
+
+  $("qCounter").textContent = `Question ${idx + 1} of ${total}`;
+  $("qDomain").textContent = q.domain;
+  $("runnerProgress").style.width = `${Math.round(((idx + 1) / total) * 100)}%`;
+  $("qMultiNote").classList.toggle("hidden", !q.multi);
+  $("btnFlagQ").textContent = STATE.flagged[idx] ? "★ Flagged" : "☆ Flag for Review";
+  $("qStem").textContent = q.stem;
+
+  const letters = ["A", "B", "C", "D", "E", "F"];
+  $("qOptions").innerHTML = q.options
+    .map((optText, optIdx) => {
+      const isSel = selected.includes(optIdx);
+      let cls = "option-btn";
+      if (isChecked && STATE.mode === "study") {
+        if (q.correct.includes(optIdx)) cls += " correct";
+        else if (isSel) cls += " wrong";
+      } else if (isSel) {
+        cls += " selected";
+      }
+      return `
+        <button class="${cls}" type="button" data-opt="${optIdx}">
+          <span class="option-letter">${letters[optIdx]}</span>
+          <span>${escapeHtml(optText)}</span>
+        </button>`;
+    })
+    .join("");
+
+  $("qOptions").querySelectorAll("[data-opt]").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      if (STATE.mode === "study" && STATE.checked[idx]) return;
+      const optIdx = Number(btn.dataset.opt);
+      const curr = new Set(STATE.answers[idx] || []);
+      if (q.multi) {
+        if (curr.has(optIdx)) curr.delete(optIdx);
+        else curr.add(optIdx);
+      } else {
+        curr.clear();
+        curr.add(optIdx);
+      }
+      STATE.answers[idx] = Array.from(curr).sort((a, b) => a - b);
+      renderQuestion();
+    });
+  });
+
+  $("btnCheckAnswer").classList.toggle("hidden", STATE.mode !== "study" || isChecked);
+  $("btnPrevQ").disabled = idx === 0;
+  $("btnNextQ").textContent = idx === total - 1 ? "Review & Finish →" : "Next →";
+
+  const expBox = $("qExplanation");
+  if (STATE.mode === "study" && isChecked) {
+    const isRight = arraysEqual(selected, q.correct);
+    const correctLetters = q.correct.map((i) => letters[i]).join(", ");
+    expBox.innerHTML = `
+      <h4 style="color:var(${isRight ? "--success" : "--danger"})">
+        ${isRight ? "✓ Correct!" : `✕ Incorrect — Correct Answer: Option ${correctLetters}`}
+      </h4>
+      <div>${escapeHtml(q.explanation)}</div>
+      ${q.use_case ? `<div class="usecase-callout"><strong>Production Use Case:</strong> ${escapeHtml(q.use_case)}</div>` : ""}
+      ${q.hack ? `<div class="hack-callout"><strong>Exam Hack:</strong> ${escapeHtml(q.hack)}</div>` : ""}
+    `;
+    expBox.classList.remove("hidden");
+  } else {
+    expBox.classList.add("hidden");
+  }
+
+  renderQuestionMap();
+}
+
+function renderQuestionMap() {
+  const total = STATE.activeQuestions.length;
+  const answeredCount = Object.values(STATE.answers).filter((a) => a && a.length > 0).length;
+  $("qMapSummary").textContent = `${answeredCount} of ${total} answered`;
+
+  $("qMapGrid").innerHTML = STATE.activeQuestions
+    .map((_, i) => {
+      let cls = "qmap-item";
+      if (i === STATE.currentIndex) cls += " current";
+      if (STATE.flagged[i]) cls += " flagged";
+      else if (STATE.answers[i] && STATE.answers[i].length > 0) cls += " answered";
+      return `<button class="${cls}" type="button" data-jump="${i}">${i + 1}</button>`;
+    })
+    .join("");
+
+  $("qMapGrid").querySelectorAll("[data-jump]").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      STATE.currentIndex = Number(btn.dataset.jump);
+      renderQuestion();
+    });
+  });
+}
+
+function finishExam() {
+  clearInterval(STATE.timerHandle);
+  const total = STATE.activeQuestions.length;
+  let correctCount = 0;
+  const domainStats = {};
+  const missed = [];
+  const letters = ["A", "B", "C", "D", "E", "F"];
+
+  STATE.activeQuestions.forEach((q, idx) => {
+    const sel = STATE.answers[idx] || [];
+    const ok = arraysEqual(sel, q.correct);
+    if (ok) correctCount += 1;
+    else missed.push({ idx, q, sel });
+
+    if (!domainStats[q.domain]) domainStats[q.domain] = { ok: 0, total: 0 };
+    domainStats[q.domain].total += 1;
+    if (ok) domainStats[q.domain].ok += 1;
+  });
+
+  const pct = Math.round((correctCount / total) * 100);
+  const passed = pct >= STATE.activeCert.pass_pct;
+
+  saveAttempt({
+    date: new Date().toISOString(),
+    label: STATE.examLabel,
+    pct,
+    passed,
+    correctCount,
+    total,
+  });
+
+  const domainRows = Object.entries(domainStats)
+    .map(([dom, st]) => {
+      const dpct = Math.round((st.ok / st.total) * 100);
+      return `
+        <tr>
+          <td>${escapeHtml(dom)}</td>
+          <td>${st.ok} / ${st.total}</td>
+          <td><span class="badge ${dpct >= STATE.activeCert.pass_pct ? "badge-success" : "badge-danger"}">${dpct}%</span></td>
+        </tr>`;
+    })
+    .join("");
+
+  const missedHtml = missed.length
+    ? missed
+        .slice(0, 20)
+        .map(
+          ({ idx, q, sel }) => `
+          <div class="explanation-box" style="margin-top:0.8rem;">
+            <div style="font-size:var(--fs-sm); color:var(--muted); margin-bottom:0.25rem;">
+              Q#${idx + 1} · ${escapeHtml(q.domain)}
+            </div>
+            <div style="font-weight:600; margin-bottom:0.45rem;">${escapeHtml(q.stem)}</div>
+            <div style="font-size:var(--fs-sm); margin-bottom:0.45rem;">
+              <span class="badge badge-danger">Your Answer: ${sel.length ? sel.map((i) => letters[i]).join(", ") : "Unanswered"}</span>
+              <span class="badge badge-success">Correct: ${q.correct.map((i) => letters[i]).join(", ")}</span>
+            </div>
+            <div style="font-size:var(--fs-sm);">${escapeHtml(q.explanation)}</div>
+            ${q.hack ? `<div class="hack-callout"><strong>Exam Hack:</strong> ${escapeHtml(q.hack)}</div>` : ""}
+          </div>`
+        )
+        .join("")
+    : `<div class="badge badge-success" style="margin-top:1rem;">Perfect Score! Zero missed questions.</div>`;
+
+  const upsellBanner = !STATE.isPro
+    ? `<div class="card" style="margin-top:1.25rem; background:var(--brand-soft); border-color:var(--brand);">
+         <strong>Ready for the real exam?</strong> You just finished the 15-question Free Diagnostic.
+         Unlock all <strong>4 full-length 65-question timed mocks (${STATE.activeCert.total_questions} scenarios)</strong> plus the other 7 certifications (2,080 total questions) for a one-time $19.99 license.
+         <div style="margin-top:0.75rem;">
+           <button class="btn btn-primary" type="button" id="btnResultUnlock">Unlock Pro Vault ($19.99) →</button>
+         </div>
+       </div>`
+    : "";
+
+  $("resultsCard").innerHTML = `
+    <div style="display:flex; justify-content:space-between; align-items:center; gap:1rem; flex-wrap:wrap;">
+      <div>
+        <span class="badge ${passed ? "badge-success" : "badge-danger"}">${passed ? "PASSING SCORE" : "BELOW PASSING BAR"}</span>
+        <h2 style="margin:0.4rem 0 0.2rem;">${escapeHtml(STATE.examLabel)}</h2>
+        <div style="color:var(--muted); font-size:var(--fs-sm);">
+          Score: <strong>${pct}%</strong> (${correctCount}/${total} correct) · Required: ${STATE.activeCert.pass_pct}% · Time: ${formatTime(STATE.elapsedSeconds)}
+        </div>
+      </div>
+      <div style="display:flex; gap:0.5rem;">
+        <button class="btn" type="button" id="btnResultCatalog">← All Certifications</button>
+        <button class="btn btn-primary" type="button" id="btnResultRetry">Back to ${escapeHtml(STATE.activeCert.code)}</button>
+      </div>
+    </div>
+
+    ${upsellBanner}
+
+    <h3 style="margin:1.3rem 0 0.3rem; font-size:1rem;">Domain-Level Diagnostic</h3>
+    <table class="domain-table">
+      <thead><tr><th>Exam Domain</th><th>Correct</th><th>Score</th></tr></thead>
+      <tbody>${domainRows}</tbody>
+    </table>
+
+    <h3 style="margin:1.35rem 0 0.3rem; font-size:1rem;">Missed Questions Review (${missed.length})</h3>
+    ${missedHtml}
+  `;
+
+  $("btnResultCatalog").onclick = () => {
+    renderCatalog();
+    showView("viewCatalog");
+  };
+  $("btnResultRetry").onclick = () => openCertDetail(STATE.activeCert.slug);
+  if ($("btnResultUnlock")) $("btnResultUnlock").onclick = openProModal;
+
+  showView("viewResults");
+}
+
+function openProModal() {
+  $("btnBuyProLink").href = CONFIG.CHECKOUT_URL;
+  $("licenseInput").value = STATE.licenseKey;
+  $("licenseMsg").textContent = STATE.isPro
+    ? "Pro Vault is active on this browser."
+    : "Paste the Pro Access Key delivered in your purchase receipt.";
+  $("modalPro").classList.remove("hidden");
+}
+
+async function activateLicenseKey() {
+  const key = $("licenseInput").value.trim().toUpperCase();
+  const msg = $("licenseMsg");
+  if (!key) {
+    msg.textContent = "Please enter a valid license key.";
+    return;
+  }
+
+  // 1) Direct AES-256-GCM vault verification (zero-server, cryptographically verified!)
+  try {
+    const encResp = await fetch("data/pro_enc/azure-ai-901.enc.json");
+    if (encResp.ok) {
+      const env = await encResp.json();
+      await decryptProEnvelope(env, key);
+      STATE.isPro = true;
+      STATE.licenseKey = key;
+      localStorage.setItem("cloudcert_pro_unlocked", "1");
+      localStorage.setItem("cloudcert_license_key", key);
+      localStorage.setItem("cloudcert_vault_pass", key);
+      updatePlanUI();
+      renderCatalog();
+      msg.style.color = "var(--success)";
+      msg.textContent = "✓ AES-256 Pro Vault unlocked (All 2,080 questions & 32 full exams active!).";
+      setTimeout(() => $("modalPro").classList.add("hidden"), 900);
+      return;
+    }
+  } catch {
+    // Passphrase didn't decrypt AES vault; fall through to optional Worker API check
+  }
+
+  if (!CONFIG.LICENSE_API_URL) {
+    msg.style.color = "var(--danger)";
+    msg.textContent = "Invalid license key. Enter the Pro Passcode from your Gumroad receipt.";
+    return;
+  }
+
+  msg.textContent = "Verifying license with server...";
+  try {
+    const res = await fetch(CONFIG.LICENSE_API_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ license_key: key }),
+    });
+    const data = await res.json();
+    if (res.ok && data.valid) {
+      STATE.isPro = true;
+      STATE.licenseKey = key;
+      localStorage.setItem("cloudcert_pro_unlocked", "1");
+      localStorage.setItem("cloudcert_license_key", key);
+      updatePlanUI();
+      renderCatalog();
+      msg.style.color = "var(--success)";
+      msg.textContent = "✓ License verified! All 2,080 questions unlocked.";
+      setTimeout(() => $("modalPro").classList.add("hidden"), 900);
+    } else {
+      msg.style.color = "var(--danger)";
+      msg.textContent = data.error || "License key could not be verified.";
+    }
+  } catch {
+    msg.style.color = "var(--danger)";
+    msg.textContent = "Could not reach license server. Check your connection.";
+  }
+}
+
+function formatTime(sec) {
+  const m = Math.floor(sec / 60);
+  const s = sec % 60;
+  return `${String(m).padStart(2, "0")}:${String(s).padStart(2, "0")}`;
+}
+
+function arraysEqual(a, b) {
+  return a.length === b.length && a.every((v, i) => v === b[i]);
+}
+
+function escapeHtml(str) {
+  return String(str || "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+}
+
+async function init() {
+  updatePlanUI();
+
+  const resp = await fetch("data/catalog.json");
+  STATE.catalog = await resp.json();
+  renderCatalog();
+
+  // Delegated catalog card clicks
+  $("certsGrid").addEventListener("click", (ev) => {
+    const btn = ev.target.closest("button[data-action]");
+    if (!btn) return;
+    if (btn.dataset.action === "quick-free") startSession(btn.dataset.slug, "free", null, "study");
+    if (btn.dataset.action === "open-cert") openCertDetail(btn.dataset.slug);
+  });
+
+  // Vendor filter chips
+  document.querySelectorAll(".chip").forEach((chip) => {
+    chip.addEventListener("click", () => {
+      document.querySelectorAll(".chip").forEach((c) => c.classList.remove("active"));
+      chip.classList.add("active");
+      STATE.vendorFilter = chip.dataset.vendor;
+      renderCatalog();
+    });
+  });
+
+  $("searchInput").addEventListener("input", (e) => {
+    STATE.searchQuery = e.target.value;
+    renderCatalog();
+  });
+
+  $("btnHome").onclick = () => {
+    clearInterval(STATE.timerHandle);
+    renderCatalog();
+    showView("viewCatalog");
+  };
+  $("btnBackCatalog").onclick = () => {
+    renderCatalog();
+    showView("viewCatalog");
+  };
+  $("btnExitRunner").onclick = () => {
+    clearInterval(STATE.timerHandle);
+    openCertDetail(STATE.activeCert.slug);
+  };
+  $("btnFinishExam").onclick = finishExam;
+
+  $("btnFlagQ").onclick = () => {
+    STATE.flagged[STATE.currentIndex] = !STATE.flagged[STATE.currentIndex];
+    renderQuestion();
+  };
+  $("btnCheckAnswer").onclick = () => {
+    STATE.checked[STATE.currentIndex] = true;
+    renderQuestion();
+  };
+  $("btnPrevQ").onclick = () => {
+    if (STATE.currentIndex > 0) {
+      STATE.currentIndex -= 1;
+      renderQuestion();
+    }
+  };
+  $("btnNextQ").onclick = () => {
+    if (STATE.currentIndex < STATE.activeQuestions.length - 1) {
+      STATE.currentIndex += 1;
+      renderQuestion();
+    } else {
+      finishExam();
+    }
+  };
+
+  $("btnUnlockTop").onclick = openProModal;
+  $("btnHeroPro").onclick = openProModal;
+  $("btnCloseModal").onclick = () => $("modalPro").classList.add("hidden");
+  $("btnActivateKey").onclick = activateLicenseKey;
+
+  $("btnTheme").onclick = () => {
+    const curr = document.documentElement.getAttribute("data-theme") || "light";
+    const next = curr === "dark" ? "light" : "dark";
+    document.documentElement.setAttribute("data-theme", next);
+    localStorage.setItem("cloudcert_theme", next);
+  };
+
+  $("btnDensity").onclick = () => {
+    const curr = document.documentElement.getAttribute("data-density") || "comfortable";
+    const next = curr === "compact" ? "comfortable" : "compact";
+    document.documentElement.setAttribute("data-density", next);
+    localStorage.setItem("cloudcert_density", next);
+  };
+}
+
+init();

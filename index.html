@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" data-density="comfortable">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CloudCert Lab — Multi-Cloud &amp; AI Certification Exam Simulator (2,080 Scenarios)</title>
+  <meta name="description" content="Free &amp; Pro interactive exam simulator for AWS (CLF-C02, AIF-C01, SAA-C03, MLA-C01, DEA-C01, DVA-C02), Microsoft Azure AI-901, and Google Cloud Generative AI Leader." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <script>
+    (function () {
+      const savedTheme = localStorage.getItem("cloudcert_theme");
+      if (savedTheme === "dark" || savedTheme === "light") {
+        document.documentElement.setAttribute("data-theme", savedTheme);
+      }
+      const savedDensity = localStorage.getItem("cloudcert_density");
+      if (savedDensity) {
+        document.documentElement.setAttribute("data-density", savedDensity);
+      }
+    })();
+  </script>
+</head>
+<body>
+  <div class="accent-bar" aria-hidden="true"></div>
+
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand-group" id="btnHome" role="button" tabindex="0" aria-label="Back to catalog">
+        <div class="brand-mark">CC</div>
+        <div>
+          <div class="brand-title">CloudCert Lab</div>
+          <div class="brand-sub">AWS · Microsoft Azure · Google Cloud (2026–2027)</div>
+        </div>
+      </div>
+
+      <div class="topbar-actions">
+        <span id="planBadge" class="badge badge-neutral">FREE TIER (120 Qs)</span>
+        <button id="btnUnlockTop" class="btn btn-primary" type="button">Unlock All 2,080 Qs</button>
+        <button id="btnDensity" class="btn" type="button" title="Toggle density">Density</button>
+        <button id="btnTheme" class="btn" type="button" title="Toggle Light/Dark theme">Theme</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- VIEW 1: CATALOG -->
+    <section id="viewCatalog">
+      <div class="card hero">
+        <div>
+          <span class="badge badge-brand">2026–2027 EXAM BLUEPRINTS · ZERO LOGIN REQUIRED</span>
+          <h1>Multi-Cloud &amp; AI Certification Exam Simulator</h1>
+          <p>
+            Practice with realistic architectural scenarios, official domain diagnostics, production use cases,
+            and instant Exam Hacks. Try <strong>15 real questions free per certification (120 free)</strong>
+            or unlock the complete <strong>2,080-question Pro Vault (32 full-length exams)</strong>.
+          </p>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:0.5rem; min-width:210px;">
+          <button id="btnHeroPro" class="btn btn-primary" type="button">Unlock Pro Vault ($19.99)</button>
+          <a id="btnHeroUdemy" class="btn" href="https://www.amazon.com/author/gabrieln" target="_blank" rel="noopener">Official Study Books</a>
+        </div>
+      </div>
+
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-label">Certifications Covered</div>
+          <div class="stat-value" id="statCerts">8</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Scenario Questions</div>
+          <div class="stat-value" id="statQuestions">2,080</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Full Timed Mock Exams</div>
+          <div class="stat-value">32</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Your Saved Attempts</div>
+          <div class="stat-value" id="statAttempts">0</div>
+        </div>
+      </div>
+
+      <div class="filter-bar">
+        <div class="chip-group" role="tablist" aria-label="Filter by cloud provider">
+          <button class="chip active" data-vendor="ALL" type="button">All Providers (8)</button>
+          <button class="chip" data-vendor="Microsoft Azure" type="button">Microsoft Azure</button>
+          <button class="chip" data-vendor="Google Cloud" type="button">Google Cloud</button>
+          <button class="chip" data-vendor="AWS" type="button">AWS (6)</button>
+        </div>
+        <input id="searchInput" class="search-input" type="search" placeholder="Search AI-901, GenAI, SAA-C03..." aria-label="Search certification" />
+      </div>
+
+      <div id="certsGrid" class="certs-grid"></div>
+    </section>
+
+    <!-- VIEW 2: EXAM SELECTOR (PER CERT) -->
+    <section id="viewCertDetail" class="hidden">
+      <div style="margin-bottom:1rem;">
+        <button id="btnBackCatalog" class="btn" type="button">← Back to All Certifications</button>
+      </div>
+      <div class="card" id="certDetailCard"></div>
+    </section>
+
+    <!-- VIEW 3: EXAM RUNNER -->
+    <section id="viewRunner" class="hidden">
+      <div class="exam-header">
+        <div>
+          <span id="runnerBadge" class="badge badge-brand">STUDY MODE</span>
+          <h2 id="runnerTitle" style="margin:0.35rem 0 0; font-size:1.15rem;"></h2>
+        </div>
+        <div style="display:flex; align-items:center; gap:0.6rem;">
+          <span id="runnerTimer" class="timer-pill">00:00</span>
+          <button id="btnExitRunner" class="btn" type="button">Exit</button>
+          <button id="btnFinishExam" class="btn btn-primary" type="button">Finish &amp; Score</button>
+        </div>
+      </div>
+
+      <div class="progress-track"><div id="runnerProgress" class="progress-fill" style="width:0%"></div></div>
+
+      <div class="exam-layout">
+        <div class="card">
+          <div style="display:flex; justify-content:space-between; align-items:center; gap:0.5rem; flex-wrap:wrap;">
+            <span id="qCounter" class="badge badge-neutral">Question 1 of 15</span>
+            <span id="qDomain" class="badge badge-info">Domain</span>
+            <button id="btnFlagQ" class="btn btn-ghost" type="button">Flag for Review</button>
+          </div>
+
+          <div id="qMultiNote" class="badge badge-warning hidden" style="margin-top:0.6rem;">MULTI-SELECT: Choose all correct answers</div>
+          <div id="qStem" class="question-stem"></div>
+          <div id="qOptions" class="options-list"></div>
+
+          <div id="qExplanation" class="explanation-box hidden"></div>
+
+          <div class="nav-footer">
+            <button id="btnPrevQ" class="btn" type="button">← Previous</button>
+            <div style="display:flex; gap:0.5rem;">
+              <button id="btnCheckAnswer" class="btn btn-primary" type="button">Check Answer</button>
+              <button id="btnNextQ" class="btn btn-primary" type="button">Next →</button>
+            </div>
+          </div>
+        </div>
+
+        <aside class="card">
+          <div style="font-weight:700; font-size:0.9rem;">Question Navigator</div>
+          <div style="font-size:var(--fs-sm); color:var(--muted); margin-top:0.2rem;" id="qMapSummary">0 answered</div>
+          <div id="qMapGrid" class="qmap-grid"></div>
+          <div style="font-size:0.72rem; color:var(--muted); display:flex; gap:0.65rem; flex-wrap:wrap;">
+            <span>■ Blue = Answered</span>
+            <span>■ Amber = Flagged</span>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- VIEW 4: RESULTS -->
+    <section id="viewResults" class="hidden">
+      <div class="card" id="resultsCard"></div>
+    </section>
+  </main>
+
+  <!-- MODAL: PRO LICENSE UNLOCK -->
+  <div id="modalPro" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="modalProTitle">
+    <div class="modal-card">
+      <div style="display:flex; justify-content:space-between; align-items:center;">
+        <span class="badge badge-brand">PRO ALL-ACCESS VAULT</span>
+        <button id="btnCloseModal" class="btn btn-ghost" type="button" aria-label="Close">✕</button>
+      </div>
+      <h3 id="modalProTitle" style="margin:0.6rem 0 0.35rem;">Unlock All 2,080 Scenarios (32 Full Exams)</h3>
+      <p style="margin:0 0 1rem; color:var(--muted); font-size:var(--fs-sm);">
+        One-time payment ($19.99 USD). Instant access to all 8 AWS, Microsoft Azure AI-901, and Google Cloud GenAI Leader timed exams with lifetime updates.
+      </p>
+
+      <a id="btnBuyProLink" class="btn btn-primary" style="width:100%; margin-bottom:1rem;" href="https://gumroad.com/" target="_blank" rel="noopener">
+        Get Pro License Key ($19.99 Lifetime) →
+      </a>
+
+      <div style="border-top:1px solid var(--border); padding-top:0.95rem;">
+        <label for="licenseInput" style="display:block; font-weight:600; font-size:var(--fs-sm); margin-bottom:0.4rem;">
+          Already purchased? Enter your License Key:
+        </label>
+        <div style="display:flex; gap:0.5rem;">
+          <input id="licenseInput" class="search-input" style="flex:1; min-width:0;" type="text" placeholder="Enter your Pro License Key" />
+          <button id="btnActivateKey" class="btn btn-success" type="button">Activate</button>
+        </div>
+        <div id="licenseMsg" style="font-size:var(--fs-sm); margin-top:0.5rem; color:var(--muted);"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
