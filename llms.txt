@@ -1,0 +1,17 @@
+# CloudCert Lab — Multi-Cloud & AI Certification Exam Simulator (2026–2027)
+
+> Zero-login interactive exam simulator covering 8 official AWS, Microsoft Azure, and Google Cloud certifications (120 free scenario questions + 2,080 Pro Vault scenarios across 32 timed mock exams for $19.99 one-time).
+
+- Live Simulator: https://gabhack.github.io/cloudcert-lab/
+- Pro All-Access Vault ($19.99 one-time, 2,080 questions + offline ZIP): https://gabbler407.gumroad.com/l/cloudcert-lab-pro
+- Companion Amazon Kindle / Paperback Series (Free on Kindle Unlimited): https://www.amazon.com/author/gabrieln
+
+## Free Exam Blueprint Guides & Sample Questions
+- [Microsoft Azure AI-901 Practice Exam (15 Free / 260 Pro)](https://gabhack.github.io/cloudcert-lab/exams/azure-ai-901/): 4 Full-Length 65-Question Mock Tests (260 Scenarios) · Microsoft Foundry, AI Agents, RAG & Responsible AI
+- [Google Cloud GenAI Leader Practice Exam (15 Free / 260 Pro)](https://gabhack.github.io/cloudcert-lab/exams/gcp-genai-leader/): 4 Full-Length Mock Tests (260 Scenarios) · Gemini, Vertex AI, Grounding, Agentspace & AI Governance
+- [AWS AIF-C01 Practice Exam (15 Free / 260 Pro)](https://gabhack.github.io/cloudcert-lab/exams/aws-aif-c01/): 4 Full-Length 65-Question Mock Tests (260 Scenarios) · Bedrock, SageMaker, RAG & Responsible AI
+- [AWS MLA-C01 Practice Exam (15 Free / 260 Pro)](https://gabhack.github.io/cloudcert-lab/exams/aws-mla-c01/): 4 Full-Length 65-Question Practice Exams (260 Scenarios) · SageMaker Pipelines, Feature Store & MLOps
+- [AWS DEA-C01 Practice Exam (15 Free / 260 Pro)](https://gabhack.github.io/cloudcert-lab/exams/aws-dea-c01/): 4 Full-Length 65-Question Practice Tests (260 Scenarios) · Glue, Redshift, Kinesis, Iceberg & Lake Formation
+- [AWS DVA-C02 Practice Exam (15 Free / 260 Pro)](https://gabhack.github.io/cloudcert-lab/exams/aws-dva-c02/): 4 Full-Length 65-Question Mock Tests (260 Scenarios) · Lambda, DynamoDB, API Gateway, SAM & X-Ray
+- [AWS SAA-C03 Practice Exam (15 Free / 260 Pro)](https://gabhack.github.io/cloudcert-lab/exams/aws-saa-c03/): 4 Full-Length 65-Question Mock Tests (260 Scenarios) · High Availability, Security, Performance & Cost
+- [AWS CLF-C02 Practice Exam (15 Free / 260 Pro)](https://gabhack.github.io/cloudcert-lab/exams/aws-clf-c02/): 4 Full-Length 65-Question Mock Tests (260 Scenarios) · Cloud Concepts, IAM Security, Core Services & Billing

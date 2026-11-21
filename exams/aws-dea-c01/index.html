@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" data-density="comfortable">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AWS Certified Data Engineer Associate (DEA-C01) Free Practice Exam &amp; Lakehouse Guide | CloudCert Lab</title>
+  <meta name="description" content="Free AWS DEA-C01 scenario practice test covering AWS Glue, Amazon Redshift, Kinesis, Apache Iceberg, Lake Formation &amp; secure cloud data pipelines." />
+  <link rel="canonical" href="https://gabhack.github.io/cloudcert-lab/exams/aws-dea-c01/" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="AWS Certified Data Engineer Associate (DEA-C01) Free Practice Exam &amp; Lakehouse Guide" />
+  <meta property="og:description" content="Free AWS DEA-C01 scenario practice test covering AWS Glue, Amazon Redshift, Kinesis, Apache Iceberg, Lake Formation &amp; secure cloud data pipelines." />
+  <meta property="og:url" content="https://gabhack.github.io/cloudcert-lab/exams/aws-dea-c01/" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="AWS Certified Data Engineer Associate (DEA-C01) Free Practice Exam &amp; Lakehouse Guide" />
+  <meta name="twitter:description" content="Free AWS DEA-C01 scenario practice test covering AWS Glue, Amazon Redshift, Kinesis, Apache Iceberg, Lake Formation &amp; secure cloud data pipelines." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../../styles.css" />
+  <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "CloudCert Lab", "item": "https://gabhack.github.io/cloudcert-lab/"}, {"@type": "ListItem", "position": 2, "name": "AWS DEA-C01 Practice Exam", "item": "https://gabhack.github.io/cloudcert-lab/exams/aws-dea-c01/"}]}, {"@type": "Course", "name": "AWS Certified Data Engineer Associate (DEA-C01) Mock Exams", "description": "Free AWS DEA-C01 scenario practice test covering AWS Glue, Amazon Redshift, Kinesis, Apache Iceberg, Lake Formation & secure cloud data pipelines.", "url": "https://gabhack.github.io/cloudcert-lab/exams/aws-dea-c01/", "provider": {"@type": "Organization", "name": "CloudCert Lab", "sameAs": "https://gabhack.github.io/cloudcert-lab/"}, "offers": [{"@type": "Offer", "category": "Free", "price": "0", "priceCurrency": "USD", "url": "https://gabhack.github.io/cloudcert-lab/?exam=aws-dea-c01&mode=study"}, {"@type": "Offer", "category": "Paid", "price": "19.99", "priceCurrency": "USD", "url": "https://gabbler407.gumroad.com/l/cloudcert-lab-pro"}]}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How many free DEA-C01 practice questions can I take right now?", "acceptedAnswer": {"@type": "Answer", "text": "You can read 5 full sample scenarios on this page and launch our interactive 15-question DEA-C01 Free Diagnostic in the simulator with zero login required. The Pro Vault unlocks all 4 full-length 65-question timed mocks (260 scenarios for DEA-C01, plus 1,820 more across 7 other cloud certifications)."}}, {"@type": "Question", "name": "What are the highest-weighted topics on AWS DEA-C01?", "acceptedAnswer": {"@type": "Answer", "text": "Domain 1 (Data Ingestion & Transformation: AWS Glue, Kinesis, MSK, EMR, Step Functions) and Domain 2 (Data Store Management: S3 Lakehouse, Redshift, DynamoDB, Iceberg) represent the largest share of scored scenarios."}}, {"@type": "Question", "name": "What is the official time limit and passing score for AWS DEA-C01?", "acceptedAnswer": {"@type": "Answer", "text": "Our full-length timed mock exams mirror the official pacing of 130 minutes per 65-question exam and a 72% passing benchmark, complete with domain-level accuracy breakdowns."}}, {"@type": "Question", "name": "Is the CloudCert Lab Pro Vault a recurring monthly subscription?", "acceptedAnswer": {"@type": "Answer", "text": "No. CloudCert Lab Pro is a single one-time payment of $19.99 USD via Gumroad. It includes instant browser Pro activation across all 8 certifications (2,080 scenarios) plus a 4.85 MB offline HTML bundle and lifetime 2026–2027 blueprint updates."}}]}]}</script>
+  <script>
+    (function () {
+      var t = localStorage.getItem("cloudcert_theme");
+      if (t === "dark" || t === "light") document.documentElement.setAttribute("data-theme", t);
+    })();
+  </script>
+</head>
+<body>
+  <div class="accent-bar" aria-hidden="true"></div>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand-group" href="../../" style="text-decoration:none; color:inherit;">
+        <div class="brand-mark">CC</div>
+        <div>
+          <div class="brand-title">CloudCert Lab</div>
+          <div class="brand-sub">AWS · DEA-C01 (2026–2027)</div>
+        </div>
+      </a>
+      <div class="topbar-actions">
+        <a class="btn" href="../../?exam=aws-dea-c01&amp;mode=study">Start Free 15 Qs</a>
+        <a class="btn btn-primary" href="https://gabbler407.gumroad.com/l/cloudcert-lab-pro" target="_blank" rel="noopener">Unlock 2,080 Qs ($19.99)</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <nav class="exam-breadcrumb" aria-label="Breadcrumb">
+      <a href="../../">All 8 Cloud Certifications</a>
+      <span>/</span>
+      <span>AWS DEA-C01 Practice Exam</span>
+    </nav>
+
+    <section class="card hero">
+      <div>
+        <span class="badge badge-brand">AWS · DEA-C01 · UPDATED 2026–2027</span>
+        <h1>AWS Certified Data Engineer Associate (DEA-C01) Free Practice Exam &amp; Lakehouse Guide</h1>
+        <p>AWS Certified Data Engineer – Associate (DEA-C01) validates modern lakehouse engineering across batch and streaming ingestion, Redshift &amp; Athena query optimization, Apache Iceberg / S3 partitioning, and fine-grained Lake Formation governance.</p>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:0.55rem; min-width:235px;">
+        <a class="btn btn-primary" href="../../?exam=aws-dea-c01&amp;mode=study">Launch Free 15-Q Simulator →</a>
+        <a class="btn" href="../../?exam=aws-dea-c01&amp;mode=exam">Take Free Timed Diagnostic</a>
+        <a class="btn btn-ghost" href="https://gabbler407.gumroad.com/l/cloudcert-lab-pro" target="_blank" rel="noopener">Unlock All 260 Qs + 7 Certs ($19.99)</a>
+      </div>
+    </section>
+
+    <section class="stats-grid" aria-label="Exam specifications">
+      <div class="stat-card">
+        <div class="stat-label">Exam Pacing</div>
+        <div class="stat-value">130 min</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Passing Benchmark</div>
+        <div class="stat-value">72%</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Full Pro Question Bank</div>
+        <div class="stat-value">260 Qs (4 Mocks)</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Free Interactive Test</div>
+        <div class="stat-value">15 Qs ($0)</div>
+      </div>
+    </section>
+
+    <section class="card" style="margin-top:1.25rem;">
+      <h2 style="margin:0 0 0.35rem; font-size:1.15rem;">Official AWS DEA-C01 Blueprint Domains</h2>
+      <p style="margin:0 0 0.75rem; color:var(--muted); font-size:var(--fs-sm);">4 Full-Length 65-Question Practice Tests (260 Scenarios) · Glue, Redshift, Kinesis, Iceberg &amp; Lake Formation</p>
+      <table class="domain-table">
+        <thead><tr><th>Domain</th><th>Scored Exam Objective Area</th></tr></thead>
+        <tbody><tr><td><strong>Domain 1</strong></td><td>Data Ingestion and Transformation</td></tr><tr><td><strong>Domain 2</strong></td><td>Data Store Management</td></tr><tr><td><strong>Domain 3</strong></td><td>Data Operations and Support</td></tr><tr><td><strong>Domain 4</strong></td><td>Data Security and Governance</td></tr></tbody>
+      </table>
+    </section>
+
+    <section style="margin-top:1.5rem;">
+      <h2 style="margin:0 0 0.35rem; font-size:1.2rem;">5 Free DEA-C01 Scenario-Based Sample Questions (With Explanations &amp; Exam Hacks)</h2>
+      <p style="margin:0 0 0.75rem; color:var(--muted); font-size:var(--fs-sm);">
+        Test yourself on real production-grade scenarios below, or <a href="../../?exam=aws-dea-c01&amp;mode=study">launch the interactive 15-question simulator</a> for live timing and domain analytics.
+      </p>
+      <article class="seo-sample-q">
+          <div style="display:flex; justify-content:space-between; align-items:center; gap:0.5rem; flex-wrap:wrap; margin-bottom:0.55rem;">
+            <span class="badge badge-info">Sample Q1 · Domain 1: Data Ingestion and Transformation</span>
+            <span class="badge badge-neutral">SINGLE-SELECT</span>
+          </div>
+          <p style="margin:0 0 0.5rem; font-weight:600;">At a FinTech payment processor building a real-time fraud detection lakehouse, the data engineering team must ingest streaming card transactions, compute 5-minute rolling velocity aggregates in real time, and land the enriched records as Apache Parquet files in Amazon S3 with the LEAST operational overhead. Select and order the 4 architectural steps from initial ingestion to S3 storage.</p>
+          <ol type="A"><li><strong>A.</strong> Order 1 -&gt; 2 -&gt; 3 -&gt; 4: (1) Ingest raw card events into Amazon Kinesis Data Streams -&gt; (2) Process stateful 5-minute sliding windows using Amazon Managed Service for Apache Flink -&gt; (3) Emit enriched aggregates to an Amazon Data Firehose delivery stream configured with inline Parquet conversion via a Glue Data Catalog table schema -&gt; (4) Deliver the compressed Parquet partitions directly into the target Amazon S3 bucket.</li><li><strong>B.</strong> Order 2 -&gt; 1 -&gt; 4 -&gt; 3: (1) Process windows in Flink -&gt; (2) Ingest into Kinesis Data Streams -&gt; (3) Write raw CSV to S3 -&gt; (4) Run Data Firehose on S3 files.</li><li><strong>C.</strong> Order 1 -&gt; 3 -&gt; 2 -&gt; 4: (1) Ingest into Kinesis Data Streams -&gt; (2) Land raw JSON in S3 via Firehose -&gt; (3) Run Apache Flink directly on S3 cold storage -&gt; (4) Convert to Parquet via SQS.</li><li><strong>D.</strong> Order 3 -&gt; 1 -&gt; 2 -&gt; 4: (1) Buffer in Data Firehose -&gt; (2) Send to Kinesis Data Streams -&gt; (3) Aggregate in Flink -&gt; (4) Store in DynamoDB.</li></ol>
+          <details>
+            <summary>Reveal Verified Answer (A), Technical Explanation &amp; Exam Hack</summary>
+            <div style="margin-top:0.65rem; font-size:var(--fs-sm);">
+              <p style="margin:0 0 0.5rem;"><strong style="color:var(--success);">Correct Answer: Option A</strong></p>
+              <p style="margin:0;">In a real-time AWS streaming pipeline, events first enter Amazon Kinesis Data Streams (Step 1), are aggregated over stateful windows by Managed Service for Apache Flink (Step 2), pass to Amazon Data Firehose with Glue Catalog schema conversion enabled for Apache Parquet (Step 3), and land partitioned in Amazon S3 (Step 4). Architectural Deep Dive: Amazon Kinesis Data Streams provides sub-second real-time stream ingestion with configurable retention (24 hours up to 365 days), replayability across multiple independent consumers, and optional Enhanced Fan-Out (2 MB/s dedicated throughput per consumer per shard via HTTP/2). Why Distractors Fail: Option B (Order 2 -&gt; 1 -&gt; 4 -&gt; 3: (1) Process windows in Flink -&gt; (2) Ingest into Kin...) is incorrect because that service applies to a different workload pattern and uses a non-replayable delivery buffer or competing queue where multiple independent consumers cannot replay historical stream records at their own pace. Option C (Order 1 -&gt; 3 -&gt; 2 -&gt; 4: (1) Ingest into Kinesis Data Streams -&gt; (2) Land ra...) is incorrect because that service applies to a different workload pattern and uses a non-replayable delivery buffer or competing queue where multiple independent consumers cannot replay historical stream records at their own pace. Option D (Order 3 -&gt; 1 -&gt; 2 -&gt; 4: (1) Buffer in Data Firehose -&gt; (2) Send to Kinesis ...) is incorrect because that service applies to a different workload pattern and uses a non-replayable delivery buffer or competing queue where multiple independent consumers cannot replay historical stream records at their own pace.</p>
+              <div class="usecase-callout"><strong>Production Use Case:</strong> High-velocity clickstream and payment fraud pipelines ingest events into Kinesis Data Streams in On-Demand mode (or Provisioned shards with 1 MB/s write and 2 MB/s read per shard) so Apache Flink, AWS Lambda, and Firehose can all read the exact same stream concurrently.</div>
+              <div class="hack-callout"><strong>Exam Hack:</strong> Multiple consumers needing real-time replay + ordering per PartitionKey = Amazon Kinesis Data Streams. Use Enhanced Fan-Out when multiple consumers need dedicated 2 MB/s read bandwidth without throttling.</div>
+            </div>
+          </details>
+        </article><article class="seo-sample-q">
+          <div style="display:flex; justify-content:space-between; align-items:center; gap:0.5rem; flex-wrap:wrap; margin-bottom:0.55rem;">
+            <span class="badge badge-info">Sample Q2 · Domain 1: Data Ingestion and Transformation</span>
+            <span class="badge badge-neutral">SINGLE-SELECT</span>
+          </div>
+          <p style="margin:0 0 0.5rem; font-weight:600;">An e-commerce marketplace ingesting millions of real-time clickstream and order events per hour has a data engineering squad that is currently captures website clickstream events. Three applications must each process every event within seconds, reading at their own pace. A fraud-model team plans to add a fourth application next month, and it must be able to start from the events captured earlier that same day. Which ingestion service should the data platform engineer use?</p>
+          <ol type="A"><li><strong>A.</strong> An Amazon Data Firehose stream that delivers to Amazon S3.</li><li><strong>B.</strong> An Amazon SNS topic with an SQS queue for each application.</li><li><strong>C.</strong> An Amazon SQS standard queue shared by the applications.</li><li><strong>D.</strong> An Amazon Kinesis data stream in on-demand capacity mode.</li></ol>
+          <details>
+            <summary>Reveal Verified Answer (D), Technical Explanation &amp; Exam Hack</summary>
+            <div style="margin-top:0.65rem; font-size:var(--fs-sm);">
+              <p style="margin:0 0 0.5rem;"><strong style="color:var(--success);">Correct Answer: Option D</strong></p>
+              <p style="margin:0;">- **a** Firehose buffers and delivers records to a destination; it has no consumer API, so applications cannot each read the events within seconds, and the S3 copy arrives only after the buffer interval. - **b** SNS-to-SQS fan-out serves the three current applications, but SNS standard topics keep no history: a queue subscribed next month only receives events published after it subscribes. - **c** Consumers of one SQS queue compete for messages: each message goes to one consumer and is deleted after processing, so the applications would not each see every event. - **d** A Kinesis data stream retains records (24 hours by default) whether or not they were read, lets several consumers read the same records independently, and lets a new consumer start from TRIM_HORIZON or a timestamp to pick up earlier events. **The concept.** Kinesis Data Streams is a retained, multi-consumer stream; Firehose is delivery only, SQS is a competing-consumer queue, and SNS standard topics deliver only to current subscribers. **Why this is correct.** Two requirements decide it: every application reads every event independently, and a consumer added later must read events from earlier in the day. A Kinesis data stream keeps records for its retention period regardless of consumption, so any number of consumers read the same data at their own positions and a new one can start from the oldest retained record. SNS plus SQS meets the first requirement but not the second, a shared SQS queue meets neither, and Firehose exposes no read API at all. **How to reason it out** 1. Note the latency (seconds) and that every application needs every event. 2. Note the late-joining consumer: it needs events that were published before it existed. 3. Eliminate designs without retention a new reader can rewind into (SNS, SQS, Firehose). 4. Choose the retained multi-consumer stream: Kinesis Data Streams. &gt; **Exam tip:** Many independent readers plus a late joiner that needs past events means a retained stream, not a queue, topic or delivery stream. Architectural Deep Dive: Amazon Kinesis Data Streams provides sub-second real-time stream ingestion with configurable retention (24 hours up to 365 days), replayability across multiple independent consumers, and optional Enhanced Fan-Out (2 MB/s dedicated throughput per consumer per shard via HTTP/2). Why Distractors Fail: Option A (An Amazon Data Firehose stream that delivers to Amazon S3....) is incorrect because that service applies to a different workload pattern and requires managing custom stream consumer infrastructure when the requirement is zero-administration delivery into S3, Redshift, or OpenSearch. Option B (An Amazon SNS topic with an SQS queue for each application....) is incorrect because that service applies to a different workload pattern and sets a short Visibility Timeout while the consumer takes several minutes to process messages (causing duplicate processing by other consumers) or uses Short Polling (WaitTimeSeconds=0) that burns money on empty API responses. Option C (An Amazon SQS standard queue shared by the applications....) is incorrect because that service applies to a different workload pattern and sets a short Visibility Timeout while the consumer takes several minutes to process messages (causing duplicate processing by other consumers) or uses Short Polling (WaitTimeSeconds=0) that burns money on empty API responses.</p>
+              <div class="usecase-callout"><strong>Production Use Case:</strong> High-velocity clickstream and payment fraud pipelines ingest events into Kinesis Data Streams in On-Demand mode (or Provisioned shards with 1 MB/s write and 2 MB/s read per shard) so Apache Flink, AWS Lambda, and Firehose can all read the exact same stream concurrently.</div>
+              <div class="hack-callout"><strong>Exam Hack:</strong> Multiple consumers needing real-time replay + ordering per PartitionKey = Amazon Kinesis Data Streams. Use Enhanced Fan-Out when multiple consumers need dedicated 2 MB/s read bandwidth without throttling.</div>
+            </div>
+          </details>
+        </article><article class="seo-sample-q">
+          <div style="display:flex; justify-content:space-between; align-items:center; gap:0.5rem; flex-wrap:wrap; margin-bottom:0.55rem;">
+            <span class="badge badge-info">Sample Q3 · Domain 3: Data Operations and Support</span>
+            <span class="badge badge-neutral">SINGLE-SELECT</span>
+          </div>
+          <p style="margin:0 0 0.5rem; font-weight:600;">At a connected-vehicle telemetry company streaming sensor payloads into AWS, the lead data architect is currently ingests article-view events into an Amazon Kinesis data stream. Traffic changes unpredictably from hour to hour, and the operations team does not want to forecast, monitor or adjust shard counts. Which configuration meets these requirements while minimizing ongoing operational maintenance?</p>
+          <ol type="A"><li><strong>A.</strong> Switch the data stream to on-demand capacity mode.</li><li><strong>B.</strong> Replace the data stream with an Amazon MSK provisioned cluster.</li><li><strong>C.</strong> Keep provisioned mode with enough shards for the busiest hour.</li><li><strong>D.</strong> Keep provisioned mode and call UpdateShardCount from an alarm.</li></ol>
+          <details>
+            <summary>Reveal Verified Answer (A), Technical Explanation &amp; Exam Hack</summary>
+            <div style="margin-top:0.65rem; font-size:var(--fs-sm);">
+              <p style="margin:0 0 0.5rem;"><strong style="color:var(--success);">Correct Answer: Option A</strong></p>
+              <p style="margin:0;">- **a** On-demand mode manages shards for you and scales write and read capacity with observed traffic, so there is no shard count to forecast or adjust. - **b** An MSK provisioned cluster moves the capacity problem to brokers and partitions, adding operational work rather than removing it. - **c** Sizing for the peak still requires forecasting the peak and paying for idle shards the rest of the time, and an unforecast spike still throttles. - **d** Alarm-driven resharding works, but the team then owns the alarm thresholds, the scaling function and the UpdateShardCount quotas, which is exactly the capacity management they want to avoid. **The concept.** Kinesis Data Streams has two capacity modes: provisioned (you choose and change the shard count) and on-demand (AWS scales shards with traffic). **Why this is correct.** The deciding constraint is that nobody wants to plan or change capacity. On-demand mode removes shard management entirely. Alarm-driven UpdateShardCount and peak sizing both keep provisioned mode, so someone still forecasts or automates capacity, and MSK provisioned adds broker management. **How to reason it out** 1. Identify the workload: unpredictable traffic with no capacity planning wanted. 2. Compare provisioned options: both still require choosing or automating a shard count. 3. Pick the mode in which AWS manages shards: on-demand. &gt; **Exam tip:** Unpredictable traffic and no shard management means Kinesis on-demand capacity mode. Architectural Deep Dive: Amazon Kinesis Data Streams provides sub-second real-time stream ingestion with configurable retention (24 hours up to 365 days), replayability across multiple independent consumers, and optional Enhanced Fan-Out (2 MB/s dedicated throughput per consumer per shard via HTTP/2). Why Distractors Fail: Option B (Replace the data stream with an Amazon MSK provisioned cluster....) is incorrect because that service applies to a different workload pattern and uses a non-replayable delivery buffer or competing queue where multiple independent consumers cannot replay historical stream records at their own pace. Option C (Keep provisioned mode with enough shards for the busiest hour....) is incorrect because that service applies to a different workload pattern and uses a non-replayable delivery buffer or competing queue where multiple independent consumers cannot replay historical stream records at their own pace. Option D (Keep provisioned mode and call UpdateShardCount from an alarm....) is incorrect because that service applies to a different workload pattern and uses a non-replayable delivery buffer or competing queue where multiple independent consumers cannot replay historical stream records at their own pace.</p>
+              <div class="usecase-callout"><strong>Production Use Case:</strong> High-velocity clickstream and payment fraud pipelines ingest events into Kinesis Data Streams in On-Demand mode (or Provisioned shards with 1 MB/s write and 2 MB/s read per shard) so Apache Flink, AWS Lambda, and Firehose can all read the exact same stream concurrently.</div>
+              <div class="hack-callout"><strong>Exam Hack:</strong> Multiple consumers needing real-time replay + ordering per PartitionKey = Amazon Kinesis Data Streams. Use Enhanced Fan-Out when multiple consumers need dedicated 2 MB/s read bandwidth without throttling.</div>
+            </div>
+          </details>
+        </article><article class="seo-sample-q">
+          <div style="display:flex; justify-content:space-between; align-items:center; gap:0.5rem; flex-wrap:wrap; margin-bottom:0.55rem;">
+            <span class="badge badge-info">Sample Q4 · Domain 1: Data Ingestion and Transformation</span>
+            <span class="badge badge-neutral">SINGLE-SELECT</span>
+          </div>
+          <p style="margin:0 0 0.5rem; font-weight:600;">[A capital markets risk-reporting organization running regulated analytics pipelines on AWS has a data engineer who] An on-premises Oracle database supports a live ordering system. A data engineer must copy the existing order rows into an Amazon S3 data lake and then keep S3 current with every insert, update and delete, while placing minimal load on the source. Which approach should the engineer use?</p>
+          <ol type="A"><li><strong>A.</strong> An AWS DMS task of type full load and ongoing replication.</li><li><strong>B.</strong> An AWS DMS task of type CDC, started from the current time.</li><li><strong>C.</strong> A nightly AWS Glue JDBC job with bookmarks on the order ID.</li><li><strong>D.</strong> An AWS DMS task of type full load, rerun each night.</li></ol>
+          <details>
+            <summary>Reveal Verified Answer (A), Technical Explanation &amp; Exam Hack</summary>
+            <div style="margin-top:0.65rem; font-size:var(--fs-sm);">
+              <p style="margin:0 0 0.5rem;"><strong style="color:var(--success);">Correct Answer: Option A</strong></p>
+              <p style="margin:0;">- **a** Full load plus CDC copies the existing rows once and then reads the database transaction log to apply inserts, updates and deletes continuously, with little load on the source. - **b** A CDC task without a full load captures changes from its start point but never copies the rows that already exist, so the lake would be missing historical orders. - **c** A bookmark on a monotonically increasing key picks up new rows, but it never sees updates or deletes to existing rows, and nightly runs are not continuous. - **d** A nightly full load re-reads every table each time, which loads the source heavily and leaves S3 up to a day behind. **The concept.** AWS DMS tasks come in three types: full load (one-time copy), CDC only (changes from a start point) and full load plus CDC (copy, then continuous changes read from the transaction log). **Why this is correct.** The requirement has two halves: the existing rows and every later change, including deletes. Full load and ongoing replication covers both and reads changes from the redo log rather than by querying tables. Full load alone misses continuity and hammers the source, CDC only misses history, and a Glue JDBC bookmark sees only newly inserted keys. **How to reason it out** 1. Split the requirement: historical rows plus continuous inserts, updates and deletes. 2. Note that deletes and updates require log-based change capture, not key-based incremental reads. 3. Match both halves to one DMS task type: full load plus CDC. &gt; **Exam tip:** Existing data plus every later change from a relational source means an AWS DMS full-load-and-CDC task. Architectural Deep Dive: AWS Database Migration Service (DMS) performs homogeneous and heterogeneous database migrations with minimal downtime using Full Load + Change Data Capture (CDC), while the AWS Schema Conversion Tool (SCT) converts heterogeneous database schemas, stored procedures, and views (for example, Oracle/SQL Server to Aurora PostgreSQL or Redshift). Why Distractors Fail: Option B (An AWS DMS task of type CDC, started from the current time....) is incorrect because that service applies to a different workload pattern and takes hours of production database downtime for a cold dump-and-restore or attempts heterogeneous schema conversion without AWS SCT. Option C (A nightly AWS Glue JDBC job with bookmarks on the order ID....) is incorrect because that service applies to a different workload pattern and re-scans the entire historical S3 bucket or table on every scheduled run, wasting DPU capacity and duplicating target records. Option D (An AWS DMS task of type full load, rerun each night....) is incorrect because that service applies to a different workload pattern and takes hours of production database downtime for a cold dump-and-restore or attempts heterogeneous schema conversion without AWS SCT.</p>
+              <div class="usecase-callout"><strong>Production Use Case:</strong> When migrating a 20 TB on-premises Oracle data warehouse to Amazon Redshift, engineers use AWS SCT Extraction Agents alongside DMS Full Load + CDC replication tasks.</div>
+              <div class="hack-callout"><strong>Exam Hack:</strong> Minimal downtime live database migration / continuous CDC replication = AWS DMS. Heterogeneous engine schema &amp; PL/SQL conversion = AWS SCT + DMS.</div>
+            </div>
+          </details>
+        </article><article class="seo-sample-q">
+          <div style="display:flex; justify-content:space-between; align-items:center; gap:0.5rem; flex-wrap:wrap; margin-bottom:0.55rem;">
+            <span class="badge badge-info">Sample Q5 · Domain 2: Data Store Management</span>
+            <span class="badge badge-neutral">SINGLE-SELECT</span>
+          </div>
+          <p style="margin:0 0 0.5rem; font-weight:600;">[a multi-national logistics and supply-chain carrier tracking real-time shipment telemetry] Analysts use Amazon Athena to run monthly aggregate reports over the full history of a CSV data lake in Amazon S3. Each query reads 4 of the table&#x27;s 120 columns across every row, and the Athena bill keeps rising. Which change reduces the data scanned per query by the LARGEST amount?</p>
+          <ol type="A"><li><strong>A.</strong> Partition the CSV data in S3 by the year and month of each event.</li><li><strong>B.</strong> Move the CSV objects to the S3 Standard-Infrequent Access class.</li><li><strong>C.</strong> Compress the CSV files with gzip and keep the same table layout.</li><li><strong>D.</strong> Rewrite the data as Snappy-compressed Parquet with a Glue job.</li></ol>
+          <details>
+            <summary>Reveal Verified Answer (D), Technical Explanation &amp; Exam Hack</summary>
+            <div style="margin-top:0.65rem; font-size:var(--fs-sm);">
+              <p style="margin:0 0 0.5rem;"><strong style="color:var(--success);">Correct Answer: Option D</strong></p>
+              <p style="margin:0;">- **a** Partitioning prunes data only when queries filter on the partition columns. These reports aggregate the full history, so every partition is still read in full. - **b** A storage class changes the storage price, not the bytes Athena scans. Queries would scan the same data and also add retrieval charges. - **c** Athena bills on compressed bytes, so gzip does cut the scan, but every query still reads all 120 columns of every row. Columnar storage saves far more when queries touch 4 columns. - **d** Parquet is columnar, so Athena reads only the 4 referenced columns, and per-column compression shrinks those further. That attacks both the unused 116 columns and the raw size. **The concept.** Athena bills by bytes scanned. Row formats such as CSV force a query to read every column of every row; columnar formats such as Apache Parquet store each column separately so engines read only the referenced columns, and compress each column well. **Why this is correct.** Queries touching 4 of 120 columns waste roughly 97% of every CSV scan. Parquet removes that waste and adds compression on top, so it beats gzip CSV, which shrinks bytes but still reads every column. Partitioning is a strong lever only when queries filter on the partition key, and these full-history reports do not. Storage classes do not change scan volume at all. **How to reason it out** 1. Identify what Athena charges for: bytes scanned per query. 2. Note the access pattern: few columns, all rows, no selective filter. 3. Columnar layout removes unused columns from the scan; compression only shrinks what is still read. 4. Partitioning helps only with filters on the partition key, which these reports lack. &gt; **Exam tip:** When queries read a few columns, columnar Parquet is the biggest scan-cost lever; partitioning helps only when queries filter on the partition key. Architectural Deep Dive: Amazon Athena is a serverless interactive query engine over S3 (charged at $5 per TB scanned): converting data to columnar Apache Parquet/ORC with Snappy compression, partitioning by high-frequency filter keys, and enabling Partition Projection (for highly predictable date/ID ranges without Glue Catalog metadata calls) cuts query latency and scan cost by up to 90-99%. Why Distractors Fail: Option A (Partition the CSV data in S3 by the year and month of each event....) is incorrect because that service applies to a different workload pattern and routes multi-gigabyte file uploads through a Lambda function or EC2 web tier instead of generating an S3 Pre-Signed URL for direct client-to-S3 upload, or forgets that S3 Pre-Signed URLs inherit the exact IAM permissions and session expiration of the principal that generated them. Option B (Move the CSV objects to the S3 Standard-Infrequent Access class....) is incorrect because that service applies to a different workload pattern and routes multi-gigabyte file uploads through a Lambda function or EC2 web tier instead of generating an S3 Pre-Signed URL for direct client-to-S3 upload, or forgets that S3 Pre-Signed URLs inherit the exact IAM permissions and session expiration of the principal that generated them. Option C (Compress the CSV files with gzip and keep the same table layout....) is incorrect because that service applies to a different workload pattern and writes hundreds of lines of raw CloudFormation boilerplate or attempts to run CodeDeploy EC2 shell scripts (`BeforeInstall`/`AfterInstall`) for serverless Lambda traffic shifting.</p>
+              <div class="usecase-callout"><strong>Production Use Case:</strong> To enforce FinOps cost guardrails across analyst teams, data engineers isolate teams into separate Athena Workgroups with &#x27;Per-query data usage control&#x27; and &#x27;Per-workgroup data usage alarms&#x27; in CloudWatch.</div>
+              <div class="hack-callout"><strong>Exam Hack:</strong> Slash Athena cost &amp; speed up queries = Parquet/ORC + Partitioning + Partition Projection (avoids MSCK REPAIR TABLE / Glue Crawler metadata bottleneck). Control analyst spend = Athena Workgroup data scan limits.</div>
+            </div>
+          </details>
+        </article>
+    </section>
+
+    <section class="cro-paywall">
+      <span class="badge badge-brand">ALL 8 CERTIFICATIONS · ZERO SUBSCRIPTION</span>
+      <h3>Ready to Master All 260 DEA-C01 Scenarios (4 Full-Length Timed Mocks)?</h3>
+      <p style="margin:0; color:var(--muted); font-size:var(--fs-sm);">
+        Get instant browser activation for all 4 timed 65-question DEA-C01 exams <strong>plus all 7 other AWS, Azure AI-901, and Google Cloud GenAI Leader banks (2,080 scenarios total)</strong> and the downloadable 4.85 MB offline HTML pack for a single one-time payment of <strong>$19.99 USD</strong>.
+      </p>
+      <div style="display:flex; gap:0.65rem; flex-wrap:wrap; margin-top:0.9rem;">
+        <a class="btn btn-primary" href="https://gabbler407.gumroad.com/l/cloudcert-lab-pro" target="_blank" rel="noopener">Unlock Pro Vault on Gumroad ($19.99) →</a>
+        <a class="btn" href="../../?exam=aws-dea-c01&amp;mode=study">Try 15 Questions Free First</a>
+      </div>
+      <div class="cro-trust-row">
+        <span>✓ One-Time Payment ($0/month)</span>
+        <span>✓ Instant AES-256 Pro Key + Offline ZIP</span>
+        <span>✓ Lifetime 2026–2027 Updates</span>
+      </div>
+    </section>
+
+    <section class="kdp-cross-sell">
+      <div>
+        <span class="badge badge-info">Read FREE on Kindle Unlimited · Print &amp; eBook Editions</span>
+        <div style="font-weight:700; margin-top:0.3rem;">Companion Book on Amazon: 2026–2027 Multi-Cloud &amp; AWS Certification Practice Exams Series (Gabriel N.)</div>
+        <div style="font-size:var(--fs-sm); color:var(--muted);">Study offline on Kindle, tablet, or paperback alongside the interactive CloudCert Lab simulator.</div>
+      </div>
+      <a class="btn" href="https://www.amazon.com/author/gabrieln" target="_blank" rel="noopener">View on Amazon →</a>
+    </section>
+
+    <section style="margin-top:1.75rem;">
+      <h2 style="margin:0 0 0.5rem; font-size:1.15rem;">Frequently Asked Questions — AWS DEA-C01</h2>
+      <div class="faq-item">
+          <h3>How many free DEA-C01 practice questions can I take right now?</h3>
+          <p>You can read 5 full sample scenarios on this page and launch our interactive 15-question DEA-C01 Free Diagnostic in the simulator with zero login required. The Pro Vault unlocks all 4 full-length 65-question timed mocks (260 scenarios for DEA-C01, plus 1,820 more across 7 other cloud certifications).</p>
+        </div><div class="faq-item">
+          <h3>What are the highest-weighted topics on AWS DEA-C01?</h3>
+          <p>Domain 1 (Data Ingestion &amp; Transformation: AWS Glue, Kinesis, MSK, EMR, Step Functions) and Domain 2 (Data Store Management: S3 Lakehouse, Redshift, DynamoDB, Iceberg) represent the largest share of scored scenarios.</p>
+        </div><div class="faq-item">
+          <h3>What is the official time limit and passing score for AWS DEA-C01?</h3>
+          <p>Our full-length timed mock exams mirror the official pacing of 130 minutes per 65-question exam and a 72% passing benchmark, complete with domain-level accuracy breakdowns.</p>
+        </div><div class="faq-item">
+          <h3>Is the CloudCert Lab Pro Vault a recurring monthly subscription?</h3>
+          <p>No. CloudCert Lab Pro is a single one-time payment of $19.99 USD via Gumroad. It includes instant browser Pro activation across all 8 certifications (2,080 scenarios) plus a 4.85 MB offline HTML bundle and lifetime 2026–2027 blueprint updates.</p>
+        </div>
+    </section>
+
+    <footer class="seo-footer">
+      <div class="seo-footer-grid">
+        <div>
+          <h4>Explore Other Free 2026–2027 Practice Exams</h4>
+          <ul><li><a href="../azure-ai-901/">Microsoft Azure AI-901 Practice Exam (260 Qs)</a></li><li><a href="../gcp-genai-leader/">Google Cloud GenAI Leader Practice Exam (260 Qs)</a></li><li><a href="../aws-aif-c01/">AWS AIF-C01 Practice Exam (260 Qs)</a></li><li><a href="../aws-mla-c01/">AWS MLA-C01 Practice Exam (260 Qs)</a></li><li><a href="../aws-dva-c02/">AWS DVA-C02 Practice Exam (260 Qs)</a></li><li><a href="../aws-saa-c03/">AWS SAA-C03 Practice Exam (260 Qs)</a></li><li><a href="../aws-clf-c02/">AWS CLF-C02 Practice Exam (260 Qs)</a></li></ul>
+        </div>
+        <div>
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="../../">CloudCert Lab Home (Interactive Simulator)</a></li>
+            <li><a href="../../?unlock=1">Activate Pro License Key</a></li>
+            <li><a href="https://gabbler407.gumroad.com/l/cloudcert-lab-pro" target="_blank" rel="noopener">Pro Vault — All 2,080 Questions ($19.99)</a></li>
+            <li><a href="https://www.amazon.com/author/gabrieln" target="_blank" rel="noopener">Amazon Author Page — Gabriel N.</a></li>
+          </ul>
+        </div>
+      </div>
+      <div>Updated 2026-11-21 · CloudCert Lab Independent Practice Exam Simulator.</div>
+    </footer>
+  </main>
+</body>
+</html>

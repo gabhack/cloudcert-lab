@@ -10,6 +10,38 @@ const CONFIG = {
   LICENSE_API_URL: "",
 };
 
+const KDP_COMPANIONS = {
+  "aws-clf-c02": {
+    title: "AWS Certified Cloud Practitioner (CLF-C02) Practice Exams (410 Qs)",
+    url: "https://www.amazon.com/dp/B0HQ8ZT44Y",
+    badge: "FREE on Kindle Unlimited ($2.99 eBook)",
+  },
+  "aws-aif-c01": {
+    title: "AWS Certified AI Practitioner (AIF-C01) Practice Tests",
+    url: "https://www.amazon.com/dp/B0HQXNM3VY",
+    badge: "FREE on Kindle Unlimited ($2.99 eBook)",
+  },
+  "aws-mla-c01": {
+    title: "AWS Machine Learning Engineer Associate (MLA-C01) Practice Tests",
+    url: "https://www.amazon.com/dp/B0HS1GKQSQ",
+    badge: "FREE on Kindle Unlimited ($2.99 eBook)",
+  },
+  "aws-saa-c03": {
+    title: "AWS Solutions Architect Associate (SAA-C03) Practice Tests",
+    url: "https://www.amazon.com/dp/B0HRVB8PZ3",
+    badge: "FREE on Kindle Unlimited ($2.99 eBook)",
+  },
+  default: {
+    title: "2026–2027 Multi-Cloud & AWS Practice Exams Series by Gabriel N.",
+    url: "https://www.amazon.com/author/gabrieln",
+    badge: "Read FREE on Kindle Unlimited",
+  },
+};
+
+function getKdpCompanion(slug) {
+  return KDP_COMPANIONS[slug] || KDP_COMPANIONS.default;
+}
+
 const PRO_CACHE = {};
 
 function b64ToBytes(b64) {
@@ -164,6 +196,7 @@ function renderCatalog() {
             <button class="btn" type="button" data-action="open-cert" data-slug="${c.slug}">
               All 4 Mocks →
             </button>
+            <a class="btn btn-ghost" href="exams/${c.slug}/">Guide</a>
           </div>
         </div>
       </article>`
@@ -451,15 +484,64 @@ function finishExam() {
         .join("")
     : `<div class="badge badge-success" style="margin-top:1rem;">Perfect Score! Zero missed questions.</div>`;
 
+  const domainEntries = Object.entries(domainStats).map(([dom, st]) => ({
+    dom,
+    ok: st.ok,
+    total: st.total,
+    dpct: Math.round((st.ok / st.total) * 100),
+  }));
+  const weakest = domainEntries.slice().sort((a, b) => a.dpct - b.dpct)[0];
+  const remainingCertQs = Math.max(0, STATE.activeCert.total_questions - total);
+  const kdp = getKdpCompanion(STATE.activeCert.slug);
+
   const upsellBanner = !STATE.isPro
-    ? `<div class="card" style="margin-top:1.25rem; background:var(--brand-soft); border-color:var(--brand);">
-         <strong>Ready for the real exam?</strong> You just finished the 15-question Free Diagnostic.
-         Unlock all <strong>4 full-length 65-question timed mocks (${STATE.activeCert.total_questions} scenarios)</strong> plus the other 7 certifications (2,080 total questions) for a one-time $19.99 license.
-         <div style="margin-top:0.75rem;">
-           <button class="btn btn-primary" type="button" id="btnResultUnlock">Unlock Pro Vault ($19.99) →</button>
+    ? `<div class="cro-paywall">
+         <span class="badge badge-brand">PRO ALL-ACCESS VAULT · ONE-TIME PAYMENT</span>
+         <h3>${passed ? `Lock In Your ${escapeHtml(STATE.activeCert.code)} First-Try Pass` : `Close Your ${escapeHtml(STATE.activeCert.code)} Score Gap Before Exam Day`}</h3>
+         <p style="margin:0; color:var(--muted); font-size:var(--fs-sm);">
+           You just completed the 15-question Free Diagnostic (<strong>${pct}%</strong>). Unlock the remaining
+           <strong>${remainingCertQs} ${escapeHtml(STATE.activeCert.code)} scenarios</strong> plus all 7 other AWS, Azure &amp; Google Cloud exams (<strong>2,080 scenarios · 32 timed mocks</strong>) for one single $19.99 payment.
+         </p>
+         ${weakest ? `<div class="cro-gap-alert">
+           <strong>Biggest Exam Risk Detected:</strong> ${escapeHtml(weakest.dom)} (<strong>${weakest.dpct}%</strong> · ${weakest.ok}/${weakest.total} correct).
+           Full Pro Mocks 1–4 drill every subdomain with production use cases and Exam Hacks.
+         </div>` : ""}
+         <div class="cro-teaser-grid">
+           <div class="cro-teaser-locked">
+             <strong>🔒 4 Full 65-Question Mocks</strong>
+             <span>Timed ${STATE.activeCert.duration_min}-min exam mode + instant study explanations for ${escapeHtml(STATE.activeCert.code)}.</span>
+           </div>
+           <div class="cro-teaser-locked">
+             <strong>🔒 All 8 Cloud &amp; AI Blueprints</strong>
+             <span>Azure AI-901, GCP GenAI Leader, AWS AIF-C01, MLA-C01, DEA-C01, DVA-C02, SAA-C03 &amp; CLF-C02.</span>
+           </div>
+           <div class="cro-teaser-locked">
+             <strong>🔒 Offline 4.85 MB HTML Bundle</strong>
+             <span>Downloadable ZIP + instant AES-256 Pro Key so you can drill anywhere without internet.</span>
+           </div>
+         </div>
+         <div style="display:flex; gap:0.65rem; flex-wrap:wrap; align-items:center; margin-top:0.85rem;">
+           <a class="btn btn-primary" href="${CONFIG.CHECKOUT_URL}" target="_blank" rel="noopener">
+             Unlock All 2,080 Scenarios ($19.99 One-Time) →
+           </a>
+           <button class="btn" type="button" id="btnResultUnlock">Already Have a Key? Activate</button>
+         </div>
+         <div class="cro-trust-row">
+           <span>✓ Zero Monthly Subscription</span>
+           <span>✓ Instant Key Delivery via Gumroad</span>
+           <span>✓ Lifetime 2026–2027 Updates</span>
          </div>
        </div>`
     : "";
+
+  const kdpBanner = `<div class="kdp-cross-sell">
+       <div>
+         <span class="badge badge-info">${escapeHtml(kdp.badge)}</span>
+         <div style="font-weight:700; margin-top:0.3rem;">Companion Study Book: ${escapeHtml(kdp.title)}</div>
+         <div style="font-size:var(--fs-sm); color:var(--muted);">Prefer offline reading on Kindle, tablet, or paperback alongside the simulator?</div>
+       </div>
+       <a class="btn" href="${kdp.url}" target="_blank" rel="noopener">View on Amazon →</a>
+     </div>`;
 
   $("resultsCard").innerHTML = `
     <div style="display:flex; justify-content:space-between; align-items:center; gap:1rem; flex-wrap:wrap;">
@@ -477,6 +559,7 @@ function finishExam() {
     </div>
 
     ${upsellBanner}
+    ${kdpBanner}
 
     <h3 style="margin:1.3rem 0 0.3rem; font-size:1rem;">Domain-Level Diagnostic</h3>
     <table class="domain-table">
@@ -675,6 +758,20 @@ async function init() {
     document.documentElement.setAttribute("data-density", next);
     localStorage.setItem("cloudcert_density", next);
   };
+
+  // URL Deep-Link Routing from Programmatic SEO Exam Pages (?exam=<slug>&mode=study|exam, ?cert=<slug>, ?unlock=1)
+  const params = new URLSearchParams(window.location.search);
+  const qExam = params.get("exam");
+  const qCert = params.get("cert");
+  const qMode = params.get("mode") === "exam" ? "exam" : "study";
+  if (qExam && STATE.catalog.certs.some((c) => c.slug === qExam)) {
+    startSession(qExam, "free", null, qMode);
+  } else if (qCert && STATE.catalog.certs.some((c) => c.slug === qCert)) {
+    openCertDetail(qCert);
+  }
+  if (params.get("unlock") === "1") {
+    openProModal();
+  }
 }
 
 init();

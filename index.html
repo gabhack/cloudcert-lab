@@ -3,12 +3,64 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CloudCert Lab — Multi-Cloud &amp; AI Certification Exam Simulator (2,080 Scenarios)</title>
-  <meta name="description" content="Free &amp; Pro interactive exam simulator for AWS (CLF-C02, AIF-C01, SAA-C03, MLA-C01, DEA-C01, DVA-C02), Microsoft Azure AI-901, and Google Cloud Generative AI Leader." />
+  <title>CloudCert Lab — Free Multi-Cloud &amp; AI Certification Exam Simulator (2026–2027)</title>
+  <meta name="description" content="Free &amp; Pro interactive practice exam simulator for Microsoft Azure AI-901, Google Cloud Generative AI Leader, and AWS (AIF-C01, MLA-C01, DEA-C01, DVA-C02, SAA-C03, CLF-C02). 2,080 scenario-based questions with domain diagnostics and Exam Hacks." />
+  <link rel="canonical" href="https://gabhack.github.io/cloudcert-lab/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="CloudCert Lab — Multi-Cloud &amp; AI Certification Exam Simulator (2,080 Scenarios)" />
+  <meta property="og:description" content="Practice 120 free scenario-based exam questions across Azure AI-901, GCP GenAI Leader, and 6 AWS certifications — or unlock all 2,080 Pro Vault scenarios ($19.99 one-time)." />
+  <meta property="og:url" content="https://gabhack.github.io/cloudcert-lab/" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="CloudCert Lab — Free Multi-Cloud &amp; AI Certification Simulator (2026–2027)" />
+  <meta name="twitter:description" content="8 official 2026–2027 exam blueprints: Azure AI-901, Google Cloud GenAI Leader, AWS AIF-C01, MLA-C01, DEA-C01, DVA-C02, SAA-C03, CLF-C02." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "SoftwareApplication",
+        "name": "CloudCert Lab — Multi-Cloud & AI Certification Exam Simulator",
+        "applicationCategory": "EducationalApplication",
+        "operatingSystem": "Web Browser",
+        "url": "https://gabhack.github.io/cloudcert-lab/",
+        "description": "Interactive exam simulator covering 8 official 2026-2027 cloud and AI certifications across AWS, Microsoft Azure, and Google Cloud with 120 free questions and a 2,080-question Pro Vault.",
+        "offers": [
+          {
+            "@type": "Offer",
+            "name": "Free Diagnostic Tier (120 Scenarios)",
+            "price": "0",
+            "priceCurrency": "USD"
+          },
+          {
+            "@type": "Offer",
+            "name": "Pro All-Access Vault (2,080 Scenarios · 32 Timed Mock Exams)",
+            "price": "19.99",
+            "priceCurrency": "USD",
+            "url": "https://gabbler407.gumroad.com/l/cloudcert-lab-pro"
+          }
+        ]
+      },
+      {
+        "@type": "ItemList",
+        "name": "2026-2027 Cloud & AI Practice Exams",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Microsoft Azure AI Fundamentals (AI-901) Practice Exams", "url": "https://gabhack.github.io/cloudcert-lab/exams/azure-ai-901/" },
+          { "@type": "ListItem", "position": 2, "name": "Google Cloud Generative AI Leader Practice Exams", "url": "https://gabhack.github.io/cloudcert-lab/exams/gcp-genai-leader/" },
+          { "@type": "ListItem", "position": 3, "name": "AWS Certified AI Practitioner (AIF-C01) Practice Exams", "url": "https://gabhack.github.io/cloudcert-lab/exams/aws-aif-c01/" },
+          { "@type": "ListItem", "position": 4, "name": "AWS Machine Learning Engineer Associate (MLA-C01) Practice Exams", "url": "https://gabhack.github.io/cloudcert-lab/exams/aws-mla-c01/" },
+          { "@type": "ListItem", "position": 5, "name": "AWS Data Engineer Associate (DEA-C01) Practice Exams", "url": "https://gabhack.github.io/cloudcert-lab/exams/aws-dea-c01/" },
+          { "@type": "ListItem", "position": 6, "name": "AWS Developer Associate (DVA-C02) Practice Exams", "url": "https://gabhack.github.io/cloudcert-lab/exams/aws-dva-c02/" },
+          { "@type": "ListItem", "position": 7, "name": "AWS Solutions Architect Associate (SAA-C03) Practice Exams", "url": "https://gabhack.github.io/cloudcert-lab/exams/aws-saa-c03/" },
+          { "@type": "ListItem", "position": 8, "name": "AWS Cloud Practitioner (CLF-C02) Practice Exams", "url": "https://gabhack.github.io/cloudcert-lab/exams/aws-clf-c02/" }
+        ]
+      }
+    ]
+  }
+  </script>
   <script>
     (function () {
       const savedTheme = localStorage.getItem("cloudcert_theme");
@@ -57,9 +109,9 @@
             or unlock the complete <strong>2,080-question Pro Vault (32 full-length exams)</strong>.
           </p>
         </div>
-        <div style="display:flex; flex-direction:column; gap:0.5rem; min-width:210px;">
-          <button id="btnHeroPro" class="btn btn-primary" type="button">Unlock Pro Vault ($19.99)</button>
-          <a id="btnHeroUdemy" class="btn" href="https://www.amazon.com/author/gabrieln" target="_blank" rel="noopener">Official Study Books</a>
+        <div style="display:flex; flex-direction:column; gap:0.5rem; min-width:220px;">
+          <button id="btnHeroPro" class="btn btn-primary" type="button">Unlock Pro Vault ($19.99 One-Time)</button>
+          <a id="btnHeroKdp" class="btn" href="https://www.amazon.com/author/gabrieln" target="_blank" rel="noopener">Companion Kindle Books (KU $0)</a>
         </div>
       </div>
 
@@ -158,6 +210,43 @@
     <section id="viewResults" class="hidden">
       <div class="card" id="resultsCard"></div>
     </section>
+
+    <!-- CRAWLABLE SEO HUB FOOTER (ALL 8 DEDICATED EXAM LANDING PAGES + KDP SERIES) -->
+    <footer class="seo-footer" aria-label="Exam Study Guides and Resources">
+      <div class="seo-footer-grid">
+        <div>
+          <h4>AI &amp; Multi-Cloud Exam Guides (2026–2027)</h4>
+          <ul>
+            <li><a href="exams/azure-ai-901/">Microsoft Azure AI-901 Practice Questions &amp; Blueprint</a></li>
+            <li><a href="exams/gcp-genai-leader/">Google Cloud Generative AI Leader Practice Exam</a></li>
+            <li><a href="exams/aws-aif-c01/">AWS AI Practitioner (AIF-C01) Free Sample Questions</a></li>
+            <li><a href="exams/aws-mla-c01/">AWS ML Engineer Associate (MLA-C01) Mock Scenarios</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>AWS Associate &amp; Foundational Guides</h4>
+          <ul>
+            <li><a href="exams/aws-dea-c01/">AWS Data Engineer Associate (DEA-C01) Practice Exam</a></li>
+            <li><a href="exams/aws-dva-c02/">AWS Developer Associate (DVA-C02) Practice Exam</a></li>
+            <li><a href="exams/aws-saa-c03/">AWS Solutions Architect (SAA-C03) Practice Scenarios</a></li>
+            <li><a href="exams/aws-clf-c02/">AWS Cloud Practitioner (CLF-C02) Practice Exam</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Pro Vault &amp; Companion Study Books</h4>
+          <ul>
+            <li><a href="https://gabbler407.gumroad.com/l/cloudcert-lab-pro" target="_blank" rel="noopener">Unlock All 2,080 Pro Scenarios ($19.99 One-Time)</a></li>
+            <li><a href="https://www.amazon.com/dp/B0HQ8ZT44Y" target="_blank" rel="noopener">AWS CLF-C02 Practice Exams (Kindle Unlimited $0)</a></li>
+            <li><a href="https://www.amazon.com/dp/B0HQXNM3VY" target="_blank" rel="noopener">AWS AIF-C01 Practice Tests (Kindle Unlimited $0)</a></li>
+            <li><a href="https://www.amazon.com/dp/B0HRVB8PZ3" target="_blank" rel="noopener">AWS SAA-C03 Practice Tests (Kindle Unlimited $0)</a></li>
+            <li><a href="https://www.amazon.com/author/gabrieln" target="_blank" rel="noopener">All Companion Cloud Books by Gabriel N. on Amazon</a></li>
+          </ul>
+        </div>
+      </div>
+      <div>
+        CloudCert Lab · Independent 2026–2027 practice exam simulator built for multi-cloud &amp; AI certification candidates. Not affiliated with Amazon Web Services, Microsoft, or Google Cloud.
+      </div>
+    </footer>
   </main>
 
   <!-- MODAL: PRO LICENSE UNLOCK -->
@@ -168,13 +257,16 @@
         <button id="btnCloseModal" class="btn btn-ghost" type="button" aria-label="Close">✕</button>
       </div>
       <h3 id="modalProTitle" style="margin:0.6rem 0 0.35rem;">Unlock All 2,080 Scenarios (32 Full Exams)</h3>
-      <p style="margin:0 0 1rem; color:var(--muted); font-size:var(--fs-sm);">
-        One-time payment ($19.99 USD). Instant access to all 8 AWS, Microsoft Azure AI-901, and Google Cloud GenAI Leader timed exams with lifetime updates.
+      <p style="margin:0 0 0.85rem; color:var(--muted); font-size:var(--fs-sm);">
+        One-time payment ($19.99 USD — zero subscription). Instant access to all 8 AWS, Microsoft Azure AI-901, and Google Cloud GenAI Leader timed exams plus the 4.85 MB offline HTML bundle and lifetime 2026–2027 blueprint updates.
       </p>
 
-      <a id="btnBuyProLink" class="btn btn-primary" style="width:100%; margin-bottom:1rem;" href="https://gabbler407.gumroad.com/l/cloudcert-lab-pro" target="_blank" rel="noopener">
-        Get Pro License Key ($19.99 Lifetime) →
+      <a id="btnBuyProLink" class="btn btn-primary" style="width:100%; margin-bottom:0.65rem;" href="https://gabbler407.gumroad.com/l/cloudcert-lab-pro" target="_blank" rel="noopener">
+        Get Pro License Key ($19.99 One-Time) →
       </a>
+      <div style="font-size:0.74rem; color:var(--muted); text-align:center; margin-bottom:0.9rem;">
+        ✓ Instant key in Gumroad receipt · ✓ Works offline &amp; online · ✓ All 8 certifications included
+      </div>
 
       <div style="border-top:1px solid var(--border); padding-top:0.95rem;">
         <label for="licenseInput" style="display:block; font-weight:600; font-size:var(--fs-sm); margin-bottom:0.4rem;">

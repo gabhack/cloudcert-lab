@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://gabhack.github.io/cloudcert-lab/sitemap.xml
