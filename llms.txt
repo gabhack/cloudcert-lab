@@ -1,9 +1,9 @@
 # CloudCert Lab — Multi-Cloud & AI Certification Exam Simulator (2026–2027)
 
-> Zero-login interactive exam simulator covering 8 official AWS, Microsoft Azure, and Google Cloud certifications (120 free scenario questions + 2,080 Pro Vault scenarios across 32 timed mock exams for $19.99 one-time).
+> Zero-login interactive exam simulator covering 9 official AWS, Microsoft Azure, and Google Cloud certifications (135 free scenario questions + 2,340 Pro Vault scenarios across 36 timed mock exams + Master Exam Hacks Cheat Sheets PDF for $19.99 one-time).
 
 - Live Simulator: https://gabhack.github.io/cloudcert-lab/
-- Pro All-Access Vault ($19.99 one-time, 2,080 questions + offline ZIP): https://gabbler407.gumroad.com/l/cloudcert-lab-pro
+- Pro All-Access Vault ($19.99 one-time, 2,340 questions + offline ZIP + Cheat Sheets PDF): https://gabbler407.gumroad.com/l/cloudcert-lab-pro
 - Companion Amazon Kindle / Paperback Series (Free on Kindle Unlimited): https://www.amazon.com/author/gabrieln
 
 ## Free Exam Blueprint Guides & Sample Questions
@@ -15,3 +15,4 @@
 - [AWS DVA-C02 Practice Exam (15 Free / 260 Pro)](https://gabhack.github.io/cloudcert-lab/exams/aws-dva-c02/): 4 Full-Length 65-Question Mock Tests (260 Scenarios) · Lambda, DynamoDB, API Gateway, SAM & X-Ray
 - [AWS SAA-C03 Practice Exam (15 Free / 260 Pro)](https://gabhack.github.io/cloudcert-lab/exams/aws-saa-c03/): 4 Full-Length 65-Question Mock Tests (260 Scenarios) · High Availability, Security, Performance & Cost
 - [AWS CLF-C02 Practice Exam (15 Free / 260 Pro)](https://gabhack.github.io/cloudcert-lab/exams/aws-clf-c02/): 4 Full-Length 65-Question Mock Tests (260 Scenarios) · Cloud Concepts, IAM Security, Core Services & Billing
+- [AWS DVA-C03 Practice Exam (15 Free / 260 Pro)](https://gabhack.github.io/cloudcert-lab/exams/aws-dva-c03/): 4 Full-Length 65-Question Mocks (260 Scenarios) · Serverless, Q Developer, Bedrock Guardrails & Testing

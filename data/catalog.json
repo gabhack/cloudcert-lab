@@ -1,6 +1,6 @@
 {
   "generated_at": "2026-11-20",
-  "total_questions": 2080,
+  "total_questions": 2340,
   "certs": [
     {
       "priority": "01",
@@ -159,6 +159,26 @@
         "2": "Domain 2: Security and Compliance",
         "3": "Domain 3: Cloud Technology and Services",
         "4": "Domain 4: Billing, Pricing, and Support"
+      }
+    },
+    {
+      "priority": "09",
+      "slug": "aws-dva-c03",
+      "vendor": "AWS",
+      "code": "DVA-C03",
+      "title": "AWS Certified Developer Associate (DVA-C03) Practice Exams",
+      "subtitle": "4 Full-Length 65-Question Mocks (260 Scenarios) · Serverless, Q Developer, Bedrock Guardrails & Testing",
+      "badge_color": "#8B5CF6",
+      "duration_min": 130,
+      "pass_pct": 72,
+      "total_questions": 260,
+      "free_questions": 15,
+      "exams": 4,
+      "domains": {
+        "1": "Domain 1: Development with AWS Services",
+        "2": "Domain 2: Security",
+        "3": "Domain 3: Testing and Deployment",
+        "4": "Domain 4: Troubleshooting and Optimization"
       }
     }
   ]

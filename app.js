@@ -125,14 +125,14 @@ function updatePlanUI() {
   const badge = $("planBadge");
   const btnTop = $("btnUnlockTop");
   if (STATE.isPro) {
-    badge.textContent = "PRO UNLOCKED (2,080 Qs)";
+    badge.textContent = "PRO UNLOCKED (2,340 Qs)";
     badge.className = "badge badge-success";
     btnTop.textContent = "Pro Active ✓";
     btnTop.className = "btn btn-success";
   } else {
-    badge.textContent = "FREE TIER (120 Qs)";
+    badge.textContent = "FREE TIER (135 Qs)";
     badge.className = "badge badge-neutral";
-    btnTop.textContent = "Unlock All 2,080 Qs";
+    btnTop.textContent = "Unlock All 2,340 Qs";
     btnTop.className = "btn btn-primary";
   }
 }
@@ -500,7 +500,7 @@ function finishExam() {
          <h3>${passed ? `Lock In Your ${escapeHtml(STATE.activeCert.code)} First-Try Pass` : `Close Your ${escapeHtml(STATE.activeCert.code)} Score Gap Before Exam Day`}</h3>
          <p style="margin:0; color:var(--muted); font-size:var(--fs-sm);">
            You just completed the 15-question Free Diagnostic (<strong>${pct}%</strong>). Unlock the remaining
-           <strong>${remainingCertQs} ${escapeHtml(STATE.activeCert.code)} scenarios</strong> plus all 7 other AWS, Azure &amp; Google Cloud exams (<strong>2,080 scenarios · 32 timed mocks</strong>) for one single $19.99 payment.
+           <strong>${remainingCertQs} ${escapeHtml(STATE.activeCert.code)} scenarios</strong> plus all 8 other AWS, Azure &amp; Google Cloud exams (<strong>2,340 scenarios · 36 timed mocks + Cheat Sheets PDF</strong>) for one single $19.99 payment.
          </p>
          ${weakest ? `<div class="cro-gap-alert">
            <strong>Biggest Exam Risk Detected:</strong> ${escapeHtml(weakest.dom)} (<strong>${weakest.dpct}%</strong> · ${weakest.ok}/${weakest.total} correct).
@@ -512,17 +512,17 @@ function finishExam() {
              <span>Timed ${STATE.activeCert.duration_min}-min exam mode + instant study explanations for ${escapeHtml(STATE.activeCert.code)}.</span>
            </div>
            <div class="cro-teaser-locked">
-             <strong>🔒 All 8 Cloud &amp; AI Blueprints</strong>
-             <span>Azure AI-901, GCP GenAI Leader, AWS AIF-C01, MLA-C01, DEA-C01, DVA-C02, SAA-C03 &amp; CLF-C02.</span>
+             <strong>🔒 All 9 Cloud &amp; AI Blueprints</strong>
+             <span>Azure AI-901, GCP GenAI Leader, AWS DVA-C03 (New Dec 2026), AIF-C01, MLA-C01, DEA-C01, DVA-C02, SAA-C03 &amp; CLF-C02.</span>
            </div>
            <div class="cro-teaser-locked">
-             <strong>🔒 Offline 4.85 MB HTML Bundle</strong>
-             <span>Downloadable ZIP + instant AES-256 Pro Key so you can drill anywhere without internet.</span>
+             <strong>🔒 Offline Bundle + Cheat Sheets PDF</strong>
+             <span>Downloadable standalone HTML simulator + Master Exam Hacks PDF + instant AES-256 Pro Key.</span>
            </div>
          </div>
          <div style="display:flex; gap:0.65rem; flex-wrap:wrap; align-items:center; margin-top:0.85rem;">
            <a class="btn btn-primary" href="${CONFIG.CHECKOUT_URL}" target="_blank" rel="noopener">
-             Unlock All 2,080 Scenarios ($19.99 One-Time) →
+             Unlock All 2,340 Scenarios ($19.99 One-Time) →
            </a>
            <button class="btn" type="button" id="btnResultUnlock">Already Have a Key? Activate</button>
          </div>
@@ -612,7 +612,7 @@ async function activateLicenseKey() {
       updatePlanUI();
       renderCatalog();
       msg.style.color = "var(--success)";
-      msg.textContent = "✓ AES-256 Pro Vault unlocked (All 2,080 questions & 32 full exams active!).";
+      msg.textContent = "✓ AES-256 Pro Vault unlocked (All 2,340 questions & 36 full exams active!).";
       setTimeout(() => $("modalPro").classList.add("hidden"), 900);
       return;
     }
