@@ -4,8 +4,8 @@
    ============================================================================ */
 
 const CONFIG = {
-  // Reemplazar con tu link real de checkout de Gumroad / Polar.sh / Whop al publicar el producto:
-  CHECKOUT_URL: "https://gumroad.com/",
+  // Link real en vivo de Gumroad ($19.99 pago unico -> entrega ZIP + clave Pro AES-256):
+  CHECKOUT_URL: "https://gabbler407.gumroad.com/l/cloudcert-lab-pro",
   // Opcional: si despliegas worker/license-worker.js en Cloudflare Workers ($0/mes), pega su URL aqui:
   LICENSE_API_URL: "",
 };
