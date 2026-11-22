@@ -16,3 +16,7 @@
 - [AWS SAA-C03 Practice Exam (15 Free / 260 Pro)](https://gabhack.github.io/cloudcert-lab/exams/aws-saa-c03/): 4 Full-Length 65-Question Mock Tests (260 Scenarios) · High Availability, Security, Performance & Cost
 - [AWS CLF-C02 Practice Exam (15 Free / 260 Pro)](https://gabhack.github.io/cloudcert-lab/exams/aws-clf-c02/): 4 Full-Length 65-Question Mock Tests (260 Scenarios) · Cloud Concepts, IAM Security, Core Services & Billing
 - [AWS DVA-C03 Practice Exam (15 Free / 260 Pro)](https://gabhack.github.io/cloudcert-lab/exams/aws-dva-c03/): 4 Full-Length 65-Question Mocks (260 Scenarios) · Serverless, Q Developer, Bedrock Guardrails & Testing
+
+## 2026–2027 Exam Comparison & Migration Guides
+- [AWS DVA-C02 vs DVA-C03 (New Dec 2026)](https://gabhack.github.io/cloudcert-lab/exams/aws-dva-c02-vs-dva-c03/): Side-by-side comparison of AWS Certified Developer Associate DVA-C02 vs new DVA-C03 (effective Dec 1, 2026): domain weight shifts, Amazon Q Developer, Bedrock Guardrails & Lambda SnapStart.
+- [Azure AI-901 vs AWS AIF-C01 vs GCP GenAI Leader](https://gabhack.github.io/cloudcert-lab/exams/ai-certifications-comparison-2026/): Compare the top 3 foundational Cloud & Generative AI certifications of 2026-2027: Microsoft Azure AI-901, AWS AIF-C01, and Google Cloud Generative AI Leader. Difficulty, domains & free practice tests.

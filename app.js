@@ -31,6 +31,31 @@ const KDP_COMPANIONS = {
     url: "https://www.amazon.com/dp/B0HRVB8PZ3",
     badge: "FREE on Kindle Unlimited ($2.99 eBook)",
   },
+  "aws-dva-c03": {
+    title: "AWS Certification Practice Exams Series (2026–2027 Editions)",
+    url: "https://www.amazon.com/author/gabrieln",
+    badge: "AWS Associate Series · Free on Kindle Unlimited",
+  },
+  "aws-dva-c02": {
+    title: "AWS Certification Practice Exams Series (2026–2027 Editions)",
+    url: "https://www.amazon.com/author/gabrieln",
+    badge: "AWS Associate Series · Free on Kindle Unlimited",
+  },
+  "aws-dea-c01": {
+    title: "AWS Certification Practice Exams Series (2026–2027 Editions)",
+    url: "https://www.amazon.com/author/gabrieln",
+    badge: "AWS Associate Series · Free on Kindle Unlimited",
+  },
+  "azure-ai-901": {
+    title: "Multi-Cloud & AI Certification Practice Exams Series",
+    url: "https://www.amazon.com/author/gabrieln",
+    badge: "FREE on Kindle Unlimited · Print & eBook",
+  },
+  "gcp-genai-leader": {
+    title: "Multi-Cloud & AI Certification Practice Exams Series",
+    url: "https://www.amazon.com/author/gabrieln",
+    badge: "FREE on Kindle Unlimited · Print & eBook",
+  },
   default: {
     title: "2026–2027 Multi-Cloud & AWS Practice Exams Series by Gabriel N.",
     url: "https://www.amazon.com/author/gabrieln",
@@ -496,11 +521,11 @@ function finishExam() {
 
   const upsellBanner = !STATE.isPro
     ? `<div class="cro-paywall">
-         <span class="badge badge-brand">PRO ALL-ACCESS VAULT · ONE-TIME PAYMENT</span>
+         <span class="badge badge-brand">PRO ALL-ACCESS VAULT · $449 VALUE → $19.99 (95% OFF)</span>
          <h3>${passed ? `Lock In Your ${escapeHtml(STATE.activeCert.code)} First-Try Pass` : `Close Your ${escapeHtml(STATE.activeCert.code)} Score Gap Before Exam Day`}</h3>
          <p style="margin:0; color:var(--muted); font-size:var(--fs-sm);">
-           You just completed the 15-question Free Diagnostic (<strong>${pct}%</strong>). Unlock the remaining
-           <strong>${remainingCertQs} ${escapeHtml(STATE.activeCert.code)} scenarios</strong> plus all 8 other AWS, Azure &amp; Google Cloud exams (<strong>2,340 scenarios · 36 timed mocks + Cheat Sheets PDF</strong>) for one single $19.99 payment.
+           You just completed the 15-question Free Diagnostic (<strong>${pct}%</strong>). Instead of $49.99 per course, unlock the remaining
+           <strong>${remainingCertQs} ${escapeHtml(STATE.activeCert.code)} scenarios</strong> plus all 8 other AWS, Azure &amp; Google Cloud exams (<strong>2,340 scenarios · 36 timed mocks + 225-Hack Cheat Sheets PDF</strong>) for one single $19.99 payment.
          </p>
          ${weakest ? `<div class="cro-gap-alert">
            <strong>Biggest Exam Risk Detected:</strong> ${escapeHtml(weakest.dom)} (<strong>${weakest.dpct}%</strong> · ${weakest.ok}/${weakest.total} correct).
@@ -672,8 +697,34 @@ function escapeHtml(str) {
     .replace(/"/g, "&quot;");
 }
 
+function renderPromoBanner() {
+  const el = $("promoBanner");
+  if (!el) return;
+  const isClfFreePromo = Date.now() <= Date.parse("2026-11-23T08:00:00Z");
+  if (isClfFreePromo) {
+    el.innerHTML = `
+      <div>
+        <span class="badge badge-brand">48H KINDLE PROMO · ENDS TONIGHT NOV 22 PST</span>
+        <div style="font-weight:700; margin-top:0.25rem;">Download AWS Cloud Practitioner (CLF-C02) 410-Question eBook FREE ($0.00) on Amazon</div>
+        <div style="font-size:var(--fs-sm); color:var(--muted);">Study offline on Kindle or phone, or compare <a href="exams/aws-dva-c02-vs-dva-c03/">DVA-C02 vs DVA-C03</a> &amp; <a href="exams/ai-certifications-comparison-2026/">2026 AI Certs</a>.</div>
+      </div>
+      <a class="btn btn-primary" href="https://www.amazon.com/dp/B0HQ8ZT44Y" target="_blank" rel="noopener">Get Free eBook ($0.00) →</a>
+    `;
+  } else {
+    el.innerHTML = `
+      <div>
+        <span class="badge badge-info">2026–2027 ROADMAP &amp; COMPANION BOOKS</span>
+        <div style="font-weight:700; margin-top:0.25rem;">Not sure which exam to take first? Compare blueprints or read FREE on Kindle Unlimited</div>
+        <div style="font-size:var(--fs-sm); color:var(--muted);">Guides: <a href="exams/aws-dva-c02-vs-dva-c03/">AWS DVA-C02 vs DVA-C03</a> · <a href="exams/ai-certifications-comparison-2026/">Azure AI-901 vs AWS AIF-C01 vs GCP GenAI Leader</a>.</div>
+      </div>
+      <a class="btn" href="https://www.amazon.com/author/gabrieln" target="_blank" rel="noopener">Kindle Unlimited ($0) →</a>
+    `;
+  }
+}
+
 async function init() {
   updatePlanUI();
+  renderPromoBanner();
 
   const resp = await fetch("data/catalog.json");
   STATE.catalog = await resp.json();
