@@ -35,8 +35,10 @@ Interactive, zero-login **Multi-Cloud & AI Certification Practice Exam Simulator
 - **Companion Amazon Kindle & Print Editions (Free on Kindle Unlimited):** [AWS Certification Practice Exams Series by Gabriel N.](https://www.amazon.com/author/gabrieln)
 
 ### 2026–2027 Comparison & Migration Guides
+- [AWS GenAI Developer Pro (AIP-C01) Exam Blueprint & Prep Guide ($300 Exam)](https://gabhack.github.io/cloudcert-lab/exams/aws-aip-c01-guide/)
 - [AWS DVA-C02 vs DVA-C03 (Dec 1, 2026 Migration & GenAI Blueprint Guide)](https://gabhack.github.io/cloudcert-lab/exams/aws-dva-c02-vs-dva-c03/)
 - [Azure AI-901 vs AWS AIF-C01 vs Google Cloud GenAI Leader (2026–2027 Comparison)](https://gabhack.github.io/cloudcert-lab/exams/ai-certifications-comparison-2026/)
+- [Free Exam Pass Readiness & Retake Risk Calculator](https://gabhack.github.io/cloudcert-lab/?tool=calculator)
 
 ---
 

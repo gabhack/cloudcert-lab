@@ -697,6 +697,119 @@ function escapeHtml(str) {
     .replace(/"/g, "&quot;");
 }
 
+const CERT_EXAM_FEES = {
+  "azure-ai-901": 99,
+  "gcp-genai-leader": 99,
+  "aws-aif-c01": 100,
+  "aws-clf-c02": 100,
+  "aws-mla-c01": 150,
+  "aws-dea-c01": 150,
+  "aws-dva-c02": 150,
+  "aws-dva-c03": 150,
+  "aws-saa-c03": 150,
+  "aws-aip-c01": 300,
+};
+
+function initReadinessCalculator(preselectSlug) {
+  const sel = $("calcCert");
+  const scoreInput = $("calcScore");
+  const daysInput = $("calcDays");
+  const hoursInput = $("calcHours");
+  if (!sel || !scoreInput || !daysInput || !hoursInput || !STATE.catalog) return;
+
+  const options = STATE.catalog.certs.map((c) => {
+    const fee = CERT_EXAM_FEES[c.slug] || 150;
+    return {
+      slug: c.slug,
+      simSlug: c.slug,
+      guidePath: `exams/${c.slug}/`,
+      label: `${c.vendor} ${c.code} ($${fee} exam fee)`,
+      passPct: c.pass_pct,
+      fee,
+    };
+  });
+  options.push({
+    slug: "aws-aip-c01",
+    simSlug: "aws-aif-c01",
+    guidePath: "exams/aws-aip-c01-guide/",
+    label: "AWS AIP-C01 Generative AI Developer Pro ($300 exam fee)",
+    passPct: 75,
+    fee: 300,
+  });
+
+  sel.innerHTML = options
+    .map((o) => `<option value="${escapeHtml(o.slug)}">${escapeHtml(o.label)}</option>`)
+    .join("");
+  if (preselectSlug && options.some((o) => o.slug === preselectSlug)) {
+    sel.value = preselectSlug;
+  } else {
+    sel.value = "aws-dva-c03";
+  }
+
+  const renderCalc = () => {
+    const opt = options.find((o) => o.slug === sel.value) || options[0];
+    const score = Math.max(35, Math.min(100, Number(scoreInput.value) || 64));
+    const days = Math.max(1, Math.min(120, Number(daysInput.value) || 14));
+    const hours = Math.max(1, Math.min(45, Number(hoursInput.value) || 7));
+    $("calcScoreVal").textContent = `${score}%`;
+
+    const totalHours = (days / 7) * hours;
+    const projectedGain = Math.min(22, Math.round(totalHours * 0.65));
+    const projectedScore = Math.min(98, score + projectedGain);
+    const margin = projectedScore - opt.passPct;
+    const passProb = Math.max(12, Math.min(97, Math.round(50 + margin * 3.1)));
+    const dailyQs = Math.max(15, Math.min(65, Math.ceil(260 / Math.max(4, days))));
+    const savingsPct = Math.round((1 - 19.99 / opt.fee) * 100);
+    const safeTarget = Math.min(90, opt.passPct + 10);
+
+    let badgeCls = "badge-danger";
+    let statusText = `HIGH RETAKE RISK ($${opt.fee} AT STAKE)`;
+    if (passProb >= 80) {
+      badgeCls = "badge-success";
+      statusText = "HIGH FIRST-TRY PASS CONFIDENCE";
+    } else if (passProb >= 60) {
+      badgeCls = "badge-warning";
+      statusText = "BORDERLINE — DRILL WEAK DOMAINS";
+    }
+
+    const out = $("calcOutput");
+    out.innerHTML = `
+      <div>
+        <span class="badge ${badgeCls}">${escapeHtml(statusText)}</span>
+        <div class="calc-metric-row" style="margin-top:0.65rem;">
+          <div class="calc-metric">
+            <div class="calc-metric-label">Pass Probability</div>
+            <div class="calc-metric-val">${passProb}%</div>
+          </div>
+          <div class="calc-metric">
+            <div class="calc-metric-label">Projected Score</div>
+            <div class="calc-metric-val">${projectedScore}% <span style="font-size:0.75rem; font-weight:500; color:var(--muted);">/ ${opt.passPct}% bar</span></div>
+          </div>
+          <div class="calc-metric">
+            <div class="calc-metric-label">Retake Fee vs Pro</div>
+            <div class="calc-metric-val">$${opt.fee} <span style="font-size:0.75rem; font-weight:500; color:var(--success);">vs $19.99</span></div>
+          </div>
+        </div>
+        <p style="margin:0.75rem 0 0; font-size:var(--fs-sm); color:var(--muted);">
+          <strong>Daily Plan (${days} days · ${Math.round(totalHours)}h total):</strong> Complete <strong>${dailyQs} scenarios/day</strong> in Timed + Study mode until hitting <strong>${safeTarget}%+</strong> consistently. Pro Vault ($19.99 one-time) costs <strong>${savingsPct}% less</strong> than paying a $${opt.fee} retake fee.
+        </p>
+      </div>
+      <div style="display:flex; gap:0.5rem; flex-wrap:wrap;">
+        <button class="btn btn-primary" type="button" id="btnCalcStartFree">Launch Free 15-Q Diagnostic →</button>
+        <a class="btn" href="${CONFIG.CHECKOUT_URL}" target="_blank" rel="noopener">Protect $${opt.fee} Fee ($19.99 Pro)</a>
+        <a class="btn btn-ghost" href="${escapeHtml(opt.guidePath)}">Study Guide</a>
+      </div>
+    `;
+    $("btnCalcStartFree").onclick = () => startSession(opt.simSlug, "free", null, "study");
+  };
+
+  [sel, scoreInput, daysInput, hoursInput].forEach((el) => {
+    el.addEventListener("input", renderCalc);
+    el.addEventListener("change", renderCalc);
+  });
+  renderCalc();
+}
+
 function renderPromoBanner() {
   const el = $("promoBanner");
   if (!el) return;
@@ -793,6 +906,12 @@ async function init() {
 
   $("btnUnlockTop").onclick = openProModal;
   $("btnHeroPro").onclick = openProModal;
+  if ($("btnJumpCalc")) {
+    $("btnJumpCalc").onclick = () => {
+      const el = $("readinessCalcSection");
+      if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+    };
+  }
   $("btnCloseModal").onclick = () => $("modalPro").classList.add("hidden");
   $("btnActivateKey").onclick = activateLicenseKey;
 
@@ -810,13 +929,20 @@ async function init() {
     localStorage.setItem("cloudcert_density", next);
   };
 
-  // URL Deep-Link Routing from Programmatic SEO Exam Pages (?exam=<slug>&mode=study|exam, ?cert=<slug>, ?unlock=1)
+  // URL Deep-Link Routing from Programmatic SEO Exam Pages (?exam=<slug>&mode=study|exam, ?cert=<slug>, ?tool=calculator, ?unlock=1)
   const params = new URLSearchParams(window.location.search);
   const qExam = params.get("exam");
   const qCert = params.get("cert");
+  const qTool = params.get("tool");
   const qMode = params.get("mode") === "exam" ? "exam" : "study";
+
+  initReadinessCalculator(qCert || qExam);
+
   if (qExam && STATE.catalog.certs.some((c) => c.slug === qExam)) {
     startSession(qExam, "free", null, qMode);
+  } else if (qTool === "calculator") {
+    const el = $("readinessCalcSection");
+    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
   } else if (qCert && STATE.catalog.certs.some((c) => c.slug === qCert)) {
     openCertDetail(qCert);
   }

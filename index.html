@@ -113,7 +113,8 @@
         </div>
         <div style="display:flex; flex-direction:column; gap:0.5rem; min-width:220px;">
           <button id="btnHeroPro" class="btn btn-primary" type="button">Unlock Pro Vault ($19.99 One-Time)</button>
-          <a id="btnHeroKdp" class="btn" href="https://www.amazon.com/author/gabrieln" target="_blank" rel="noopener">Companion Kindle Books (KU $0)</a>
+          <button id="btnJumpCalc" class="btn" type="button">Pass Readiness Calculator</button>
+          <a id="btnHeroKdp" class="btn btn-ghost" href="https://www.amazon.com/author/gabrieln" target="_blank" rel="noopener">Companion Kindle Books (KU $0)</a>
         </div>
       </div>
 
@@ -147,6 +148,41 @@
       </div>
 
       <div id="certsGrid" class="certs-grid"></div>
+
+      <section id="readinessCalcSection" class="card calc-panel" aria-labelledby="calcTitle">
+        <div class="calc-header">
+          <div>
+            <span class="badge badge-brand">FREE INTERACTIVE TOOL · RETAKE RISK DETECTOR</span>
+            <h2 id="calcTitle" style="margin:0.4rem 0 0.25rem; font-size:1.18rem;">Exam Pass Readiness &amp; Retake Risk Calculator</h2>
+            <p style="margin:0; color:var(--muted); font-size:var(--fs-sm);">
+              Estimate your first-attempt pass probability and daily study cadence before risking a <strong>$99–$300 USD</strong> official exam retake fee.
+            </p>
+          </div>
+        </div>
+        <div class="calc-grid">
+          <div class="calc-inputs">
+            <div class="calc-field">
+              <label for="calcCert">Target Certification (Official Exam Fee)</label>
+              <select id="calcCert" class="search-input" style="width:100%; min-width:0;"></select>
+            </div>
+            <div class="calc-field">
+              <label for="calcScore">Current Average Practice Score: <strong id="calcScoreVal">64%</strong></label>
+              <input id="calcScore" type="range" min="35" max="100" value="64" style="width:100%; accent-color:var(--brand);" />
+            </div>
+            <div class="calc-two">
+              <div class="calc-field">
+                <label for="calcDays">Days Until Exam</label>
+                <input id="calcDays" class="search-input" style="width:100%; min-width:0;" type="number" min="1" max="120" value="14" />
+              </div>
+              <div class="calc-field">
+                <label for="calcHours">Study Hours / Week</label>
+                <input id="calcHours" class="search-input" style="width:100%; min-width:0;" type="number" min="1" max="45" value="7" />
+              </div>
+            </div>
+          </div>
+          <div id="calcOutput" class="calc-output"></div>
+        </div>
+      </section>
     </section>
 
     <!-- VIEW 2: EXAM SELECTOR (PER CERT) -->
@@ -230,6 +266,7 @@
           <h4>AWS Associate &amp; Foundational Guides</h4>
           <ul>
             <li><a href="exams/aws-dva-c03/">AWS Developer Associate (DVA-C03 — New Dec 2026) Exam</a></li>
+            <li><a href="exams/aws-aip-c01-guide/">AWS GenAI Developer Pro (AIP-C01) Exam Guide</a></li>
             <li><a href="exams/aws-dva-c02-vs-dva-c03/">Compare: AWS DVA-C02 vs DVA-C03 (Dec 2026 Migration)</a></li>
             <li><a href="exams/aws-dea-c01/">AWS Data Engineer Associate (DEA-C01) Practice Exam</a></li>
             <li><a href="exams/aws-dva-c02/">AWS Developer Associate (DVA-C02) Practice Exam</a></li>
