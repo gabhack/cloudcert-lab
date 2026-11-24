@@ -47,14 +47,14 @@ const KDP_COMPANIONS = {
     badge: "AWS Associate Series · Free on Kindle Unlimited",
   },
   "azure-ai-901": {
-    title: "Multi-Cloud & AI Certification Practice Exams Series",
-    url: "https://www.amazon.com/author/gabrieln",
-    badge: "FREE on Kindle Unlimited · Print & eBook",
+    title: "Microsoft Azure AI Fundamentals (AI-901) Practice Tests",
+    url: "https://www.amazon.com/dp/B0HS93MZC7",
+    badge: "FREE on Kindle Unlimited ($2.99 eBook · Paperback $11.99)",
   },
   "gcp-genai-leader": {
-    title: "Multi-Cloud & AI Certification Practice Exams Series",
-    url: "https://www.amazon.com/author/gabrieln",
-    badge: "FREE on Kindle Unlimited · Print & eBook",
+    title: "Google Cloud Certified Generative AI Leader Practice Tests",
+    url: "https://www.amazon.com/dp/B0HSL1MYYM",
+    badge: "FREE on Kindle Unlimited ($2.99 eBook · Paperback $11.99)",
   },
   default: {
     title: "2026–2027 Multi-Cloud & AWS Practice Exams Series by Gabriel N.",
@@ -284,7 +284,40 @@ function openCertDetail(slug) {
     <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:0.85rem;">
       ${examCards}
     </div>
+
+    <div id="detailHacksPreview" style="margin-top:1.2rem; padding:1rem; border-radius:var(--radius); background:var(--surface-2); border:1px solid var(--border);">
+      <span class="badge badge-info">FREE CHEAT SHEET SAMPLE (3 OF 25 ${escapeHtml(cert.code)} EXAM HACKS)</span>
+      <div style="font-size:var(--fs-sm); color:var(--muted); margin-top:0.4rem;">Loading verified high-yield elimination rules...</div>
+    </div>
   `;
+
+  fetchCertPayload(cert.slug, "free")
+    .then((payload) => {
+      const box = $("detailHacksPreview");
+      if (!box || !STATE.activeCert || STATE.activeCert.slug !== cert.slug) return;
+      const hacks = (payload.questions || []).filter((q) => q.hack).slice(0, 3);
+      if (!hacks.length) {
+        box.classList.add("hidden");
+        return;
+      }
+      box.innerHTML = `
+        <div style="display:flex; justify-content:space-between; align-items:center; gap:0.5rem; flex-wrap:wrap;">
+          <span class="badge badge-info">FREE CHEAT SHEET SAMPLE (3 OF 25 ${escapeHtml(cert.code)} EXAM HACKS)</span>
+          <a href="exams/free-cloud-ai-exam-cheat-sheet-2026/" style="font-size:var(--fs-sm); font-weight:600; color:var(--brand);">See All 27 Free Hacks →</a>
+        </div>
+        ${hacks
+          .map(
+            (q, i) =>
+              `<div class="hack-callout" style="margin-top:0.55rem;"><strong>Hack #${i + 1} (${escapeHtml(q.domain)}):</strong> ${escapeHtml(q.hack)}</div>`
+          )
+          .join("")}
+        <div style="margin-top:0.75rem; font-size:var(--fs-sm); color:var(--muted); display:flex; justify-content:space-between; align-items:center; gap:0.5rem; flex-wrap:wrap;">
+          <span>Full <strong>225-Hack Master Cheat Sheets PDF</strong> + Offline ZIP included in Pro Vault ($19.99).</span>
+          <a class="btn btn-primary" href="${CONFIG.CHECKOUT_URL}" target="_blank" rel="noopener">Get Full PDF + 2,340 Qs →</a>
+        </div>
+      `;
+    })
+    .catch(() => {});
 
   $("btnDetailFreeStudy").onclick = () => startSession(cert.slug, "free", null, "study");
   $("btnDetailFreeExam").onclick = () => startSession(cert.slug, "free", null, "exam");
@@ -667,7 +700,7 @@ async function activateLicenseKey() {
       updatePlanUI();
       renderCatalog();
       msg.style.color = "var(--success)";
-      msg.textContent = "✓ License verified! All 2,080 questions unlocked.";
+      msg.textContent = "✓ License verified! All 2,340 questions unlocked.";
       setTimeout(() => $("modalPro").classList.add("hidden"), 900);
     } else {
       msg.style.color = "var(--danger)";
@@ -813,24 +846,25 @@ function initReadinessCalculator(preselectSlug) {
 function renderPromoBanner() {
   const el = $("promoBanner");
   if (!el) return;
-  const isClfFreePromo = Date.now() <= Date.parse("2026-11-23T08:00:00Z");
-  if (isClfFreePromo) {
+  const dvaLaunchMs = Date.parse("2026-12-01T00:00:00Z");
+  const daysToDva = Math.ceil((dvaLaunchMs - Date.now()) / 86400000);
+  if (daysToDva > 0 && daysToDva <= 14) {
     el.innerHTML = `
       <div>
-        <span class="badge badge-brand">48H KINDLE PROMO · ENDS TONIGHT NOV 22 PST</span>
-        <div style="font-weight:700; margin-top:0.25rem;">Download AWS Cloud Practitioner (CLF-C02) 410-Question eBook FREE ($0.00) on Amazon</div>
-        <div style="font-size:var(--fs-sm); color:var(--muted);">Study offline on Kindle or phone, or compare <a href="exams/aws-dva-c02-vs-dva-c03/">DVA-C02 vs DVA-C03</a> &amp; <a href="exams/ai-certifications-comparison-2026/">2026 AI Certs</a>.</div>
+        <span class="badge badge-brand">LAUNCH COUNTDOWN · ${daysToDva} DAY${daysToDva === 1 ? "" : "S"} TO AWS DVA-C03 (DEC 1, 2026)</span>
+        <div style="font-weight:700; margin-top:0.25rem;">First-Mover AWS DVA-C03 Simulator (Amazon Q Developer &amp; Bedrock Guardrails) + Free 27-Hack Cheat Sheet</div>
+        <div style="font-size:var(--fs-sm); color:var(--muted);">Compare <a href="exams/aws-dva-c02-vs-dva-c03/">DVA-C02 vs DVA-C03</a> · <a href="exams/aws-associate-certifications-comparison-2026/">4 AWS Associate Certs</a> · <a href="exams/free-cloud-ai-exam-cheat-sheet-2026/">Free 27-Hack Cheat Sheet</a></div>
       </div>
-      <a class="btn btn-primary" href="https://www.amazon.com/dp/B0HQ8ZT44Y" target="_blank" rel="noopener">Get Free eBook ($0.00) →</a>
+      <a class="btn btn-primary" href="?exam=aws-dva-c03&mode=study">Try DVA-C03 Free (15 Qs) →</a>
     `;
   } else {
     el.innerHTML = `
       <div>
-        <span class="badge badge-info">2026–2027 ROADMAP &amp; COMPANION BOOKS</span>
-        <div style="font-weight:700; margin-top:0.25rem;">Not sure which exam to take first? Compare blueprints or read FREE on Kindle Unlimited</div>
-        <div style="font-size:var(--fs-sm); color:var(--muted);">Guides: <a href="exams/aws-dva-c02-vs-dva-c03/">AWS DVA-C02 vs DVA-C03</a> · <a href="exams/ai-certifications-comparison-2026/">Azure AI-901 vs AWS AIF-C01 vs GCP GenAI Leader</a>.</div>
+        <span class="badge badge-info">2026–2027 ROADMAP · FREE CHEAT SHEET &amp; COMPANION BOOKS</span>
+        <div style="font-weight:700; margin-top:0.25rem;">Not sure which exam to take first? Grab our Free 27-Hack Cheat Sheet or read FREE on Kindle Unlimited</div>
+        <div style="font-size:var(--fs-sm); color:var(--muted);">Guides: <a href="exams/free-cloud-ai-exam-cheat-sheet-2026/">Free 27-Hack Cheat Sheet</a> · <a href="exams/aws-associate-certifications-comparison-2026/">AWS Associate Comparison</a> · <a href="exams/ai-certifications-comparison-2026/">2026 AI Certs</a></div>
       </div>
-      <a class="btn" href="https://www.amazon.com/author/gabrieln" target="_blank" rel="noopener">Kindle Unlimited ($0) →</a>
+      <a class="btn btn-primary" href="exams/free-cloud-ai-exam-cheat-sheet-2026/">Free 27-Hack Cheat Sheet →</a>
     `;
   }
 }
