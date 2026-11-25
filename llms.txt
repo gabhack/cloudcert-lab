@@ -1,8 +1,9 @@
 # CloudCert Lab — Multi-Cloud & AI Certification Exam Simulator (2026–2027)
 
-> Zero-login interactive exam simulator covering 9 official AWS, Microsoft Azure, and Google Cloud certifications (135 free scenario questions + 2,340 Pro Vault scenarios across 36 timed mock exams + Master Exam Hacks Cheat Sheets PDF for $19.99 one-time).
+> Zero-login interactive exam simulator covering 9 official AWS, Microsoft Azure, and Google Cloud certifications (135 free scenario questions + interactive flashcards + 2,340 Pro Vault scenarios across 36 timed mock exams + Master Exam Hacks Cheat Sheets PDF for $19.99 one-time).
 
 - Live Simulator: https://gabhack.github.io/cloudcert-lab/
+- Complete Single-File Knowledge Pack (llms-full.txt): https://gabhack.github.io/cloudcert-lab/llms-full.txt
 - Pro All-Access Vault ($19.99 one-time, 2,340 questions + offline ZIP + Cheat Sheets PDF): https://gabbler407.gumroad.com/l/cloudcert-lab-pro
 - Companion Amazon Kindle / Paperback Series (Free on Kindle Unlimited): https://www.amazon.com/author/gabrieln
 
@@ -25,6 +26,7 @@
 - [Azure AI-900 vs AI-901 (2026 Migration)](https://gabhack.github.io/cloudcert-lab/exams/azure-ai-900-vs-ai-901/): Compare retiring Microsoft Azure AI-900 vs new AI-901 (2026-2027): Microsoft Foundry Hubs & Projects, Agentic AI workflows, RAG, Entra ID & 15 free practice questions.
 - [AWS CLF-C02 vs AIF-C01 vs SAA-C03](https://gabhack.github.io/cloudcert-lab/exams/aws-clf-c02-vs-aif-c01-vs-saa-c03/): Should you take AWS Cloud Practitioner (CLF-C02), AI Practitioner (AIF-C01), or Solutions Architect Associate (SAA-C03) first in 2026-2027? Difficulty, salary ROI & free mock tests.
 - [Free 27-Hack Multi-Cloud & AI Exam Cheat Sheet (2026–2027)](https://gabhack.github.io/cloudcert-lab/exams/free-cloud-ai-exam-cheat-sheet-2026/): 3 verified Exam Hacks per certification across all 9 exams + passing bars.
+- [Cloud & AI Certification Exam Traps Glossary (2026–2027)](https://gabhack.github.io/cloudcert-lab/exams/cloud-ai-exam-glossary-2026/): 12 high-yield service comparisons & elimination rules for AWS, Azure AI-901 & GCP.
 
 ## Official Udemy Practice Test Courses (260 Scenarios / 4 Full Exams Each)
 - [Microsoft Azure AI-901 Practice Exams on Udemy](https://www.udemy.com/course/microsoft-azure-ai-fundamentals-ai-901-practice-exams-2026-j/)

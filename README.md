@@ -35,6 +35,7 @@ Interactive, zero-login **Multi-Cloud & AI Certification Practice Exam Simulator
 - **Companion Amazon Kindle & Print Editions (Free on Kindle Unlimited):** [AWS Certification Practice Exams Series by Gabriel N.](https://www.amazon.com/author/gabrieln)
 
 ### 2026–2027 Comparison & Migration Guides
+- [Cloud & AI Certification Exam Traps Glossary (12 Core Distinctions)](https://gabhack.github.io/cloudcert-lab/exams/cloud-ai-exam-glossary-2026/)
 - [AWS CLF-C02 vs AIF-C01 vs SAA-C03 (Which AWS Certification First?)](https://gabhack.github.io/cloudcert-lab/exams/aws-clf-c02-vs-aif-c01-vs-saa-c03/)
 - [Azure AI-900 vs AI-901 (2026 Retirement & Microsoft Foundry Guide)](https://gabhack.github.io/cloudcert-lab/exams/azure-ai-900-vs-ai-901/)
 - [Free 27-Hack Multi-Cloud & AI Exam Cheat Sheet (All 9 Certs)](https://gabhack.github.io/cloudcert-lab/exams/free-cloud-ai-exam-cheat-sheet-2026/)

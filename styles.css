@@ -940,6 +940,50 @@ body.has-sticky-cro {
   padding-bottom: 4.75rem;
 }
 
+/* Study Streak & Interactive Flashcards */
+.streak-pill {
+  display: inline-flex;
+  align-items: center;
+  vertical-align: middle;
+  margin-left: 0.4rem;
+  padding: 0.14rem 0.5rem;
+  border-radius: var(--radius-full);
+  background: var(--warning-soft);
+  color: var(--warning);
+  font-size: 0.74rem;
+  font-weight: 700;
+}
+
+.flashcard-box {
+  margin-top: 0.9rem;
+  padding: 1.4rem 1.35rem;
+  border-radius: var(--radius-lg);
+  border: 1.5px solid var(--border-strong);
+  background: var(--surface-2);
+  min-height: 220px;
+  cursor: pointer;
+  transition: border-color var(--dur), background var(--dur);
+}
+
+.flashcard-box:hover {
+  border-color: var(--brand);
+}
+
+.flashcard-answer {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px dashed var(--border-strong);
+}
+
+.flashcard-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.65rem;
+  flex-wrap: wrap;
+  margin-top: 1.1rem;
+}
+
 @media print {
   .topbar,
   .sticky-cro-bar,

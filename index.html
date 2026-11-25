@@ -10,9 +10,13 @@
   <meta property="og:title" content="CloudCert Lab — Multi-Cloud &amp; AI Certification Exam Simulator (2,340 Scenarios)" />
   <meta property="og:description" content="Practice 135 free scenario-based exam questions across Azure AI-901, GCP GenAI Leader, and 7 AWS certifications (including new Dec 2026 DVA-C03) — or unlock all 2,340 Pro Vault scenarios ($19.99 one-time)." />
   <meta property="og:url" content="https://gabhack.github.io/cloudcert-lab/" />
+  <meta property="og:image" content="https://gabhack.github.io/cloudcert-lab/assets/og/home.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="CloudCert Lab — Free Multi-Cloud &amp; AI Certification Simulator (2026–2027)" />
   <meta name="twitter:description" content="9 official 2026–2027 exam blueprints: Azure AI-901, Google Cloud GenAI Leader, AWS DVA-C03 (New Dec 2026), AIF-C01, MLA-C01, DEA-C01, DVA-C02, SAA-C03, CLF-C02." />
+  <meta name="twitter:image" content="https://gabhack.github.io/cloudcert-lab/assets/og/home.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -154,8 +158,8 @@
           <div class="stat-value">36</div>
         </div>
         <div class="stat-card">
-          <div class="stat-label">Your Saved Attempts</div>
-          <div class="stat-value" id="statAttempts">0</div>
+          <div class="stat-label">Saved Attempts &amp; Streak</div>
+          <div class="stat-value"><span id="statAttempts">0</span> <span id="statStreak" class="streak-pill" title="Daily study streak">🔥 0d</span></div>
         </div>
       </div>
 
@@ -271,6 +275,18 @@
       <div class="card" id="resultsCard"></div>
     </section>
 
+    <!-- VIEW 5: ACTIVE-RECALL FLASHCARDS -->
+    <section id="viewFlashcards" class="hidden">
+      <div style="display:flex; justify-content:space-between; align-items:center; gap:0.75rem; flex-wrap:wrap; margin-bottom:1rem;">
+        <button id="btnFlashBack" class="btn" type="button">← Back to Certification</button>
+        <div style="display:flex; gap:0.5rem; align-items:center; flex-wrap:wrap;">
+          <span id="flashProgressBadge" class="badge badge-brand">Card 1 of 15</span>
+          <span id="flashMasteredBadge" class="badge badge-success">Mastered: 0</span>
+        </div>
+      </div>
+      <div class="card" id="flashcardStage"></div>
+    </section>
+
     <!-- CRAWLABLE SEO HUB FOOTER (ALL 9 EXAM GUIDES, COMPARISON GUIDES & KDP SERIES) -->
     <footer class="seo-footer" aria-label="Exam Study Guides and Resources">
       <div class="seo-footer-grid">
@@ -294,6 +310,7 @@
             <li><a href="exams/aws-clf-c02-vs-aif-c01-vs-saa-c03/">Compare: AWS CLF-C02 vs AIF-C01 vs SAA-C03 (Which First?)</a></li>
             <li><a href="exams/aws-dva-c02-vs-dva-c03/">Compare: AWS DVA-C02 vs DVA-C03 (Dec 2026 Migration)</a></li>
             <li><a href="exams/free-cloud-ai-exam-cheat-sheet-2026/">Free 27-Hack Multi-Cloud Exam Cheat Sheet (2026–2027)</a></li>
+            <li><a href="exams/cloud-ai-exam-glossary-2026/">Cloud &amp; AI Certification Exam Traps Glossary (12 Distinctions)</a></li>
             <li><a href="exams/aws-dea-c01/">AWS Data Engineer Associate (DEA-C01) Practice Exam</a></li>
             <li><a href="exams/aws-dva-c02/">AWS Developer Associate (DVA-C02) Practice Exam</a></li>
             <li><a href="exams/aws-saa-c03/">AWS Solutions Architect (SAA-C03) Practice Scenarios</a></li>

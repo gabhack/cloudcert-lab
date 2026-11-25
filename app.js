@@ -156,10 +156,49 @@ const STATE = {
 const $ = (id) => document.getElementById(id);
 
 function showView(viewId) {
-  ["viewCatalog", "viewCertDetail", "viewRunner", "viewResults"].forEach((v) => {
-    $(v).classList.toggle("hidden", v !== viewId);
+  ["viewCatalog", "viewCertDetail", "viewRunner", "viewResults", "viewFlashcards"].forEach((v) => {
+    const el = $(v);
+    if (el) el.classList.toggle("hidden", v !== viewId);
   });
   window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function getStudyStreak() {
+  try {
+    const raw = JSON.parse(localStorage.getItem("cloudcert_streak") || "{}");
+    const today = new Date().toISOString().slice(0, 10);
+    const yesterday = new Date(Date.now() - 86400000).toISOString().slice(0, 10);
+    if (raw.lastDate === today || raw.lastDate === yesterday) return Number(raw.count) || 0;
+    return 0;
+  } catch {
+    return 0;
+  }
+}
+
+function recordStudyActivity() {
+  try {
+    const today = new Date().toISOString().slice(0, 10);
+    const yesterday = new Date(Date.now() - 86400000).toISOString().slice(0, 10);
+    const raw = JSON.parse(localStorage.getItem("cloudcert_streak") || "{}");
+    let count = Number(raw.count) || 0;
+    if (raw.lastDate === today) {
+      count = Math.max(1, count);
+    } else if (raw.lastDate === yesterday) {
+      count += 1;
+    } else {
+      count = 1;
+    }
+    localStorage.setItem("cloudcert_streak", JSON.stringify({ lastDate: today, count }));
+    updateStreakUI();
+  } catch {}
+}
+
+function updateStreakUI() {
+  const el = $("statStreak");
+  if (!el) return;
+  const s = getStudyStreak();
+  el.textContent = `🔥 ${s}d`;
+  el.title = s > 0 ? `${s}-day study streak! Keep going.` : "Answer a question or flip a flashcard to start your streak.";
 }
 
 function updatePlanUI() {
@@ -209,6 +248,7 @@ function renderCatalog() {
   $("statCerts").textContent = String(STATE.catalog.certs.length);
   $("statQuestions").textContent = STATE.catalog.total_questions.toLocaleString("en-US");
   $("statAttempts").textContent = String(getSavedAttempts().length);
+  updateStreakUI();
 
   grid.innerHTML = filtered
     .map(
@@ -288,6 +328,7 @@ function openCertDetail(slug) {
       <div style="display:flex; gap:0.5rem; flex-wrap:wrap;">
         <button class="btn btn-primary" type="button" id="btnDetailFreeStudy">Try Free 15 Qs (Study)</button>
         <button class="btn" type="button" id="btnDetailFreeExam">Try Free 15 Qs (Timed)</button>
+        <button class="btn" type="button" id="btnDetailFlashcards">Flip Flashcards</button>
       </div>
     </div>
 
@@ -349,6 +390,7 @@ function openCertDetail(slug) {
 
   $("btnDetailFreeStudy").onclick = () => startSession(cert.slug, "free", null, "study");
   $("btnDetailFreeExam").onclick = () => startSession(cert.slug, "free", null, "exam");
+  $("btnDetailFlashcards").onclick = () => startFlashcards(cert.slug);
   $("certDetailCard").querySelectorAll("[data-start-exam]").forEach((btn) => {
     btn.addEventListener("click", () => {
       if (btn.dataset.locked === "1") {
@@ -640,9 +682,11 @@ function finishExam() {
           Score: <strong>${pct}%</strong> (${correctCount}/${total} correct) · Required: ${STATE.activeCert.pass_pct}% · Time: ${formatTime(STATE.elapsedSeconds)}
         </div>
       </div>
-      <div style="display:flex; gap:0.5rem;">
+      <div style="display:flex; gap:0.5rem; flex-wrap:wrap;">
+        ${missed.length ? `<button class="btn btn-primary" type="button" id="btnRetestMissed">Re-test Missed (${missed.length} Qs) →</button>` : ""}
+        <button class="btn" type="button" id="btnResultFlashcards">Flip Flashcards</button>
         <button class="btn" type="button" id="btnResultCatalog">← All Certifications</button>
-        <button class="btn btn-primary" type="button" id="btnResultRetry">Back to ${escapeHtml(STATE.activeCert.code)}</button>
+        <button class="btn" type="button" id="btnResultRetry">Back to ${escapeHtml(STATE.activeCert.code)}</button>
       </div>
     </div>
 
@@ -659,6 +703,16 @@ function finishExam() {
     ${missedHtml}
   `;
 
+  recordStudyActivity();
+  if ($("btnRetestMissed")) {
+    $("btnRetestMissed").onclick = () => {
+      const missedQs = missed.map((m) => m.q);
+      startCustomSession(STATE.activeCert, missedQs, `${STATE.activeCert.code} — Missed Questions Drill (${missedQs.length} Qs)`, "study");
+    };
+  }
+  if ($("btnResultFlashcards")) {
+    $("btnResultFlashcards").onclick = () => startFlashcards(STATE.activeCert.slug);
+  }
   $("btnResultCatalog").onclick = () => {
     renderCatalog();
     showView("viewCatalog");
@@ -667,6 +721,149 @@ function finishExam() {
   if ($("btnResultUnlock")) $("btnResultUnlock").onclick = openProModal;
 
   showView("viewResults");
+}
+
+function startCustomSession(cert, qs, label, mode) {
+  if (!cert || !qs || !qs.length) return;
+  STATE.activeCert = cert;
+  STATE.activeQuestions = qs;
+  STATE.mode = mode || "study";
+  STATE.examLabel = label;
+  STATE.currentIndex = 0;
+  STATE.answers = {};
+  STATE.checked = {};
+  STATE.flagged = {};
+  STATE.elapsedSeconds = 0;
+  STATE.secondsLeft = Math.round((cert.duration_min / 65) * qs.length * 60);
+
+  clearInterval(STATE.timerHandle);
+  STATE.timerHandle = setInterval(() => {
+    STATE.elapsedSeconds += 1;
+    $("runnerTimer").textContent = formatTime(STATE.elapsedSeconds);
+  }, 1000);
+
+  $("runnerBadge").textContent = "TARGETED REMEDIATION DRILL";
+  $("runnerBadge").className = "badge badge-brand";
+  $("runnerTitle").textContent = STATE.examLabel;
+  $("runnerTimer").textContent = "00:00";
+
+  renderQuestion();
+  showView("viewRunner");
+}
+
+async function startFlashcards(slug) {
+  const cert = STATE.catalog.certs.find((c) => c.slug === slug);
+  if (!cert) return;
+  STATE.activeCert = cert;
+  const payload = await fetchCertPayload(slug, STATE.isPro ? "pro" : "free");
+  const deck = (payload.questions || []).slice(0, STATE.isPro ? 40 : 15);
+  STATE.flashDeck = deck.slice();
+  STATE.flashTotal = deck.length;
+  STATE.flashMastered = 0;
+  STATE.flashFlipped = false;
+  $("btnFlashBack").onclick = () => openCertDetail(cert.slug);
+  renderFlashcard();
+  showView("viewFlashcards");
+}
+
+function renderFlashcard() {
+  const cert = STATE.activeCert;
+  const stage = $("flashcardStage");
+  if (!stage || !cert) return;
+  const remaining = STATE.flashDeck ? STATE.flashDeck.length : 0;
+  $("flashMasteredBadge").textContent = `Mastered: ${STATE.flashMastered} / ${STATE.flashTotal}`;
+
+  if (!remaining) {
+    $("flashProgressBadge").textContent = "Deck Complete ✓";
+    const udemyUrl = getUdemyCompanion(cert.slug);
+    const kdp = getKdpCompanion(cert.slug);
+    stage.innerHTML = `
+      <span class="badge badge-success">ACTIVE-RECALL COMPLETE · ${escapeHtml(cert.code)}</span>
+      <h2 style="margin:0.5rem 0 0.35rem;">You Mastered All ${STATE.flashTotal} ${escapeHtml(cert.code)} Flashcards!</h2>
+      <p style="margin:0 0 1rem; color:var(--muted); font-size:var(--fs-sm);">
+        Lock in your speed before exam day by running a full timed exam or unlocking all <strong>2,340 scenarios + 225-Hack Master Cheat Sheets PDF</strong> ($19.99 one-time).
+      </p>
+      <div style="display:flex; gap:0.6rem; flex-wrap:wrap;">
+        <button class="btn btn-primary" type="button" id="btnFlashRestart">Practice Deck Again</button>
+        <button class="btn" type="button" id="btnFlashTimed">Take Timed 15-Q Test</button>
+        ${!STATE.isPro ? `<a class="btn btn-primary" href="${CONFIG.CHECKOUT_URL}" target="_blank" rel="noopener">Unlock All 2,340 Qs ($19.99) →</a>` : ""}
+        <a class="btn btn-ghost" href="${escapeHtml(kdp.url)}" target="_blank" rel="noopener">Amazon Book →</a>
+        ${udemyUrl ? `<a class="btn btn-ghost" href="${escapeHtml(udemyUrl)}" target="_blank" rel="noopener">Udemy Course ($49.99) →</a>` : ""}
+      </div>
+    `;
+    $("btnFlashRestart").onclick = () => startFlashcards(cert.slug);
+    $("btnFlashTimed").onclick = () => startSession(cert.slug, "free", null, "exam");
+    return;
+  }
+
+  const card = STATE.flashDeck[0];
+  const letters = ["A", "B", "C", "D", "E", "F"];
+  const correctTexts = (card.correct || []).map((i) => `${letters[i]}. ${card.options[i] || ""}`).join(" | ");
+  $("flashProgressBadge").textContent = `${remaining} card${remaining === 1 ? "" : "s"} left`;
+
+  stage.innerHTML = `
+    <div style="display:flex; justify-content:space-between; align-items:center; gap:0.5rem; flex-wrap:wrap;">
+      <span class="badge badge-brand">${escapeHtml(cert.vendor)} · ${escapeHtml(cert.code)} FLASHCARDS</span>
+      <span class="badge badge-info">${escapeHtml(card.domain || "")}</span>
+    </div>
+    <div class="flashcard-box" id="flashCardBox" role="button" tabindex="0" aria-label="Flip flashcard">
+      <div style="font-size:0.75rem; font-weight:700; color:var(--muted); text-transform:uppercase; letter-spacing:0.04em; margin-bottom:0.45rem;">
+        Scenario Prompt ${STATE.flashFlipped ? "(Answer Revealed)" : "(Click card to reveal Exam Hack & Answer)"}
+      </div>
+      <div style="font-size:1.02rem; font-weight:600; line-height:1.55;">${escapeHtml(card.stem)}</div>
+      ${
+        STATE.flashFlipped
+          ? `<div class="flashcard-answer">
+               <div style="font-weight:700; color:var(--success); margin-bottom:0.45rem;">✓ Verified Answer: ${escapeHtml(correctTexts)}</div>
+               <div style="font-size:var(--fs-sm); color:var(--foreground);">${escapeHtml(card.explanation || "")}</div>
+               ${card.hack ? `<div class="hack-callout" style="margin-top:0.65rem;"><strong>Exam Hack:</strong> ${escapeHtml(card.hack)}</div>` : ""}
+             </div>`
+          : `<div style="margin-top:1.1rem; font-size:var(--fs-sm); color:var(--brand); font-weight:600;">Click anywhere on this card or press Reveal Answer →</div>`
+      }
+    </div>
+    <div class="flashcard-actions">
+      ${
+        STATE.flashFlipped
+          ? `<div style="display:flex; gap:0.55rem; flex-wrap:wrap;">
+               <button class="btn" type="button" id="btnFlashAgain">↻ Review Again</button>
+               <button class="btn btn-success" type="button" id="btnFlashGotIt">✓ Got It (Mastered)</button>
+             </div>`
+          : `<button class="btn btn-primary" type="button" id="btnFlashReveal">Reveal Answer &amp; Exam Hack</button>`
+      }
+      <a class="btn btn-ghost" href="${CONFIG.CHECKOUT_URL}" target="_blank" rel="noopener">Get All 225 Hacks PDF ($19.99) →</a>
+    </div>
+  `;
+
+  const flipCard = () => {
+    STATE.flashFlipped = !STATE.flashFlipped;
+    renderFlashcard();
+  };
+  $("flashCardBox").onclick = flipCard;
+  $("flashCardBox").onkeydown = (e) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      flipCard();
+    }
+  };
+  if ($("btnFlashReveal")) $("btnFlashReveal").onclick = flipCard;
+  if ($("btnFlashAgain")) {
+    $("btnFlashAgain").onclick = () => {
+      const curr = STATE.flashDeck.shift();
+      STATE.flashDeck.push(curr);
+      STATE.flashFlipped = false;
+      recordStudyActivity();
+      renderFlashcard();
+    };
+  }
+  if ($("btnFlashGotIt")) {
+    $("btnFlashGotIt").onclick = () => {
+      STATE.flashDeck.shift();
+      STATE.flashMastered += 1;
+      STATE.flashFlipped = false;
+      recordStudyActivity();
+      renderFlashcard();
+    };
+  }
 }
 
 function openProModal() {
@@ -951,6 +1148,7 @@ async function init() {
   };
   $("btnCheckAnswer").onclick = () => {
     STATE.checked[STATE.currentIndex] = true;
+    recordStudyActivity();
     renderQuestion();
   };
   $("btnPrevQ").onclick = () => {
@@ -998,12 +1196,17 @@ async function init() {
   const qExam = params.get("exam");
   const qCert = params.get("cert");
   const qTool = params.get("tool");
-  const qMode = params.get("mode") === "exam" ? "exam" : "study";
+  const qModeRaw = params.get("mode");
+  const qMode = qModeRaw === "exam" ? "exam" : "study";
 
   initReadinessCalculator(qCert || qExam);
 
   if (qExam && STATE.catalog.certs.some((c) => c.slug === qExam)) {
-    startSession(qExam, "free", null, qMode);
+    if (qModeRaw === "flashcards") {
+      startFlashcards(qExam);
+    } else {
+      startSession(qExam, "free", null, qMode);
+    }
   } else if (qTool === "calculator") {
     const el = $("readinessCalcSection");
     if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
