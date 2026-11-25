@@ -91,6 +91,12 @@
     <priority>0.85</priority>
   </url>
   <url>
+    <loc>https://gabhack.github.io/cloudcert-lab/exams/aws-clf-c02-vs-aif-c01-vs-saa-c03/</loc>
+    <lastmod>2026-11-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
     <loc>https://gabhack.github.io/cloudcert-lab/exams/free-cloud-ai-exam-cheat-sheet-2026/</loc>
     <lastmod>2026-11-25</lastmod>
     <changefreq>weekly</changefreq>

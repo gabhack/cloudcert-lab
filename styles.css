@@ -912,3 +912,51 @@ button:focus-visible, input:focus-visible, a:focus-visible {
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { transition: none !important; }
 }
+
+/* Sticky Bottom CRO Bar for SEO Landing Pages */
+.sticky-cro-bar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 40;
+  background: var(--surface);
+  border-top: 1px solid var(--border-strong);
+  box-shadow: 0 -6px 24px rgba(15, 23, 42, 0.08);
+  padding: 0.65rem 1.25rem;
+}
+
+.sticky-cro-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.85rem;
+  flex-wrap: wrap;
+}
+
+body.has-sticky-cro {
+  padding-bottom: 4.75rem;
+}
+
+@media print {
+  .topbar,
+  .sticky-cro-bar,
+  .exam-breadcrumb,
+  .seo-footer,
+  .no-print {
+    display: none !important;
+  }
+  body,
+  body.has-sticky-cro {
+    padding-bottom: 0 !important;
+    background: #ffffff !important;
+    color: #0f172a !important;
+  }
+  .card,
+  .cro-paywall {
+    box-shadow: none !important;
+    break-inside: avoid;
+  }
+}
