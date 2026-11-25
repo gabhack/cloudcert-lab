@@ -22,4 +22,24 @@
 - [Azure AI-901 vs AWS AIF-C01 vs GCP GenAI Leader](https://gabhack.github.io/cloudcert-lab/exams/ai-certifications-comparison-2026/): Compare the top 3 foundational Cloud & Generative AI certifications of 2026-2027: Microsoft Azure AI-901, AWS AIF-C01, and Google Cloud Generative AI Leader. Difficulty, domains & free practice tests.
 - [AWS GenAI Developer Pro (AIP-C01)](https://gabhack.github.io/cloudcert-lab/exams/aws-aip-c01-guide/): Complete 2026-2027 study guide for AWS Certified Generative AI Developer Professional (AIP-C01): 5 official domains (31%/26%/20%/12%/11%), Amazon Bedrock RAG, Agents, Guardrails & $300 retake protection.
 - [AWS Associate Certs: SAA-C03 vs DVA-C03 vs DEA-C01 vs MLA-C01](https://gabhack.github.io/cloudcert-lab/exams/aws-associate-certifications-comparison-2026/): Compare all 4 AWS Associate certifications in 2026-2027: Solutions Architect (SAA-C03), Developer (DVA-C03 Dec 2026), Data Engineer (DEA-C01) & ML Engineer (MLA-C01). Exam fees, pass bars & free mock tests.
+- [Azure AI-900 vs AI-901 (2026 Migration)](https://gabhack.github.io/cloudcert-lab/exams/azure-ai-900-vs-ai-901/): Compare retiring Microsoft Azure AI-900 vs new AI-901 (2026-2027): Microsoft Foundry Hubs & Projects, Agentic AI workflows, RAG, Entra ID & 15 free practice questions.
 - [Free 27-Hack Multi-Cloud & AI Exam Cheat Sheet (2026–2027)](https://gabhack.github.io/cloudcert-lab/exams/free-cloud-ai-exam-cheat-sheet-2026/): 3 verified Exam Hacks per certification across all 9 exams + passing bars.
+
+## Official Udemy Practice Test Courses (260 Scenarios / 4 Full Exams Each)
+- [Microsoft Azure AI-901 Practice Exams on Udemy](https://www.udemy.com/course/microsoft-azure-ai-fundamentals-ai-901-practice-exams-2026-j/)
+- [Google Cloud GenAI Leader Practice Exams on Udemy](https://www.udemy.com/course/google-cloud-generative-ai-leader-practice-exams-2026-2027/)
+- [AWS AIF-C01 Practice Exams on Udemy](https://www.udemy.com/course/aws-certified-ai-practitioner-aif-c01-practice-exams-2026-mf/)
+- [AWS MLA-C01 Practice Exams on Udemy](https://www.udemy.com/course/aws-machine-learning-engineer-associate-mla-c01-mock-tests/)
+- [AWS DEA-C01 Practice Exams on Udemy](https://www.udemy.com/course/aws-certified-data-engineer-associate-dea-c01-mock-exams-d/)
+- [AWS DVA-C02 Practice Exams on Udemy](https://www.udemy.com/course/aws-certified-developer-associate-dva-c02-practice-exams-dx/)
+- [AWS SAA-C03 Practice Exams on Udemy](https://www.udemy.com/course/aws-solutions-architect-associate-saa-c03-practice-exams-m/)
+- [AWS CLF-C02 Practice Exams on Udemy](https://www.udemy.com/course/aws-certified-cloud-practitioner-clf-c02-practice-exams-eg/)
+- [AWS DVA-C03 Practice Exams on Udemy](https://www.udemy.com/course/aws-certified-developer-associate-dva-c03-practice-exams-p/)
+
+## Companion Amazon Kindle & Paperback Editions (Free on Kindle Unlimited)
+- [Microsoft Azure AI Fundamentals (AI-901) Practice Tests](https://www.amazon.com/dp/B0HS93MZC7): Kindle Unlimited $0.00 · eBook $2.99 · Paperback $11.99
+- [Google Cloud Certified Generative AI Leader Practice Tests](https://www.amazon.com/dp/B0HSL1MYYM): Kindle Unlimited $0.00 · eBook $2.99 · Paperback $11.99
+- [AWS Certified AI Practitioner (AIF-C01) Practice Tests](https://www.amazon.com/dp/B0HQXNM3VY): Kindle Unlimited $0.00 · eBook $2.99 · Paperback $9.99
+- [AWS Certified Machine Learning Engineer Associate (MLA-C01) Practice Tests](https://www.amazon.com/dp/B0HS1GKQSQ): Kindle Unlimited $0.00 · eBook $2.99 · Paperback $11.99
+- [AWS Certified Solutions Architect Associate (SAA-C03) Practice Tests](https://www.amazon.com/dp/B0HRVB8PZ3): Kindle Unlimited $0.00 · eBook $2.99 · Paperback $11.99
+- [AWS Certified Cloud Practitioner (CLF-C02) Practice Exams — 410 Questions](https://www.amazon.com/dp/B0HQ8ZT44Y): Kindle Unlimited $0.00 · eBook $2.99 · Paperback $12.49

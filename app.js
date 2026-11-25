@@ -67,6 +67,22 @@ function getKdpCompanion(slug) {
   return KDP_COMPANIONS[slug] || KDP_COMPANIONS.default;
 }
 
+const UDEMY_COMPANIONS = {
+  "azure-ai-901": "https://www.udemy.com/course/microsoft-azure-ai-fundamentals-ai-901-practice-exams-2026-j/",
+  "gcp-genai-leader": "https://www.udemy.com/course/google-cloud-generative-ai-leader-practice-exams-2026-2027/",
+  "aws-aif-c01": "https://www.udemy.com/course/aws-certified-ai-practitioner-aif-c01-practice-exams-2026-mf/",
+  "aws-mla-c01": "https://www.udemy.com/course/aws-machine-learning-engineer-associate-mla-c01-mock-tests/",
+  "aws-dea-c01": "https://www.udemy.com/course/aws-certified-data-engineer-associate-dea-c01-mock-exams-d/",
+  "aws-dva-c02": "https://www.udemy.com/course/aws-certified-developer-associate-dva-c02-practice-exams-dx/",
+  "aws-saa-c03": "https://www.udemy.com/course/aws-solutions-architect-associate-saa-c03-practice-exams-m/",
+  "aws-clf-c02": "https://www.udemy.com/course/aws-certified-cloud-practitioner-clf-c02-practice-exams-eg/",
+  "aws-dva-c03": "https://www.udemy.com/course/aws-certified-developer-associate-dva-c03-practice-exams-p/",
+};
+
+function getUdemyCompanion(slug) {
+  return UDEMY_COMPANIONS[slug] || "";
+}
+
 const PRO_CACHE = {};
 
 function b64ToBytes(b64) {
@@ -288,6 +304,18 @@ function openCertDetail(slug) {
     <div id="detailHacksPreview" style="margin-top:1.2rem; padding:1rem; border-radius:var(--radius); background:var(--surface-2); border:1px solid var(--border);">
       <span class="badge badge-info">FREE CHEAT SHEET SAMPLE (3 OF 25 ${escapeHtml(cert.code)} EXAM HACKS)</span>
       <div style="font-size:var(--fs-sm); color:var(--muted); margin-top:0.4rem;">Loading verified high-yield elimination rules...</div>
+    </div>
+
+    <div class="kdp-cross-sell" style="margin-top:1rem;">
+      <div>
+        <span class="badge badge-info">${escapeHtml(getKdpCompanion(cert.slug).badge)}</span>
+        <div style="font-weight:700; margin-top:0.3rem;">Study Offline or on Udemy: ${escapeHtml(getKdpCompanion(cert.slug).title)}</div>
+        <div style="font-size:var(--fs-sm); color:var(--muted);">Get all 9 exams (2,340 Qs) for <strong>$19.99</strong> on Gumroad vs <strong>$49.99/course</strong> on Udemy, or read free with Kindle Unlimited.</div>
+      </div>
+      <div style="display:flex; gap:0.5rem; flex-wrap:wrap;">
+        <a class="btn" href="${escapeHtml(getKdpCompanion(cert.slug).url)}" target="_blank" rel="noopener">Amazon Book →</a>
+        ${getUdemyCompanion(cert.slug) ? `<a class="btn btn-ghost" href="${escapeHtml(getUdemyCompanion(cert.slug))}" target="_blank" rel="noopener">Udemy Course ($49.99) →</a>` : ""}
+      </div>
     </div>
   `;
 
@@ -551,6 +579,7 @@ function finishExam() {
   const weakest = domainEntries.slice().sort((a, b) => a.dpct - b.dpct)[0];
   const remainingCertQs = Math.max(0, STATE.activeCert.total_questions - total);
   const kdp = getKdpCompanion(STATE.activeCert.slug);
+  const udemyUrl = getUdemyCompanion(STATE.activeCert.slug);
 
   const upsellBanner = !STATE.isPro
     ? `<div class="cro-paywall">
@@ -583,6 +612,7 @@ function finishExam() {
              Unlock All 2,340 Scenarios ($19.99 One-Time) →
            </a>
            <button class="btn" type="button" id="btnResultUnlock">Already Have a Key? Activate</button>
+           ${udemyUrl ? `<a class="btn btn-ghost" href="${escapeHtml(udemyUrl)}" target="_blank" rel="noopener">Or Buy ${escapeHtml(STATE.activeCert.code)} on Udemy ($49.99) →</a>` : ""}
          </div>
          <div class="cro-trust-row">
            <span>✓ Zero Monthly Subscription</span>
