@@ -36,6 +36,7 @@ Interactive, zero-login **Multi-Cloud & AI Certification Practice Exam Simulator
 - **TuringTec Agent Studio (4 Live B2B AI Agent Sandboxes + 15 n8n Workflows + MCP Servers):** [TuringTec Agent Studio](https://gabhack.github.io/turingtec-agent-studio/) · [aws-finops-guard Open-Core CLI + MCP](https://github.com/gabhack/aws-finops-guard)
 
 ### 2026–2027 Comparison & Migration Guides
+- [Cloud & AI Exam Costs, Passing Scores & Retake Fees ($99–$300, 2026–2027)](https://gabhack.github.io/cloudcert-lab/exams/cloud-ai-exam-costs-passing-scores-2026/)
 - [Cloud & AI Certification Exam Traps Glossary (12 Core Distinctions)](https://gabhack.github.io/cloudcert-lab/exams/cloud-ai-exam-glossary-2026/)
 - [AWS CLF-C02 vs AIF-C01 vs SAA-C03 (Which AWS Certification First?)](https://gabhack.github.io/cloudcert-lab/exams/aws-clf-c02-vs-aif-c01-vs-saa-c03/)
 - [Azure AI-900 vs AI-901 (2026 Retirement & Microsoft Foundry Guide)](https://gabhack.github.io/cloudcert-lab/exams/azure-ai-900-vs-ai-901/)

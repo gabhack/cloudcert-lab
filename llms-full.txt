@@ -223,3 +223,12 @@ Amazon Kindle Unlimited Companion Books ($0 on KU / $2.99 eBook): https://www.am
 - **DynamoDB GSI (Global Secondary Index) vs LSI (Local Secondary Index) (AWS DVA-C03 / DVA-C02):** A Global Secondary Index (GSI) can be created or deleted anytime with a different partition key and independent throughput (eventual consistency only), whereas a Local Secondary Index (LSI) must be defined at table creation, shares the base partition key, and supports strongly consistent reads. *Exam Trap: Existing table needing a new query pattern = GSI; strongly consistent alternate sort key on a new table = LSI.*
 - **Amazon Bedrock Converse API vs InvokeModel (AWS AIP-C01 / DVA-C03) (AWS DVA-C03 / AIP-C01):** The Bedrock Converse API provides a single unified request/response schema (including tool use, system prompts, and Guardrails) across Claude, Llama, Nova, and Mistral models, removing model-specific JSON payload rewrites required by raw InvokeModel calls. *Exam Trap: Whenever a question emphasizes portable multi-model switching or standardized tool calling on Bedrock, choose the Converse API.*
 
+
+---
+
+## 4. 2026–2027 Cloud & AI Certification Costs, Passing Scores & Retake Fees
+- URL: https://gabhack.github.io/cloudcert-lab/exams/cloud-ai-exam-costs-passing-scores-2026/
+- **Foundational Exams ($99–$100 USD · 70% Pass Bar · 90 min):** Microsoft Azure AI-901 ($99), Google Cloud Generative AI Leader ($99), AWS CLF-C02 ($100), AWS AIF-C01 ($100).
+- **AWS Associate Exams ($150 USD · 72% Pass Bar · 130 min · 65 Qs):** AWS DVA-C03 (effective Dec 1, 2026), AWS DVA-C02, AWS SAA-C03, AWS DEA-C01, AWS MLA-C01. Passing a Foundational AWS exam grants a 50% voucher ($75 Associate / $150 Pro).
+- **AWS Professional Exams ($300 USD · 75% Pass Bar · 170 min · 75 Qs):** AWS Generative AI Developer Pro (AIP-C01).
+- **Retake Wait Policies:** AWS enforces a 14-day wait after any fail; Azure requires 24 hours after first fail (14 days after 2nd+); Google Cloud requires 14 days after 1st fail and 60 days after 2nd fail. None provide free retakes.

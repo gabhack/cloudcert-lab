@@ -622,13 +622,16 @@ function finishExam() {
   const remainingCertQs = Math.max(0, STATE.activeCert.total_questions - total);
   const kdp = getKdpCompanion(STATE.activeCert.slug);
   const udemyUrl = getUdemyCompanion(STATE.activeCert.slug);
+  const examFee = CERT_EXAM_FEES[STATE.activeCert.slug] || 150;
+  const retakeSavingsPct = Math.round((1 - 19.99 / examFee) * 100);
 
   const upsellBanner = !STATE.isPro
     ? `<div class="cro-paywall">
          <span class="badge badge-brand">PRO ALL-ACCESS VAULT · $449 VALUE → $19.99 (95% OFF)</span>
-         <h3>${passed ? `Lock In Your ${escapeHtml(STATE.activeCert.code)} First-Try Pass` : `Close Your ${escapeHtml(STATE.activeCert.code)} Score Gap Before Exam Day`}</h3>
+         <span class="badge badge-warning" style="margin-left:0.35rem;">RETAKE PROTECTION: $${examFee} EXAM FEE VS $19.99 (${retakeSavingsPct}% CHEAPER THAN 1 RETAKE)</span>
+         <h3>${passed ? `Lock In Your ${escapeHtml(STATE.activeCert.code)} First-Try Pass` : `Close Your ${escapeHtml(STATE.activeCert.code)} Score Gap Before Risking a $${examFee} Retake`}</h3>
          <p style="margin:0; color:var(--muted); font-size:var(--fs-sm);">
-           You just completed the 15-question Free Diagnostic (<strong>${pct}%</strong>). Instead of $49.99 per course, unlock the remaining
+           You just completed the 15-question Free Diagnostic (<strong>${pct}%</strong>). Instead of $49.99 per course or paying <strong>$${examFee} USD</strong> for an exam retake, unlock the remaining
            <strong>${remainingCertQs} ${escapeHtml(STATE.activeCert.code)} scenarios</strong> plus all 8 other AWS, Azure &amp; Google Cloud exams (<strong>2,340 scenarios · 36 timed mocks + 225-Hack Cheat Sheets PDF</strong>) for one single $19.99 payment.
          </p>
          ${weakest ? `<div class="cro-gap-alert">
@@ -651,9 +654,10 @@ function finishExam() {
          </div>
          <div style="display:flex; gap:0.65rem; flex-wrap:wrap; align-items:center; margin-top:0.85rem;">
            <a class="btn btn-primary" href="${CONFIG.CHECKOUT_URL}" target="_blank" rel="noopener">
-             Unlock All 2,340 Scenarios ($19.99 One-Time) →
+             Protect $${examFee} Exam Fee — Unlock 2,340 Qs ($19.99) →
            </a>
            <button class="btn" type="button" id="btnResultUnlock">Already Have a Key? Activate</button>
+           <a class="btn btn-ghost" href="exams/cloud-ai-exam-costs-passing-scores-2026/">Compare Exam Costs &amp; Pass Bars</a>
            ${udemyUrl ? `<a class="btn btn-ghost" href="${escapeHtml(udemyUrl)}" target="_blank" rel="noopener">Or Buy ${escapeHtml(STATE.activeCert.code)} on Udemy ($49.99) →</a>` : ""}
          </div>
          <div class="cro-trust-row">

@@ -27,6 +27,7 @@
 - [AWS CLF-C02 vs AIF-C01 vs SAA-C03](https://gabhack.github.io/cloudcert-lab/exams/aws-clf-c02-vs-aif-c01-vs-saa-c03/): Should you take AWS Cloud Practitioner (CLF-C02), AI Practitioner (AIF-C01), or Solutions Architect Associate (SAA-C03) first in 2026-2027? Difficulty, salary ROI & free mock tests.
 - [Free 27-Hack Multi-Cloud & AI Exam Cheat Sheet (2026–2027)](https://gabhack.github.io/cloudcert-lab/exams/free-cloud-ai-exam-cheat-sheet-2026/): 3 verified Exam Hacks per certification across all 9 exams + passing bars.
 - [Cloud & AI Certification Exam Traps Glossary (2026–2027)](https://gabhack.github.io/cloudcert-lab/exams/cloud-ai-exam-glossary-2026/): 12 high-yield service comparisons & elimination rules for AWS, Azure AI-901 & GCP.
+- [Cloud & AI Exam Costs, Passing Scores & Retake Fees (2026–2027)](https://gabhack.github.io/cloudcert-lab/exams/cloud-ai-exam-costs-passing-scores-2026/): Official $99–$300 exam fees, 70%–75% pass bars, retake waiting periods & 50% AWS voucher strategy.
 
 ## Official Udemy Practice Test Courses (260 Scenarios / 4 Full Exams Each)
 - [Microsoft Azure AI-901 Practice Exams on Udemy](https://www.udemy.com/course/microsoft-azure-ai-fundamentals-ai-901-practice-exams-2026-j/)
