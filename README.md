@@ -33,6 +33,7 @@ Interactive, zero-login **Multi-Cloud & AI Certification Practice Exam Simulator
 - **Deep Technical Rationales:** Every question explains why the correct architecture succeeds, why every distractor fails, a **Real-World Production Use Case**, and a high-speed **Exam Hack**.
 - **Pro All-Access Vault (`$19.99` One-Time — Zero Subscription):** Unlocks all **2,340 scenarios (36 full-length mocks)** in-browser + downloadable offline HTML bundle + **Master Exam Hacks Cheat Sheets PDF** via [Gumroad](https://gabbler407.gumroad.com/l/cloudcert-lab-pro).
 - **Companion Amazon Kindle & Print Editions (Free on Kindle Unlimited):** [AWS Certification Practice Exams Series by Gabriel N.](https://www.amazon.com/author/gabrieln)
+- **TuringTec Agent Studio (4 Live B2B AI Agent Sandboxes + 15 n8n Workflows + MCP Servers):** [TuringTec Agent Studio](https://gabhack.github.io/turingtec-agent-studio/) · [aws-finops-guard Open-Core CLI + MCP](https://github.com/gabhack/aws-finops-guard)
 
 ### 2026–2027 Comparison & Migration Guides
 - [Cloud & AI Certification Exam Traps Glossary (12 Core Distinctions)](https://gabhack.github.io/cloudcert-lab/exams/cloud-ai-exam-glossary-2026/)
