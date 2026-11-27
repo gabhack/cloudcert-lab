@@ -51,6 +51,16 @@ const KDP_COMPANIONS = {
     url: "https://www.amazon.com/dp/B0HS93MZC7",
     badge: "FREE on Kindle Unlimited ($2.99 eBook · Paperback $11.99)",
   },
+  "azure-ai-103": {
+    title: "Microsoft Azure AI-103 (AI & Agents) Practice Tests (2026–2027 Edition)",
+    url: "https://www.amazon.com/author/gabrieln",
+    badge: "Azure AI Engineer Series · Gabriel N. on Amazon",
+  },
+  "aws-aip-c01": {
+    title: "AWS Generative AI Developer – Professional (AIP-C01) Practice Tests (2026–2027)",
+    url: "https://www.amazon.com/author/gabrieln",
+    badge: "AWS Professional Series · Gabriel N. on Amazon",
+  },
   "gcp-genai-leader": {
     title: "Google Cloud Certified Generative AI Leader Practice Tests",
     url: "https://www.amazon.com/dp/B0HSL1MYYM",
@@ -213,14 +223,14 @@ function updatePlanUI() {
   const badge = $("planBadge");
   const btnTop = $("btnUnlockTop");
   if (STATE.isPro) {
-    badge.textContent = "PRO UNLOCKED (2,340 Qs)";
+    badge.textContent = "PRO UNLOCKED (2,860 Qs)";
     badge.className = "badge badge-success";
     btnTop.textContent = "Pro Active ✓";
     btnTop.className = "btn btn-success";
   } else {
-    badge.textContent = "FREE TIER (135 Qs)";
+    badge.textContent = "FREE TIER (165 Qs)";
     badge.className = "badge badge-neutral";
-    btnTop.textContent = "Unlock All 2,340 Qs";
+    btnTop.textContent = "Unlock All 2,860 Qs";
     btnTop.className = "btn btn-primary";
   }
 }
@@ -359,7 +369,7 @@ function openCertDetail(slug) {
       <div>
         <span class="badge badge-info">${escapeHtml(getKdpCompanion(cert.slug).badge)}</span>
         <div style="font-weight:700; margin-top:0.3rem;">Study Offline or on Udemy: ${escapeHtml(getKdpCompanion(cert.slug).title)}</div>
-        <div style="font-size:var(--fs-sm); color:var(--muted);">Get all 9 exams (2,340 Qs) for <strong>$19.99</strong> on Gumroad vs <strong>$49.99/course</strong> on Udemy, or read free with Kindle Unlimited.</div>
+        <div style="font-size:var(--fs-sm); color:var(--muted);">Get all 11 exams (2,860 Qs) for <strong>$19.99</strong> on Gumroad vs <strong>$49.99/course</strong> on Udemy, or read free with Kindle Unlimited.</div>
       </div>
       <div style="display:flex; gap:0.5rem; flex-wrap:wrap;">
         <a class="btn" href="${escapeHtml(getKdpCompanion(cert.slug).url)}" target="_blank" rel="noopener">Amazon Book →</a>
@@ -389,8 +399,8 @@ function openCertDetail(slug) {
           )
           .join("")}
         <div style="margin-top:0.75rem; font-size:var(--fs-sm); color:var(--muted); display:flex; justify-content:space-between; align-items:center; gap:0.5rem; flex-wrap:wrap;">
-          <span>Full <strong>225-Hack Master Cheat Sheets PDF</strong> + Offline ZIP included in Pro Vault ($19.99).</span>
-          <a class="btn btn-primary" href="${CONFIG.CHECKOUT_URL}">Get Full PDF + 2,340 Qs →</a>
+          <span>Full <strong>Master Cheat Sheets PDF</strong> + Offline ZIP included in Pro Vault ($19.99).</span>
+          <a class="btn btn-primary" href="${CONFIG.CHECKOUT_URL}">Get Full PDF + 2,860 Qs →</a>
         </div>
       `;
     })
@@ -635,12 +645,12 @@ function finishExam() {
 
   const upsellBanner = !STATE.isPro
     ? `<div class="cro-paywall">
-         <span class="badge badge-brand">PRO ALL-ACCESS VAULT · $449 VALUE → $19.99 (95% OFF)</span>
+         <span class="badge badge-brand">PRO ALL-ACCESS VAULT · $549 VALUE → $19.99 (96% OFF)</span>
          <span class="badge badge-warning" style="margin-left:0.35rem;">RETAKE PROTECTION: $${examFee} EXAM FEE VS $19.99 (${retakeSavingsPct}% CHEAPER THAN 1 RETAKE)</span>
          <h3>${passed ? `Lock In Your ${escapeHtml(STATE.activeCert.code)} First-Try Pass` : `Close Your ${escapeHtml(STATE.activeCert.code)} Score Gap Before Risking a $${examFee} Retake`}</h3>
          <p style="margin:0; color:var(--muted); font-size:var(--fs-sm);">
            You just completed the 15-question Free Diagnostic (<strong>${pct}%</strong>). Instead of $49.99 per course or paying <strong>$${examFee} USD</strong> for an exam retake, unlock the remaining
-           <strong>${remainingCertQs} ${escapeHtml(STATE.activeCert.code)} scenarios</strong> plus all 8 other AWS, Azure &amp; Google Cloud exams (<strong>2,340 scenarios · 36 timed mocks + 225-Hack Cheat Sheets PDF</strong>) for one single $19.99 payment.
+           <strong>${remainingCertQs} ${escapeHtml(STATE.activeCert.code)} scenarios</strong> plus all 10 other AWS, Azure &amp; Google Cloud exams (<strong>2,860 scenarios · 44 timed mocks + Master Cheat Sheets PDF</strong>) for one single $19.99 payment.
          </p>
          ${weakest ? `<div class="cro-gap-alert">
            <strong>Biggest Exam Risk Detected:</strong> ${escapeHtml(weakest.dom)} (<strong>${weakest.dpct}%</strong> · ${weakest.ok}/${weakest.total} correct).
@@ -652,8 +662,8 @@ function finishExam() {
              <span>Timed ${STATE.activeCert.duration_min}-min exam mode + instant study explanations for ${escapeHtml(STATE.activeCert.code)}.</span>
            </div>
            <div class="cro-teaser-locked">
-             <strong>🔒 All 9 Cloud &amp; AI Blueprints</strong>
-             <span>Azure AI-901, GCP GenAI Leader, AWS DVA-C03 (New Dec 2026), AIF-C01, MLA-C01, DEA-C01, DVA-C02, SAA-C03 &amp; CLF-C02.</span>
+             <strong>🔒 All 11 Cloud &amp; AI Blueprints</strong>
+             <span>Azure AI-103 &amp; AI-901, GCP GenAI Leader, AWS AIP-C01 Pro, DVA-C03 (New Dec 2026), AIF-C01, MLA-C01, DEA-C01, DVA-C02, SAA-C03 &amp; CLF-C02.</span>
            </div>
            <div class="cro-teaser-locked">
              <strong>🔒 Offline Bundle + Cheat Sheets PDF</strong>
@@ -673,28 +683,28 @@ function finishExam() {
              <tbody>
                <tr>
                  <td><strong>Question Bank</strong></td>
-                 <td>15 Qs / cert (135 total)</td>
+                 <td>15 Qs / cert (165 total)</td>
                  <td>260 Qs (1 cert only)</td>
-                 <td><strong>2,340 Qs (All 9 Certs · 36 Mocks)</strong></td>
+                 <td><strong>2,860 Qs (All 11 Certs · 44 Mocks)</strong></td>
                </tr>
                <tr>
                  <td><strong>Offline &amp; Cheat Sheets</strong></td>
                  <td>Online preview only</td>
                  <td>Online Udemy player only</td>
-                 <td><strong>Offline HTML ZIP + 225-Hack PDF</strong></td>
+                 <td><strong>Offline HTML ZIP + Master Hacks PDF</strong></td>
                </tr>
                <tr>
                  <td><strong>Price &amp; Access</strong></td>
                  <td>$0 (No login)</td>
-                 <td>$49.99 per cert ($449.91 for 9)</td>
-                 <td><strong>$19.99 One-Time (95% Off)</strong></td>
+                 <td>$49.99 per cert ($549+ for 11)</td>
+                 <td><strong>$19.99 One-Time (96% Off)</strong></td>
                </tr>
              </tbody>
            </table>
          </div>
          <div style="display:flex; gap:0.65rem; flex-wrap:wrap; align-items:center; margin-top:0.85rem;">
            <a class="btn btn-primary" href="${CONFIG.CHECKOUT_URL}">
-             Protect $${examFee} Exam Fee — Unlock 2,340 Qs ($19.99) →
+             Protect $${examFee} Exam Fee — Unlock 2,860 Qs ($19.99) →
            </a>
            <button class="btn" type="button" id="btnResultUnlock">Already Have a Key? Activate</button>
            <a class="btn btn-ghost" href="exams/cloud-ai-exam-costs-passing-scores-2026/">Compare Exam Costs &amp; Pass Bars</a>
@@ -930,7 +940,7 @@ function downloadScorecardPng({ cert, examLabel, pct, passed, correctCount, tota
   ctx.textAlign = "right";
   ctx.fillStyle = "#94a3b8";
   ctx.font = "14px Inter, Arial, sans-serif";
-  ctx.fillText("135 Free Scenarios · 2,340 Pro Vault Questions · AWS · Azure · GCP", W - 44, 498);
+  ctx.fillText("165 Free Scenarios · 2,860 Pro Vault Questions · AWS · Azure · GCP", W - 44, 498);
   ctx.textAlign = "left";
 
   const link = document.createElement("a");
@@ -999,12 +1009,12 @@ function renderFlashcard() {
       <span class="badge badge-success">ACTIVE-RECALL COMPLETE · ${escapeHtml(cert.code)}</span>
       <h2 style="margin:0.5rem 0 0.35rem;">You Mastered All ${STATE.flashTotal} ${escapeHtml(cert.code)} Flashcards!</h2>
       <p style="margin:0 0 1rem; color:var(--muted); font-size:var(--fs-sm);">
-        Lock in your speed before exam day by running a full timed exam or unlocking all <strong>2,340 scenarios + 225-Hack Master Cheat Sheets PDF</strong> ($19.99 one-time).
+        Lock in your speed before exam day by running a full timed exam or unlocking all <strong>2,860 scenarios + Master Cheat Sheets PDF</strong> ($19.99 one-time).
       </p>
       <div style="display:flex; gap:0.6rem; flex-wrap:wrap;">
         <button class="btn btn-primary" type="button" id="btnFlashRestart">Practice Deck Again</button>
         <button class="btn" type="button" id="btnFlashTimed">Take Timed 15-Q Test</button>
-        ${!STATE.isPro ? `<a class="btn btn-primary" href="${CONFIG.CHECKOUT_URL}">Unlock All 2,340 Qs ($19.99) →</a>` : ""}
+        ${!STATE.isPro ? `<a class="btn btn-primary" href="${CONFIG.CHECKOUT_URL}">Unlock All 2,860 Qs ($19.99) →</a>` : ""}
         <a class="btn btn-ghost" href="${escapeHtml(kdp.url)}" target="_blank" rel="noopener">Amazon Book →</a>
         ${udemyUrl ? `<a class="btn btn-ghost" href="${escapeHtml(udemyUrl)}" target="_blank" rel="noopener">Udemy Course ($49.99) →</a>` : ""}
       </div>
@@ -1115,7 +1125,7 @@ async function activateLicenseKey() {
       updatePlanUI();
       renderCatalog();
       msg.style.color = "var(--success)";
-      msg.textContent = "✓ AES-256 Pro Vault unlocked (All 2,340 questions & 36 full exams active!).";
+      msg.textContent = "✓ AES-256 Pro Vault unlocked (All 2,860 questions & 44 full exams active!).";
       setTimeout(() => $("modalPro").classList.add("hidden"), 900);
       return;
     }
@@ -1145,7 +1155,7 @@ async function activateLicenseKey() {
       updatePlanUI();
       renderCatalog();
       msg.style.color = "var(--success)";
-      msg.textContent = "✓ License verified! All 2,340 questions unlocked.";
+      msg.textContent = "✓ License verified! All 2,860 questions unlocked.";
       setTimeout(() => $("modalPro").classList.add("hidden"), 900);
     } else {
       msg.style.color = "var(--danger)";
@@ -1177,6 +1187,7 @@ function escapeHtml(str) {
 
 const CERT_EXAM_FEES = {
   "azure-ai-901": 99,
+  "azure-ai-103": 165,
   "gcp-genai-leader": 99,
   "aws-aif-c01": 100,
   "aws-clf-c02": 100,
@@ -1205,14 +1216,6 @@ function initReadinessCalculator(preselectSlug) {
       passPct: c.pass_pct,
       fee,
     };
-  });
-  options.push({
-    slug: "aws-aip-c01",
-    simSlug: "aws-aif-c01",
-    guidePath: "exams/aws-aip-c01-guide/",
-    label: "AWS AIP-C01 Generative AI Developer Pro ($300 exam fee)",
-    passPct: 75,
-    fee: 300,
   });
 
   sel.innerHTML = options

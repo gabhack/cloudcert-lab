@@ -1,17 +1,17 @@
 # CloudCert Lab — Free Multi-Cloud & AI Certification Exam Simulator (2026–2027)
 
 [![Live Simulator](https://img.shields.io/badge/Live%20Simulator-Launch%20Free%20Now-1c69d4?style=for-the-badge)](https://gabhack.github.io/cloudcert-lab/)
-[![Pro Vault](https://img.shields.io/badge/Pro%20Vault-2%2C340%20Scenarios%20%2419.99-15803d?style=for-the-badge)](https://gabbler407.gumroad.com/l/cloudcert-lab-pro)
+[![Pro Vault](https://img.shields.io/badge/Pro%20Vault-2%2C860%20Scenarios%20%2419.99-15803d?style=for-the-badge)](https://gabbler407.gumroad.com/l/cloudcert-lab-pro)
 [![Amazon KDP Series](https://img.shields.io/badge/Kindle%20Unlimited-Free%20Companion%20Books-ff9900?style=for-the-badge)](https://www.amazon.com/author/gabrieln)
 
-Interactive, zero-login **Multi-Cloud & AI Certification Practice Exam Simulator** covering **9 official 2026–2027 exam blueprints** across **AWS, Microsoft Azure, and Google Cloud** — including the brand-new **Microsoft Azure AI-901**, **Google Cloud Generative AI Leader**, and **AWS Developer Associate DVA-C03 (effective December 1, 2026)**.
+Interactive, zero-login **Multi-Cloud & AI Certification Practice Exam Simulator** covering **11 official 2026–2027 exam blueprints** across **AWS, Microsoft Azure, and Google Cloud** — including **Microsoft Azure AI-103 (Agents & Foundry)**, **AWS GenAI Developer Pro (AIP-C01)**, **Microsoft Azure AI-901**, **Google Cloud Generative AI Leader**, and **AWS Developer Associate DVA-C03 (effective December 1, 2026)**.
 
-> **Launch Free Online Simulator (135 Free Scenario Questions — Zero Signup):**
+> **Launch Free Online Simulator (165 Free Scenario Questions — Zero Signup):**
 > https://gabhack.github.io/cloudcert-lab/
 
 ---
 
-## 9 Official 2026–2027 Exam Blueprints & Free Practice Guides
+## 11 Official 2026–2027 Exam Blueprints & Free Practice Guides
 
 | # | Provider | Exam Code | Free Study Guide & Sample Questions | Interactive Diagnostic | Udemy Course (260 Qs) |
 |---|---|---|---|---|---|
@@ -24,14 +24,16 @@ Interactive, zero-login **Multi-Cloud & AI Certification Practice Exam Simulator
 | 7 | **AWS** | `DVA-C02` *(Developer Associate)* | [AWS DVA-C02 Free Guide & Questions](https://gabhack.github.io/cloudcert-lab/exams/aws-dva-c02/) | [Launch 15 Free Qs](https://gabhack.github.io/cloudcert-lab/?exam=aws-dva-c02&mode=study) | [Udemy DVA-C02](https://www.udemy.com/course/aws-certified-developer-associate-dva-c02-practice-exams-dx/) |
 | 8 | **AWS** | `SAA-C03` *(Solutions Architect)* | [AWS SAA-C03 Free Guide & Questions](https://gabhack.github.io/cloudcert-lab/exams/aws-saa-c03/) | [Launch 15 Free Qs](https://gabhack.github.io/cloudcert-lab/?exam=aws-saa-c03&mode=study) | [Udemy SAA-C03](https://www.udemy.com/course/aws-solutions-architect-associate-saa-c03-practice-exams-m/) · [Kindle](https://www.amazon.com/dp/B0HRVB8PZ3) |
 | 9 | **AWS** | `CLF-C02` *(Cloud Practitioner)* | [AWS CLF-C02 Free Guide & Questions](https://gabhack.github.io/cloudcert-lab/exams/aws-clf-c02/) | [Launch 15 Free Qs](https://gabhack.github.io/cloudcert-lab/?exam=aws-clf-c02&mode=study) | [Udemy CLF-C02](https://www.udemy.com/course/aws-certified-cloud-practitioner-clf-c02-practice-exams-eg/) · [Kindle](https://www.amazon.com/dp/B0HQ8ZT44Y) |
+| 10 | **Microsoft Azure** | `AI-103` *(New Agents & Foundry)* | [Azure AI-103 Free Guide & Questions](https://gabhack.github.io/cloudcert-lab/exams/azure-ai-103/) | [Launch 15 Free Qs](https://gabhack.github.io/cloudcert-lab/?exam=azure-ai-103&mode=study) | [KDP & Udemy Kit](https://www.amazon.com/author/gabrieln) |
+| 11 | **AWS** | `AIP-C01` *($300 GenAI Pro)* | [AWS AIP-C01 Free Guide & Questions](https://gabhack.github.io/cloudcert-lab/exams/aws-aip-c01/) | [Launch 15 Free Qs](https://gabhack.github.io/cloudcert-lab/?exam=aws-aip-c01&mode=study) | [KDP & Udemy Kit](https://www.amazon.com/author/gabrieln) |
 
 ---
 
 ## Key Features
 
-- **Real Exam Pacing & Domain Diagnostics:** Timed Exam Mode (`90` or `130` min) + Study Mode with instant explanations and automatic weakest-domain risk detection.
+- **Real Exam Pacing & Domain Diagnostics:** Timed Exam Mode (`90`–`180` min) + Study Mode with instant explanations and automatic weakest-domain risk detection.
 - **Deep Technical Rationales:** Every question explains why the correct architecture succeeds, why every distractor fails, a **Real-World Production Use Case**, and a high-speed **Exam Hack**.
-- **Pro All-Access Vault (`$19.99` One-Time — Zero Subscription):** Unlocks all **2,340 scenarios (36 full-length mocks)** in-browser + downloadable offline HTML bundle + **Master Exam Hacks Cheat Sheets PDF** via [Gumroad](https://gabbler407.gumroad.com/l/cloudcert-lab-pro).
+- **Pro All-Access Vault (`$19.99` One-Time — Zero Subscription):** Unlocks all **2,860 scenarios (44 full-length mocks)** in-browser + downloadable offline HTML bundle + **Master Exam Hacks Cheat Sheets PDF** via [Gumroad](https://gabbler407.gumroad.com/l/cloudcert-lab-pro).
 - **Companion Amazon Kindle & Print Editions (Free on Kindle Unlimited):** [AWS Certification Practice Exams Series by Gabriel N.](https://www.amazon.com/author/gabrieln)
 - **TuringTec Agent Studio (4 Live B2B AI Agent Sandboxes + 15 n8n Workflows + MCP Servers):** [TuringTec Agent Studio](https://gabhack.github.io/turingtec-agent-studio/) · [aws-finops-guard Open-Core CLI + MCP](https://github.com/gabhack/aws-finops-guard)
 

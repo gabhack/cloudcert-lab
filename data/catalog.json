@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-11-20",
-  "total_questions": 2340,
+  "generated_at": "2026-11-27",
+  "total_questions": 2860,
   "certs": [
     {
       "priority": "01",
@@ -179,6 +179,47 @@
         "2": "Domain 2: Security",
         "3": "Domain 3: Testing and Deployment",
         "4": "Domain 4: Troubleshooting and Optimization"
+      }
+    },
+    {
+      "priority": "10",
+      "slug": "azure-ai-103",
+      "vendor": "Microsoft Azure",
+      "code": "AI-103",
+      "title": "Microsoft Azure AI-103 Practice Exams 2026: AI & Agents",
+      "subtitle": "4 Full-Length 65-Question Mock Tests (260 Scenarios) · Microsoft Foundry, Agentic AI, MCP, Hybrid RAG & Safety",
+      "badge_color": "#0078D4",
+      "duration_min": 100,
+      "pass_pct": 70,
+      "total_questions": 260,
+      "free_questions": 15,
+      "exams": 4,
+      "domains": {
+        "1": "Domain 1: Plan and Manage Azure AI Solutions",
+        "2": "Domain 2: Implement Generative AI & Microsoft Foundry Solutions",
+        "3": "Domain 3: Implement Agentic AI & Tool Orchestration",
+        "4": "Domain 4: Implement RAG with Azure AI Search, Vision/NLP & Responsible AI"
+      }
+    },
+    {
+      "priority": "11",
+      "slug": "aws-aip-c01",
+      "vendor": "AWS",
+      "code": "AIP-C01",
+      "title": "AWS Generative AI Developer Pro (AIP-C01) Practice Exams",
+      "subtitle": "4 Full-Length 65-Question Mock Tests (260 Pro Scenarios) · Bedrock Converse, RAG, Agents, Guardrails, FinOps & Eval",
+      "badge_color": "#EA580C",
+      "duration_min": 180,
+      "pass_pct": 75,
+      "total_questions": 260,
+      "free_questions": 15,
+      "exams": 4,
+      "domains": {
+        "1": "Domain 1: Foundation Model Integration, Data Management & Compliance (31%)",
+        "2": "Domain 2: Implementation & Integration (26%)",
+        "3": "Domain 3: AI Safety, Security & Governance (20%)",
+        "4": "Domain 4: Operational Efficiency & Optimization (12%)",
+        "5": "Domain 5: Testing, Validation & Troubleshooting (11%)"
       }
     }
   ]

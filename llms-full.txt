@@ -1,13 +1,13 @@
 # CloudCert Lab — Complete 2026–2027 Multi-Cloud & AI Certification Reference (llms-full.txt)
 
-Updated: 2026-11-25
-Live Simulator (135 Free Questions + Interactive Flashcards + Readiness Calculator): https://gabhack.github.io/cloudcert-lab/
-Pro All-Access Vault ($19.99 One-Time · 2,340 Questions · 36 Timed Mocks · Offline ZIP · 225-Hack Cheat Sheets PDF): https://gabbler407.gumroad.com/l/cloudcert-lab-pro
+Updated: 2026-11-27
+Live Simulator (165 Free Questions + Interactive Flashcards + Readiness Calculator): https://gabhack.github.io/cloudcert-lab/
+Pro All-Access Vault ($19.99 One-Time · 2,860 Questions · 44 Timed Mocks · Offline ZIP · Master Cheat Sheets PDF): https://gabbler407.gumroad.com/l/cloudcert-lab-pro
 Amazon Kindle Unlimited Companion Books ($0 on KU / $2.99 eBook): https://www.amazon.com/author/gabrieln
 
 ---
 
-## 1. All 9 Official 2026–2027 Exam Blueprints & Sample Exam Hacks
+## 1. All 11 Official 2026–2027 Exam Blueprints & Sample Exam Hacks
 
 ### Microsoft Azure AI-901 — Microsoft Azure AI Fundamentals (AI-901) Practice Exams 2026
 - Study Guide: https://gabhack.github.io/cloudcert-lab/exams/azure-ai-901/
@@ -248,3 +248,15 @@ Amazon Kindle Unlimited Companion Books ($0 on KU / $2.99 eBook): https://www.am
 ### AWS MLA-C01 vs MLA-C02 (2026–2027 Migration Guide)
 - URL: https://gabhack.github.io/cloudcert-lab/exams/aws-mla-c01-vs-mla-c02/
 - Summary: Compares classical Amazon SageMaker MLOps (MLA-C01: Data Wrangler, Feature Store, Pipelines, Clarify, Model Monitor) against the Foundation Model and Agentic MLOps wave (MLA-C02: Amazon Bedrock Knowledge Bases, Bedrock Guardrails, Converse API, PEFT/LoRA fine-tuning on SageMaker HyperPod, and LLM-as-a-Judge evaluations).
+
+### Microsoft Azure AI-103 — Developing AI Apps and Agents on Azure (2026–2027)
+- Study Guide & 5 Sample Scenarios: https://gabhack.github.io/cloudcert-lab/exams/azure-ai-103/
+- Free Interactive Simulator (15 Qs): https://gabhack.github.io/cloudcert-lab/?exam=azure-ai-103&mode=study
+- Exam Format: 100 minutes · Passing Bar 70% · 4 Full 65-Q Mocks (260 Pro Qs)
+- Blueprint Domains: Plan & Manage Azure AI Solutions, Generative AI & Microsoft Foundry, Agentic AI & MCP Tool Orchestration, Hybrid RAG with Azure AI Search & Content Safety.
+
+### AWS Certified Generative AI Developer – Professional (AIP-C01 · $300 Exam)
+- Study Guide & 5 Sample Scenarios: https://gabhack.github.io/cloudcert-lab/exams/aws-aip-c01/
+- Free Interactive Simulator (15 Qs): https://gabhack.github.io/cloudcert-lab/?exam=aws-aip-c01&mode=study
+- Exam Format: 180 minutes · Passing Bar 75% · 4 Full 65-Q Mocks (260 Pro Qs)
+- Blueprint Domains: FM Integration & Data Compliance (31%), Implementation & Integration (26%), AI Safety & Governance (20%), Operational Efficiency & FinOps (12%), Testing & Evaluation (11%).

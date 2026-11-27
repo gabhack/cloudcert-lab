@@ -1,10 +1,10 @@
 # CloudCert Lab — Multi-Cloud & AI Certification Exam Simulator (2026–2027)
 
-> Zero-login interactive exam simulator covering 9 official AWS, Microsoft Azure, and Google Cloud certifications (135 free scenario questions + interactive flashcards + 2,340 Pro Vault scenarios across 36 timed mock exams + Master Exam Hacks Cheat Sheets PDF for $19.99 one-time).
+> Zero-login interactive exam simulator covering 11 official AWS, Microsoft Azure, and Google Cloud certifications (165 free scenario questions + interactive flashcards + 2,860 Pro Vault scenarios across 44 timed mock exams + Master Exam Hacks Cheat Sheets PDF for $19.99 one-time).
 
 - Live Simulator: https://gabhack.github.io/cloudcert-lab/
 - Complete Single-File Knowledge Pack (llms-full.txt): https://gabhack.github.io/cloudcert-lab/llms-full.txt
-- Pro All-Access Vault ($19.99 one-time, 2,340 questions + offline ZIP + Cheat Sheets PDF): https://gabbler407.gumroad.com/l/cloudcert-lab-pro
+- Pro All-Access Vault ($19.99 one-time, 2,860 questions + offline ZIP + Cheat Sheets PDF): https://gabbler407.gumroad.com/l/cloudcert-lab-pro
 - Companion Amazon Kindle / Paperback Series (Free on Kindle Unlimited): https://www.amazon.com/author/gabrieln
 
 ## Free Exam Blueprint Guides & Sample Questions
@@ -17,6 +17,8 @@
 - [AWS SAA-C03 Practice Exam (15 Free / 260 Pro)](https://gabhack.github.io/cloudcert-lab/exams/aws-saa-c03/): 4 Full-Length 65-Question Mock Tests (260 Scenarios) · High Availability, Security, Performance & Cost
 - [AWS CLF-C02 Practice Exam (15 Free / 260 Pro)](https://gabhack.github.io/cloudcert-lab/exams/aws-clf-c02/): 4 Full-Length 65-Question Mock Tests (260 Scenarios) · Cloud Concepts, IAM Security, Core Services & Billing
 - [AWS DVA-C03 Practice Exam (15 Free / 260 Pro)](https://gabhack.github.io/cloudcert-lab/exams/aws-dva-c03/): 4 Full-Length 65-Question Mocks (260 Scenarios) · Serverless, Q Developer, Bedrock Guardrails & Testing
+- [Microsoft Azure AI-103 Practice Exam (15 Free / 260 Pro)](https://gabhack.github.io/cloudcert-lab/exams/azure-ai-103/): 4 Full-Length 65-Question Mock Tests (260 Scenarios) · Microsoft Foundry, Agentic AI, MCP, Hybrid RAG & Safety
+- [AWS GenAI Developer Pro (AIP-C01) Practice Exam (15 Free / 260 Pro)](https://gabhack.github.io/cloudcert-lab/exams/aws-aip-c01/): 4 Full-Length 65-Question Mock Tests (260 Pro Scenarios · $300 Exam) · Bedrock Converse, RAG, Agents, Guardrails, FinOps & Eval
 
 ## 2026–2027 Exam Comparison & Migration Guides
 - [AWS DVA-C02 vs DVA-C03 (New Dec 2026)](https://gabhack.github.io/cloudcert-lab/exams/aws-dva-c02-vs-dva-c03/): Side-by-side comparison of AWS Certified Developer Associate DVA-C02 vs new DVA-C03 (effective Dec 1, 2026): domain weight shifts, Amazon Q Developer, Bedrock Guardrails & Lambda SnapStart.
