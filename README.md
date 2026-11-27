@@ -36,6 +36,9 @@ Interactive, zero-login **Multi-Cloud & AI Certification Practice Exam Simulator
 - **TuringTec Agent Studio (4 Live B2B AI Agent Sandboxes + 15 n8n Workflows + MCP Servers):** [TuringTec Agent Studio](https://gabhack.github.io/turingtec-agent-studio/) · [aws-finops-guard Open-Core CLI + MCP](https://github.com/gabhack/aws-finops-guard)
 
 ### 2026–2027 Comparison & Migration Guides
+- [2026–2027 Cloud & AI Certification Study Plan Generator & 3-Click Path Finder](https://gabhack.github.io/cloudcert-lab/exams/cloud-cert-study-plan-generator-2026/)
+- [Microsoft Azure AI-102 vs AI-103 (Microsoft Foundry, RAG & Agents Migration Guide)](https://gabhack.github.io/cloudcert-lab/exams/azure-ai-102-vs-ai-103/)
+- [AWS MLA-C01 vs MLA-C02 (Amazon Bedrock, RAG & Agentic MLOps Migration Guide)](https://gabhack.github.io/cloudcert-lab/exams/aws-mla-c01-vs-mla-c02/)
 - [Cloud & AI Exam Costs, Passing Scores & Retake Fees ($99–$300, 2026–2027)](https://gabhack.github.io/cloudcert-lab/exams/cloud-ai-exam-costs-passing-scores-2026/)
 - [Cloud & AI Certification Exam Traps Glossary (12 Core Distinctions)](https://gabhack.github.io/cloudcert-lab/exams/cloud-ai-exam-glossary-2026/)
 - [AWS CLF-C02 vs AIF-C01 vs SAA-C03 (Which AWS Certification First?)](https://gabhack.github.io/cloudcert-lab/exams/aws-clf-c02-vs-aif-c01-vs-saa-c03/)

@@ -232,3 +232,19 @@ Amazon Kindle Unlimited Companion Books ($0 on KU / $2.99 eBook): https://www.am
 - **AWS Associate Exams ($150 USD · 72% Pass Bar · 130 min · 65 Qs):** AWS DVA-C03 (effective Dec 1, 2026), AWS DVA-C02, AWS SAA-C03, AWS DEA-C01, AWS MLA-C01. Passing a Foundational AWS exam grants a 50% voucher ($75 Associate / $150 Pro).
 - **AWS Professional Exams ($300 USD · 75% Pass Bar · 170 min · 75 Qs):** AWS Generative AI Developer Pro (AIP-C01).
 - **Retake Wait Policies:** AWS enforces a 14-day wait after any fail; Azure requires 24 hours after first fail (14 days after 2nd+); Google Cloud requires 14 days after 1st fail and 60 days after 2nd fail. None provide free retakes.
+
+---
+
+## 5. Interactive Study Plan Generator & 2026–2027 Migration Guides (AI-103 & MLA-C02)
+
+### 2026–2027 Cloud & AI Certification Study Plan Generator & 3-Click Path Finder
+- URL: https://gabhack.github.io/cloudcert-lab/exams/cloud-cert-study-plan-generator-2026/
+- Summary: Zero-login utility that recommends the optimal 2026–2027 AWS, Microsoft Azure, or Google Cloud certification based on role, cloud ecosystem, and experience, and generates a domain-weighted week-by-week study checklist with one-click Markdown copy and printable PDF export across all 9 simulator certifications plus AWS AIP-C01.
+
+### Microsoft Azure AI-102 vs AI-103 (2026–2027 Migration Guide)
+- URL: https://gabhack.github.io/cloudcert-lab/exams/azure-ai-102-vs-ai-103/
+- Summary: Compares legacy Azure AI-102 (standalone Cognitive Services SDKs) against the modern Azure AI-103 blueprint centered on Microsoft Foundry Hubs and Projects, Azure AI Agent Service, hybrid vector+semantic RAG with Azure AI Search, serverless partner models vs PTUs, Prompt Shields, and Entra ID Managed Identities.
+
+### AWS MLA-C01 vs MLA-C02 (2026–2027 Migration Guide)
+- URL: https://gabhack.github.io/cloudcert-lab/exams/aws-mla-c01-vs-mla-c02/
+- Summary: Compares classical Amazon SageMaker MLOps (MLA-C01: Data Wrangler, Feature Store, Pipelines, Clarify, Model Monitor) against the Foundation Model and Agentic MLOps wave (MLA-C02: Amazon Bedrock Knowledge Bases, Bedrock Guardrails, Converse API, PEFT/LoRA fine-tuning on SageMaker HyperPod, and LLM-as-a-Judge evaluations).

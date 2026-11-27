@@ -28,6 +28,9 @@
 - [Free 27-Hack Multi-Cloud & AI Exam Cheat Sheet (2026–2027)](https://gabhack.github.io/cloudcert-lab/exams/free-cloud-ai-exam-cheat-sheet-2026/): 3 verified Exam Hacks per certification across all 9 exams + passing bars.
 - [Cloud & AI Certification Exam Traps Glossary (2026–2027)](https://gabhack.github.io/cloudcert-lab/exams/cloud-ai-exam-glossary-2026/): 12 high-yield service comparisons & elimination rules for AWS, Azure AI-901 & GCP.
 - [Cloud & AI Exam Costs, Passing Scores & Retake Fees (2026–2027)](https://gabhack.github.io/cloudcert-lab/exams/cloud-ai-exam-costs-passing-scores-2026/): Official $99–$300 exam fees, 70%–75% pass bars, retake waiting periods & 50% AWS voucher strategy.
+- [2026–2027 Cloud & AI Certification Study Plan Generator & Path Finder](https://gabhack.github.io/cloudcert-lab/exams/cloud-cert-study-plan-generator-2026/): Free 3-click cert recommender and dynamic domain-weighted week-by-week study checklist with Markdown & PDF export for 10 AWS, Azure, and GCP certifications.
+- [Microsoft Azure AI-102 vs AI-103 (2026–2027 Migration Guide)](https://gabhack.github.io/cloudcert-lab/exams/azure-ai-102-vs-ai-103/): Side-by-side comparison of legacy Azure AI-102 Cognitive Services vs new AI-103 Microsoft Foundry, RAG, Agentic AI & Entra ID zero-trust security.
+- [AWS MLA-C01 vs MLA-C02 (2026–2027 Migration Guide)](https://gabhack.github.io/cloudcert-lab/exams/aws-mla-c01-vs-mla-c02/): Side-by-side comparison of classical SageMaker MLOps (MLA-C01) vs Foundation Models, Amazon Bedrock RAG, Guardrails & Agentic MLOps (MLA-C02).
 
 ## Official Udemy Practice Test Courses (260 Scenarios / 4 Full Exams Each)
 - [Microsoft Azure AI-901 Practice Exams on Udemy](https://www.udemy.com/course/microsoft-azure-ai-fundamentals-ai-901-practice-exams-2026-j/)

@@ -5,7 +5,7 @@
 
 const CONFIG = {
   // Link real en vivo de Gumroad ($19.99 pago unico -> entrega ZIP + clave Pro AES-256):
-  CHECKOUT_URL: "https://gabbler407.gumroad.com/l/cloudcert-lab-pro",
+  CHECKOUT_URL: "https://gabbler407.gumroad.com/l/cloudcert-lab-pro?wanted=true",
   // Opcional: si despliegas worker/license-worker.js en Cloudflare Workers ($0/mes), pega su URL aqui:
   LICENSE_API_URL: "",
 };
@@ -79,8 +79,16 @@ const UDEMY_COMPANIONS = {
   "aws-dva-c03": "https://www.udemy.com/course/aws-certified-developer-associate-dva-c03-practice-exams-p/",
 };
 
+// Populate with Udemy instructor referral codes to earn 97% vs 37% revenue share:
+const UDEMY_REFERRAL_CODES = {};
+
 function getUdemyCompanion(slug) {
-  return UDEMY_COMPANIONS[slug] || "";
+  const base = UDEMY_COMPANIONS[slug] || "";
+  if (!base) return "";
+  const code = UDEMY_REFERRAL_CODES[slug];
+  if (!code) return base;
+  const sep = base.includes("?") ? "&" : "?";
+  return `${base}${sep}referralCode=${encodeURIComponent(code)}`;
 }
 
 const PRO_CACHE = {};
@@ -382,7 +390,7 @@ function openCertDetail(slug) {
           .join("")}
         <div style="margin-top:0.75rem; font-size:var(--fs-sm); color:var(--muted); display:flex; justify-content:space-between; align-items:center; gap:0.5rem; flex-wrap:wrap;">
           <span>Full <strong>225-Hack Master Cheat Sheets PDF</strong> + Offline ZIP included in Pro Vault ($19.99).</span>
-          <a class="btn btn-primary" href="${CONFIG.CHECKOUT_URL}" target="_blank" rel="noopener">Get Full PDF + 2,340 Qs →</a>
+          <a class="btn btn-primary" href="${CONFIG.CHECKOUT_URL}">Get Full PDF + 2,340 Qs →</a>
         </div>
       `;
     })
@@ -652,8 +660,40 @@ function finishExam() {
              <span>Downloadable standalone HTML simulator + Master Exam Hacks PDF + instant AES-256 Pro Key.</span>
            </div>
          </div>
+         <div style="overflow-x:auto; margin:0.9rem 0 0.75rem;">
+           <table class="domain-table" style="margin-top:0; background:var(--surface); border-radius:var(--radius-sm); overflow:hidden;">
+             <thead>
+               <tr>
+                 <th>Compare Options</th>
+                 <th>Free Diagnostic ($0)</th>
+                 <th>Single Udemy Course ($49.99)</th>
+                 <th style="color:var(--brand);">Pro All-Access Vault ($19.99 Once)</th>
+               </tr>
+             </thead>
+             <tbody>
+               <tr>
+                 <td><strong>Question Bank</strong></td>
+                 <td>15 Qs / cert (135 total)</td>
+                 <td>260 Qs (1 cert only)</td>
+                 <td><strong>2,340 Qs (All 9 Certs · 36 Mocks)</strong></td>
+               </tr>
+               <tr>
+                 <td><strong>Offline &amp; Cheat Sheets</strong></td>
+                 <td>Online preview only</td>
+                 <td>Online Udemy player only</td>
+                 <td><strong>Offline HTML ZIP + 225-Hack PDF</strong></td>
+               </tr>
+               <tr>
+                 <td><strong>Price &amp; Access</strong></td>
+                 <td>$0 (No login)</td>
+                 <td>$49.99 per cert ($449.91 for 9)</td>
+                 <td><strong>$19.99 One-Time (95% Off)</strong></td>
+               </tr>
+             </tbody>
+           </table>
+         </div>
          <div style="display:flex; gap:0.65rem; flex-wrap:wrap; align-items:center; margin-top:0.85rem;">
-           <a class="btn btn-primary" href="${CONFIG.CHECKOUT_URL}" target="_blank" rel="noopener">
+           <a class="btn btn-primary" href="${CONFIG.CHECKOUT_URL}">
              Protect $${examFee} Exam Fee — Unlock 2,340 Qs ($19.99) →
            </a>
            <button class="btn" type="button" id="btnResultUnlock">Already Have a Key? Activate</button>
@@ -687,6 +727,7 @@ function finishExam() {
         </div>
       </div>
       <div style="display:flex; gap:0.5rem; flex-wrap:wrap;">
+        <button class="btn btn-success" type="button" id="btnDownloadScorecard">Download Readiness Scorecard (PNG)</button>
         ${missed.length ? `<button class="btn btn-primary" type="button" id="btnRetestMissed">Re-test Missed (${missed.length} Qs) →</button>` : ""}
         <button class="btn" type="button" id="btnResultFlashcards">Flip Flashcards</button>
         <button class="btn" type="button" id="btnResultCatalog">← All Certifications</button>
@@ -708,6 +749,19 @@ function finishExam() {
   `;
 
   recordStudyActivity();
+  if ($("btnDownloadScorecard")) {
+    $("btnDownloadScorecard").onclick = () =>
+      downloadScorecardPng({
+        cert: STATE.activeCert,
+        examLabel: STATE.examLabel,
+        pct,
+        passed,
+        correctCount,
+        total,
+        elapsedSeconds: STATE.elapsedSeconds,
+        domainEntries,
+      });
+  }
   if ($("btnRetestMissed")) {
     $("btnRetestMissed").onclick = () => {
       const missedQs = missed.map((m) => m.q);
@@ -725,6 +779,166 @@ function finishExam() {
   if ($("btnResultUnlock")) $("btnResultUnlock").onclick = openProModal;
 
   showView("viewResults");
+}
+
+function drawRoundedRect(ctx, x, y, w, h, r) {
+  const rad = Math.min(r, w / 2, h / 2);
+  ctx.beginPath();
+  ctx.moveTo(x + rad, y);
+  ctx.arcTo(x + w, y, x + w, y + h, rad);
+  ctx.arcTo(x + w, y + h, x, y + h, rad);
+  ctx.arcTo(x, y + h, x, y, rad);
+  ctx.arcTo(x, y, x + w, y, rad);
+  ctx.closePath();
+}
+
+function downloadScorecardPng({ cert, examLabel, pct, passed, correctCount, total, elapsedSeconds, domainEntries }) {
+  const W = 1000;
+  const H = 520;
+  const canvas = document.createElement("canvas");
+  canvas.width = W;
+  canvas.height = H;
+  const ctx = canvas.getContext("2d");
+  if (!ctx) return;
+
+  // Background gradient
+  const grad = ctx.createLinearGradient(0, 0, 0, H);
+  grad.addColorStop(0, "#0b1220");
+  grad.addColorStop(1, "#132038");
+  ctx.fillStyle = grad;
+  ctx.fillRect(0, 0, W, H);
+
+  // Brand accent bars
+  const accent = cert.badge_color || "#1c69d4";
+  ctx.fillStyle = accent;
+  ctx.fillRect(0, 0, 12, H);
+  ctx.fillRect(0, 0, W, 6);
+
+  // Top header: CC logo + CloudCert Lab + Date
+  drawRoundedRect(ctx, 44, 34, 46, 46, 10);
+  ctx.fillStyle = accent;
+  ctx.fill();
+  ctx.fillStyle = "#ffffff";
+  ctx.font = "bold 20px Inter, Arial, sans-serif";
+  ctx.fillText("CC", 53, 64);
+
+  ctx.fillStyle = "#f8fafc";
+  ctx.font = "bold 22px Inter, Arial, sans-serif";
+  ctx.fillText("CloudCert Lab", 104, 56);
+  ctx.fillStyle = "#94a3b8";
+  ctx.font = "14px Inter, Arial, sans-serif";
+  ctx.fillText("MULTI-CLOUD & AI READINESS SCORECARD", 104, 76);
+
+  const dateStr = new Date().toISOString().slice(0, 10);
+  ctx.fillStyle = "#94a3b8";
+  ctx.font = "14px Inter, Arial, sans-serif";
+  ctx.textAlign = "right";
+  ctx.fillText(`Completed ${dateStr} · Time ${formatTime(elapsedSeconds)}`, W - 44, 62);
+  ctx.textAlign = "left";
+
+  // Left panel: Cert Code, Score %, Status Pill
+  drawRoundedRect(ctx, 44, 104, 330, 342, 16);
+  ctx.fillStyle = "#162238";
+  ctx.fill();
+  ctx.strokeStyle = "#293b5c";
+  ctx.lineWidth = 1.5;
+  ctx.stroke();
+
+  ctx.fillStyle = "#93c5fd";
+  ctx.font = "bold 14px Inter, Arial, sans-serif";
+  ctx.fillText(`${(cert.vendor || "").toUpperCase()} · ${(cert.code || "").toUpperCase()}`, 68, 138);
+
+  ctx.fillStyle = "#f8fafc";
+  ctx.font = "bold 76px Inter, Arial, sans-serif";
+  ctx.fillText(`${pct}%`, 68, 232);
+
+  // Status pill
+  const statusText = passed ? "PASSING SCORE" : "NEEDS PREP";
+  const pillBg = passed ? "#14532d" : "#7f1d1d";
+  const pillFg = passed ? "#86efac" : "#fca5a5";
+  drawRoundedRect(ctx, 68, 254, 190, 36, 18);
+  ctx.fillStyle = pillBg;
+  ctx.fill();
+  ctx.fillStyle = pillFg;
+  ctx.font = "bold 15px Inter, Arial, sans-serif";
+  ctx.fillText(statusText, 92, 277);
+
+  ctx.fillStyle = "#cbd5e1";
+  ctx.font = "15px Inter, Arial, sans-serif";
+  ctx.fillText(`Correct: ${correctCount} / ${total} questions`, 68, 326);
+  ctx.fillText(`Official Pass Bar: ${cert.pass_pct}%`, 68, 352);
+  ctx.fillStyle = "#94a3b8";
+  ctx.font = "13px Inter, Arial, sans-serif";
+  const shortLabel = (examLabel || cert.code).slice(0, 38);
+  ctx.fillText(shortLabel, 68, 386);
+  ctx.fillStyle = "#60a5fa";
+  ctx.font = "bold 13px Inter, Arial, sans-serif";
+  ctx.fillText("2026–2027 Official Exam Blueprint", 68, 418);
+
+  // Right panel: Domain Breakdown bars
+  drawRoundedRect(ctx, 396, 104, 560, 342, 16);
+  ctx.fillStyle = "#162238";
+  ctx.fill();
+  ctx.strokeStyle = "#293b5c";
+  ctx.lineWidth = 1.5;
+  ctx.stroke();
+
+  ctx.fillStyle = "#f8fafc";
+  ctx.font = "bold 17px Inter, Arial, sans-serif";
+  ctx.fillText("Domain-Level Diagnostic Breakdown", 422, 138);
+
+  const domains = (domainEntries || []).slice(0, 5);
+  const startY = 166;
+  const rowStep = domains.length > 4 ? 54 : 64;
+  domains.forEach((d, idx) => {
+    const y = startY + idx * rowStep;
+    const label = d.dom.length > 52 ? `${d.dom.slice(0, 49)}...` : d.dom;
+    ctx.fillStyle = "#e2e8f0";
+    ctx.font = "600 13px Inter, Arial, sans-serif";
+    ctx.fillText(label, 422, y);
+
+    ctx.textAlign = "right";
+    ctx.fillStyle = d.dpct >= cert.pass_pct ? "#86efac" : "#fca5a5";
+    ctx.font = "bold 13px Inter, Arial, sans-serif";
+    ctx.fillText(`${d.dpct}% (${d.ok}/${d.total})`, 930, y);
+    ctx.textAlign = "left";
+
+    // Bar track
+    drawRoundedRect(ctx, 422, y + 10, 508, 14, 7);
+    ctx.fillStyle = "#0f172a";
+    ctx.fill();
+
+    // Bar fill
+    const fillW = Math.max(12, Math.round((508 * Math.min(100, d.dpct)) / 100));
+    drawRoundedRect(ctx, 422, y + 10, fillW, 14, 7);
+    ctx.fillStyle = d.dpct >= cert.pass_pct ? "#22c55e" : d.dpct >= 50 ? "#f59e0b" : "#ef4444";
+    ctx.fill();
+  });
+
+  // Bottom footer watermark
+  ctx.strokeStyle = "#1e293b";
+  ctx.lineWidth = 1.5;
+  ctx.beginPath();
+  ctx.moveTo(44, 468);
+  ctx.lineTo(W - 44, 468);
+  ctx.stroke();
+
+  ctx.fillStyle = "#60a5fa";
+  ctx.font = "bold 16px Inter, Arial, sans-serif";
+  ctx.fillText("gabhack.github.io/cloudcert-lab/", 44, 498);
+
+  ctx.textAlign = "right";
+  ctx.fillStyle = "#94a3b8";
+  ctx.font = "14px Inter, Arial, sans-serif";
+  ctx.fillText("135 Free Scenarios · 2,340 Pro Vault Questions · AWS · Azure · GCP", W - 44, 498);
+  ctx.textAlign = "left";
+
+  const link = document.createElement("a");
+  link.download = `cloudcert-scorecard-${cert.slug}.png`;
+  link.href = canvas.toDataURL("image/png");
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
 }
 
 function startCustomSession(cert, qs, label, mode) {
@@ -790,7 +1004,7 @@ function renderFlashcard() {
       <div style="display:flex; gap:0.6rem; flex-wrap:wrap;">
         <button class="btn btn-primary" type="button" id="btnFlashRestart">Practice Deck Again</button>
         <button class="btn" type="button" id="btnFlashTimed">Take Timed 15-Q Test</button>
-        ${!STATE.isPro ? `<a class="btn btn-primary" href="${CONFIG.CHECKOUT_URL}" target="_blank" rel="noopener">Unlock All 2,340 Qs ($19.99) →</a>` : ""}
+        ${!STATE.isPro ? `<a class="btn btn-primary" href="${CONFIG.CHECKOUT_URL}">Unlock All 2,340 Qs ($19.99) →</a>` : ""}
         <a class="btn btn-ghost" href="${escapeHtml(kdp.url)}" target="_blank" rel="noopener">Amazon Book →</a>
         ${udemyUrl ? `<a class="btn btn-ghost" href="${escapeHtml(udemyUrl)}" target="_blank" rel="noopener">Udemy Course ($49.99) →</a>` : ""}
       </div>
@@ -834,7 +1048,7 @@ function renderFlashcard() {
              </div>`
           : `<button class="btn btn-primary" type="button" id="btnFlashReveal">Reveal Answer &amp; Exam Hack</button>`
       }
-      <a class="btn btn-ghost" href="${CONFIG.CHECKOUT_URL}" target="_blank" rel="noopener">Get All 225 Hacks PDF ($19.99) →</a>
+      <a class="btn btn-ghost" href="${CONFIG.CHECKOUT_URL}">Get All 225 Hacks PDF ($19.99) →</a>
     </div>
   `;
 
@@ -1060,7 +1274,7 @@ function initReadinessCalculator(preselectSlug) {
       </div>
       <div style="display:flex; gap:0.5rem; flex-wrap:wrap;">
         <button class="btn btn-primary" type="button" id="btnCalcStartFree">Launch Free 15-Q Diagnostic →</button>
-        <a class="btn" href="${CONFIG.CHECKOUT_URL}" target="_blank" rel="noopener">Protect $${opt.fee} Fee ($19.99 Pro)</a>
+        <a class="btn" href="${CONFIG.CHECKOUT_URL}">Protect $${opt.fee} Fee ($19.99 Pro)</a>
         <a class="btn btn-ghost" href="${escapeHtml(opt.guidePath)}">Study Guide</a>
       </div>
     `;
