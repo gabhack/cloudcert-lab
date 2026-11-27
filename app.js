@@ -172,6 +172,7 @@ const STATE = {
 };
 
 const $ = (id) => document.getElementById(id);
+const tr = (key, vars) => (window.CC_I18N ? window.CC_I18N.t(key, vars) : key);
 
 function showView(viewId) {
   ["viewCatalog", "viewCertDetail", "viewRunner", "viewResults", "viewFlashcards"].forEach((v) => {
@@ -223,14 +224,14 @@ function updatePlanUI() {
   const badge = $("planBadge");
   const btnTop = $("btnUnlockTop");
   if (STATE.isPro) {
-    badge.textContent = "PRO UNLOCKED (2,860 Qs)";
+    badge.textContent = tr("plan_pro");
     badge.className = "badge badge-success";
-    btnTop.textContent = "Pro Active ✓";
+    btnTop.textContent = tr("btn_pro_active");
     btnTop.className = "btn btn-success";
   } else {
-    badge.textContent = "FREE TIER (165 Qs)";
+    badge.textContent = tr("plan_free");
     badge.className = "badge badge-neutral";
-    btnTop.textContent = "Unlock All 2,860 Qs";
+    btnTop.textContent = tr("btn_unlock_top");
     btnTop.className = "btn btn-primary";
   }
 }
@@ -276,7 +277,7 @@ function renderCatalog() {
           <div class="cert-head">
             <span class="badge badge-brand">${escapeHtml(c.vendor)} · ${escapeHtml(c.code)}</span>
             <span class="badge ${STATE.isPro ? "badge-success" : "badge-neutral"}">
-              ${STATE.isPro ? "260 Qs Unlocked" : "15 Free / 260 Pro"}
+              ${STATE.isPro ? tr("cert_badge_pro") : tr("cert_badge_free")}
             </span>
           </div>
           <h3 class="cert-title">${escapeHtml(c.title)}</h3>
@@ -285,17 +286,17 @@ function renderCatalog() {
         <div>
           <div class="cert-meta">
             <span>⏱ ${c.duration_min} min</span>
-            <span>🎯 Pass ${c.pass_pct}%</span>
-            <span>📝 ${c.exams} Full Mocks</span>
+            <span>🎯 ${tr("cert_meta_pass")} ${c.pass_pct}%</span>
+            <span>📝 ${c.exams} ${tr("cert_meta_mocks")}</span>
           </div>
           <div class="cert-actions" style="margin-top:0.8rem;">
             <button class="btn btn-primary" type="button" data-action="quick-free" data-slug="${c.slug}">
-              Start Free (15 Qs)
+              ${tr("cert_btn_free")}
             </button>
             <button class="btn" type="button" data-action="open-cert" data-slug="${c.slug}">
-              All 4 Mocks →
+              ${tr("cert_btn_mocks")}
             </button>
-            <a class="btn btn-ghost" href="exams/${c.slug}/">Guide</a>
+            <a class="btn btn-ghost" href="exams/${c.slug}/">${tr("cert_btn_guide")}</a>
           </div>
         </div>
       </article>`
@@ -369,7 +370,7 @@ function openCertDetail(slug) {
       <div>
         <span class="badge badge-info">${escapeHtml(getKdpCompanion(cert.slug).badge)}</span>
         <div style="font-weight:700; margin-top:0.3rem;">Study Offline or on Udemy: ${escapeHtml(getKdpCompanion(cert.slug).title)}</div>
-        <div style="font-size:var(--fs-sm); color:var(--muted);">Get all 11 exams (2,860 Qs) for <strong>$19.99</strong> on Gumroad vs <strong>$49.99/course</strong> on Udemy, or read free with Kindle Unlimited.</div>
+        <div style="font-size:var(--fs-sm); color:var(--muted);">Get all 9 exams (2,340 Qs) for <strong>$19.99</strong> on Gumroad vs <strong>$49.99/course</strong> on Udemy, or read free with Kindle Unlimited.</div>
       </div>
       <div style="display:flex; gap:0.5rem; flex-wrap:wrap;">
         <a class="btn" href="${escapeHtml(getKdpCompanion(cert.slug).url)}" target="_blank" rel="noopener">Amazon Book →</a>
@@ -400,7 +401,7 @@ function openCertDetail(slug) {
           .join("")}
         <div style="margin-top:0.75rem; font-size:var(--fs-sm); color:var(--muted); display:flex; justify-content:space-between; align-items:center; gap:0.5rem; flex-wrap:wrap;">
           <span>Full <strong>Master Cheat Sheets PDF</strong> + Offline ZIP included in Pro Vault ($19.99).</span>
-          <a class="btn btn-primary" href="${CONFIG.CHECKOUT_URL}">Get Full PDF + 2,860 Qs →</a>
+          <a class="btn btn-primary" href="${CONFIG.CHECKOUT_URL}">Get Full PDF + 2,340 Qs →</a>
         </div>
       `;
     })
@@ -645,12 +646,12 @@ function finishExam() {
 
   const upsellBanner = !STATE.isPro
     ? `<div class="cro-paywall">
-         <span class="badge badge-brand">PRO ALL-ACCESS VAULT · $549 VALUE → $19.99 (96% OFF)</span>
+         <span class="badge badge-brand">PRO ALL-ACCESS VAULT · $449 VALUE → $19.99 (95% OFF)</span>
          <span class="badge badge-warning" style="margin-left:0.35rem;">RETAKE PROTECTION: $${examFee} EXAM FEE VS $19.99 (${retakeSavingsPct}% CHEAPER THAN 1 RETAKE)</span>
          <h3>${passed ? `Lock In Your ${escapeHtml(STATE.activeCert.code)} First-Try Pass` : `Close Your ${escapeHtml(STATE.activeCert.code)} Score Gap Before Risking a $${examFee} Retake`}</h3>
          <p style="margin:0; color:var(--muted); font-size:var(--fs-sm);">
            You just completed the 15-question Free Diagnostic (<strong>${pct}%</strong>). Instead of $49.99 per course or paying <strong>$${examFee} USD</strong> for an exam retake, unlock the remaining
-           <strong>${remainingCertQs} ${escapeHtml(STATE.activeCert.code)} scenarios</strong> plus all 10 other AWS, Azure &amp; Google Cloud exams (<strong>2,860 scenarios · 44 timed mocks + Master Cheat Sheets PDF</strong>) for one single $19.99 payment.
+           <strong>${remainingCertQs} ${escapeHtml(STATE.activeCert.code)} scenarios</strong> plus all 8 other AWS, Azure &amp; Google Cloud exams (<strong>2,340 scenarios · 36 timed mocks + Master 225-Hack PDF</strong>) for one single $19.99 payment.
          </p>
          ${weakest ? `<div class="cro-gap-alert">
            <strong>Biggest Exam Risk Detected:</strong> ${escapeHtml(weakest.dom)} (<strong>${weakest.dpct}%</strong> · ${weakest.ok}/${weakest.total} correct).
@@ -662,12 +663,12 @@ function finishExam() {
              <span>Timed ${STATE.activeCert.duration_min}-min exam mode + instant study explanations for ${escapeHtml(STATE.activeCert.code)}.</span>
            </div>
            <div class="cro-teaser-locked">
-             <strong>🔒 All 11 Cloud &amp; AI Blueprints</strong>
-             <span>Azure AI-103 &amp; AI-901, GCP GenAI Leader, AWS AIP-C01 Pro, DVA-C03 (New Dec 2026), AIF-C01, MLA-C01, DEA-C01, DVA-C02, SAA-C03 &amp; CLF-C02.</span>
+             <strong>🔒 All 9 Cloud &amp; AI Blueprints</strong>
+             <span>Azure AI-901, GCP GenAI Leader, AWS DVA-C03 (New Dec 2026), AIF-C01, MLA-C01, DEA-C01, DVA-C02, SAA-C03 &amp; CLF-C02.</span>
            </div>
            <div class="cro-teaser-locked">
-             <strong>🔒 Offline Bundle + Cheat Sheets PDF</strong>
-             <span>Downloadable standalone HTML simulator + Master Exam Hacks PDF + instant AES-256 Pro Key.</span>
+             <strong>🔒 Offline Bundle + 225-Hack PDF</strong>
+             <span>Downloadable 6.9 MB standalone HTML simulator + Master Exam Hacks PDF + instant AES-256 Pro Key.</span>
            </div>
          </div>
          <div style="overflow-x:auto; margin:0.9rem 0 0.75rem;">
@@ -683,28 +684,28 @@ function finishExam() {
              <tbody>
                <tr>
                  <td><strong>Question Bank</strong></td>
-                 <td>15 Qs / cert (165 total)</td>
+                 <td>15 Qs / cert (135 total)</td>
                  <td>260 Qs (1 cert only)</td>
-                 <td><strong>2,860 Qs (All 11 Certs · 44 Mocks)</strong></td>
+                 <td><strong>2,340 Qs (All 9 Certs · 36 Mocks)</strong></td>
                </tr>
                <tr>
                  <td><strong>Offline &amp; Cheat Sheets</strong></td>
                  <td>Online preview only</td>
                  <td>Online Udemy player only</td>
-                 <td><strong>Offline HTML ZIP + Master Hacks PDF</strong></td>
+                 <td><strong>Offline HTML ZIP + Master 225-Hack PDF</strong></td>
                </tr>
                <tr>
                  <td><strong>Price &amp; Access</strong></td>
                  <td>$0 (No login)</td>
-                 <td>$49.99 per cert ($549+ for 11)</td>
-                 <td><strong>$19.99 One-Time (96% Off)</strong></td>
+                 <td>$49.99 per cert ($449.91 for 9)</td>
+                 <td><strong>$19.99 One-Time (95% Off)</strong></td>
                </tr>
              </tbody>
            </table>
          </div>
          <div style="display:flex; gap:0.65rem; flex-wrap:wrap; align-items:center; margin-top:0.85rem;">
            <a class="btn btn-primary" href="${CONFIG.CHECKOUT_URL}">
-             Protect $${examFee} Exam Fee — Unlock 2,860 Qs ($19.99) →
+             Protect $${examFee} Exam Fee — Unlock 2,340 Qs ($19.99) →
            </a>
            <button class="btn" type="button" id="btnResultUnlock">Already Have a Key? Activate</button>
            <a class="btn btn-ghost" href="exams/cloud-ai-exam-costs-passing-scores-2026/">Compare Exam Costs &amp; Pass Bars</a>
@@ -940,7 +941,7 @@ function downloadScorecardPng({ cert, examLabel, pct, passed, correctCount, tota
   ctx.textAlign = "right";
   ctx.fillStyle = "#94a3b8";
   ctx.font = "14px Inter, Arial, sans-serif";
-  ctx.fillText("165 Free Scenarios · 2,860 Pro Vault Questions · AWS · Azure · GCP", W - 44, 498);
+  ctx.fillText("135 Free Scenarios · 2,340 Pro Vault Questions · AWS · Azure · GCP", W - 44, 498);
   ctx.textAlign = "left";
 
   const link = document.createElement("a");
@@ -1009,12 +1010,12 @@ function renderFlashcard() {
       <span class="badge badge-success">ACTIVE-RECALL COMPLETE · ${escapeHtml(cert.code)}</span>
       <h2 style="margin:0.5rem 0 0.35rem;">You Mastered All ${STATE.flashTotal} ${escapeHtml(cert.code)} Flashcards!</h2>
       <p style="margin:0 0 1rem; color:var(--muted); font-size:var(--fs-sm);">
-        Lock in your speed before exam day by running a full timed exam or unlocking all <strong>2,860 scenarios + Master Cheat Sheets PDF</strong> ($19.99 one-time).
+        Lock in your speed before exam day by running a full timed exam or unlocking all <strong>2,340 scenarios + Master 225-Hack PDF</strong> ($19.99 one-time).
       </p>
       <div style="display:flex; gap:0.6rem; flex-wrap:wrap;">
         <button class="btn btn-primary" type="button" id="btnFlashRestart">Practice Deck Again</button>
         <button class="btn" type="button" id="btnFlashTimed">Take Timed 15-Q Test</button>
-        ${!STATE.isPro ? `<a class="btn btn-primary" href="${CONFIG.CHECKOUT_URL}">Unlock All 2,860 Qs ($19.99) →</a>` : ""}
+        ${!STATE.isPro ? `<a class="btn btn-primary" href="${CONFIG.CHECKOUT_URL}">Unlock All 2,340 Qs ($19.99) →</a>` : ""}
         <a class="btn btn-ghost" href="${escapeHtml(kdp.url)}" target="_blank" rel="noopener">Amazon Book →</a>
         ${udemyUrl ? `<a class="btn btn-ghost" href="${escapeHtml(udemyUrl)}" target="_blank" rel="noopener">Udemy Course ($49.99) →</a>` : ""}
       </div>
@@ -1097,9 +1098,7 @@ function renderFlashcard() {
 function openProModal() {
   $("btnBuyProLink").href = CONFIG.CHECKOUT_URL;
   $("licenseInput").value = STATE.licenseKey;
-  $("licenseMsg").textContent = STATE.isPro
-    ? "Pro Vault is active on this browser."
-    : "Paste the Pro Access Key delivered in your purchase receipt.";
+  $("licenseMsg").textContent = STATE.isPro ? tr("modal_msg_active") : tr("modal_msg_prompt");
   $("modalPro").classList.remove("hidden");
 }
 
@@ -1125,7 +1124,7 @@ async function activateLicenseKey() {
       updatePlanUI();
       renderCatalog();
       msg.style.color = "var(--success)";
-      msg.textContent = "✓ AES-256 Pro Vault unlocked (All 2,860 questions & 44 full exams active!).";
+      msg.textContent = "✓ AES-256 Pro Vault unlocked (All 2,340 questions & 36 full exams active!).";
       setTimeout(() => $("modalPro").classList.add("hidden"), 900);
       return;
     }
@@ -1155,7 +1154,7 @@ async function activateLicenseKey() {
       updatePlanUI();
       renderCatalog();
       msg.style.color = "var(--success)";
-      msg.textContent = "✓ License verified! All 2,860 questions unlocked.";
+      msg.textContent = "✓ License verified! All 2,340 questions unlocked.";
       setTimeout(() => $("modalPro").classList.add("hidden"), 900);
     } else {
       msg.style.color = "var(--danger)";
@@ -1259,26 +1258,26 @@ function initReadinessCalculator(preselectSlug) {
         <span class="badge ${badgeCls}">${escapeHtml(statusText)}</span>
         <div class="calc-metric-row" style="margin-top:0.65rem;">
           <div class="calc-metric">
-            <div class="calc-metric-label">Pass Probability</div>
+            <div class="calc-metric-label">${tr("calc_prob")}</div>
             <div class="calc-metric-val">${passProb}%</div>
           </div>
           <div class="calc-metric">
-            <div class="calc-metric-label">Projected Score</div>
+            <div class="calc-metric-label">${tr("calc_proj")}</div>
             <div class="calc-metric-val">${projectedScore}% <span style="font-size:0.75rem; font-weight:500; color:var(--muted);">/ ${opt.passPct}% bar</span></div>
           </div>
           <div class="calc-metric">
-            <div class="calc-metric-label">Retake Fee vs Pro</div>
+            <div class="calc-metric-label">${tr("calc_retake")}</div>
             <div class="calc-metric-val">$${opt.fee} <span style="font-size:0.75rem; font-weight:500; color:var(--success);">vs $19.99</span></div>
           </div>
         </div>
         <p style="margin:0.75rem 0 0; font-size:var(--fs-sm); color:var(--muted);">
-          <strong>Daily Plan (${days} days · ${Math.round(totalHours)}h total):</strong> Complete <strong>${dailyQs} scenarios/day</strong> in Timed + Study mode until hitting <strong>${safeTarget}%+</strong> consistently. Pro Vault ($19.99 one-time) costs <strong>${savingsPct}% less</strong> than paying a $${opt.fee} retake fee.
+          <strong>Daily Plan (${days}d · ${Math.round(totalHours)}h):</strong> Complete <strong>${dailyQs} scenarios/day</strong> in Timed + Study mode until hitting <strong>${safeTarget}%+</strong> consistently. Pro Vault ($19.99 one-time) costs <strong>${savingsPct}% less</strong> than paying a $${opt.fee} retake fee.
         </p>
       </div>
       <div style="display:flex; gap:0.5rem; flex-wrap:wrap;">
-        <button class="btn btn-primary" type="button" id="btnCalcStartFree">Launch Free 15-Q Diagnostic →</button>
-        <a class="btn" href="${CONFIG.CHECKOUT_URL}">Protect $${opt.fee} Fee ($19.99 Pro)</a>
-        <a class="btn btn-ghost" href="${escapeHtml(opt.guidePath)}">Study Guide</a>
+        <button class="btn btn-primary" type="button" id="btnCalcStartFree">${tr("calc_btn_free")}</button>
+        <a class="btn" href="${CONFIG.CHECKOUT_URL}">${tr("calc_btn_pro", { fee: opt.fee })}</a>
+        <a class="btn btn-ghost" href="${escapeHtml(opt.guidePath)}">${tr("calc_btn_guide")}</a>
       </div>
     `;
     $("btnCalcStartFree").onclick = () => startSession(opt.simSlug, "free", null, "study");
@@ -1318,6 +1317,7 @@ function renderPromoBanner() {
 }
 
 async function init() {
+  if (window.CC_I18N) window.CC_I18N.applyStaticI18n();
   updatePlanUI();
   renderPromoBanner();
 
@@ -1389,6 +1389,21 @@ async function init() {
 
   $("btnUnlockTop").onclick = openProModal;
   $("btnHeroPro").onclick = openProModal;
+  if ($("btnHeroQuickStart")) {
+    $("btnHeroQuickStart").onclick = () => {
+      const el = $("catalogAnchor");
+      if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+    };
+  }
+  if ($("btnPricingFreeJump")) {
+    $("btnPricingFreeJump").onclick = () => {
+      const el = $("catalogAnchor");
+      if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+    };
+  }
+  if ($("btnPricingActivateKey")) {
+    $("btnPricingActivateKey").onclick = openProModal;
+  }
   if ($("btnJumpCalc")) {
     $("btnJumpCalc").onclick = () => {
       const el = $("readinessCalcSection");

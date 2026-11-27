@@ -52,7 +52,8 @@
   --fs-lg: 1.05rem;
 
   --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  --font-mono: ui-monospace, "SF Mono", Menlo, Monaco, Consolas, monospace;
+  --font-display: "Plus Jakarta Sans", "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, Monaco, Consolas, monospace;
   --dur: 160ms;
 }
 
@@ -274,25 +275,340 @@ button:focus-visible, input:focus-visible, a:focus-visible {
 }
 
 .hero {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(270px, 0.78fr);
+  align-items: center;
   gap: 1.5rem;
-  flex-wrap: wrap;
-  margin-bottom: 1.25rem;
+  margin-bottom: 1rem;
+  background: linear-gradient(135deg, var(--surface) 0%, var(--surface-2) 60%, var(--brand-soft) 100%);
+  border-color: var(--border-strong);
+  padding: 1.5rem 1.6rem;
+}
+
+@media (max-width: 860px) {
+  .hero {
+    grid-template-columns: 1fr;
+    padding: 1.2rem;
+  }
 }
 
 .hero h1 {
-  margin: 0.35rem 0 0.4rem;
-  font-size: clamp(1.35rem, 2.5vw, 1.85rem);
-  letter-spacing: -0.025em;
-  line-height: 1.2;
+  font-family: var(--font-display);
+  margin: 0.5rem 0 0.55rem;
+  font-size: clamp(1.5rem, 2.75vw, 2.15rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
 }
 
 .hero p {
   margin: 0;
   color: var(--muted);
-  max-width: 680px;
+  max-width: 660px;
+  font-size: 0.94rem;
+}
+
+.hero-util-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+  margin-top: 0.85rem;
+  font-size: var(--fs-sm);
+}
+
+.hero-util-links a,
+.hero-util-links button.link-inline {
+  background: none;
+  border: 0;
+  padding: 0;
+  color: var(--brand);
+  font-weight: 600;
+  font-size: var(--fs-sm);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.hero-util-links a:hover,
+.hero-util-links button.link-inline:hover {
+  text-decoration: underline;
+}
+
+.hero-cta-box {
+  background: var(--surface);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius);
+  padding: 1rem 1.05rem;
+  box-shadow: var(--shadow-md);
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.hero-cta-box .btn {
+  width: 100%;
+  height: 2.55rem;
+}
+
+.hero-microcopy {
+  font-size: 0.72rem;
+  color: var(--muted);
+  text-align: center;
+  line-height: 1.45;
+  margin-top: 0.1rem;
+}
+
+/* Segmented Language Switcher */
+.lang-switch {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border-strong);
+  background: var(--surface-2);
+  height: var(--control-h);
+}
+
+.lang-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 0.58rem;
+  height: calc(var(--control-h) - 6px);
+  border-radius: calc(var(--radius) - 2px);
+  font-family: var(--font-mono);
+  font-size: 0.73rem;
+  font-weight: 700;
+  color: var(--muted);
+  text-decoration: none;
+  transition: background var(--dur), color var(--dur);
+}
+
+.lang-pill:hover {
+  color: var(--foreground);
+}
+
+.lang-pill.active {
+  background: var(--brand);
+  color: var(--on-brand);
+}
+
+/* Trust Strip */
+.trust-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.1rem;
+}
+
+.trust-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.36rem 0.75rem;
+  border-radius: var(--radius-full);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  font-size: 0.76rem;
+  font-weight: 600;
+  color: var(--foreground);
+  box-shadow: var(--shadow-sm);
+}
+
+.trust-pill .trust-check {
+  color: var(--success);
+  font-weight: 800;
+}
+
+.tabular-nums,
+.stat-value,
+.timer-pill,
+.calc-metric-val,
+.pricing-price {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Why It Works 4-Card Strip */
+.why-section {
+  margin-top: 1.65rem;
+}
+
+.section-heading {
+  font-family: var(--font-display);
+  margin: 0.35rem 0 0.3rem;
+  font-size: clamp(1.15rem, 2vw, 1.42rem);
+  font-weight: 800;
+  letter-spacing: -0.025em;
+}
+
+.why-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(235px, 1fr));
+  gap: 0.85rem;
+  margin-top: 0.85rem;
+}
+
+.why-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1rem 1.05rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.why-card h3 {
+  font-family: var(--font-display);
+  margin: 0.35rem 0 0.3rem;
+  font-size: 0.94rem;
+  font-weight: 700;
+}
+
+.why-card p {
+  margin: 0;
+  font-size: var(--fs-sm);
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+/* 3-Column Pricing Comparison */
+.pricing-section {
+  margin-top: 1.65rem;
+}
+
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  margin-top: 0.95rem;
+  align-items: stretch;
+}
+
+@media (max-width: 900px) {
+  .pricing-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.pricing-card {
+  background: var(--surface);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-lg);
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 0.9rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.pricing-card--featured {
+  background: linear-gradient(180deg, var(--surface-2) 0%, var(--surface) 100%);
+  border: 2px solid var(--brand);
+  box-shadow: var(--shadow-md);
+  position: relative;
+}
+
+.pricing-price {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  margin: 0.45rem 0 0.2rem;
+}
+
+.pricing-price span {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.pricing-list {
+  list-style: none;
+  padding: 0;
+  margin: 0.75rem 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  font-size: var(--fs-sm);
+}
+
+.pricing-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.45rem;
+}
+
+.pricing-list .ok {
+  color: var(--success);
+  font-weight: 800;
+}
+
+.pricing-list .no {
+  color: var(--muted-2);
+  font-weight: 700;
+}
+
+/* Native HTML5 FAQ Accordion */
+.faq-section {
+  margin-top: 1.65rem;
+}
+
+.faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin-top: 0.85rem;
+}
+
+.faq-accordion {
+  background: var(--surface);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius);
+  padding: 0;
+  overflow: hidden;
+  transition: border-color var(--dur);
+}
+
+.faq-accordion[open] {
+  border-color: var(--brand);
+}
+
+.faq-accordion summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 0.9rem 1.05rem;
+  font-weight: 700;
+  font-size: 0.92rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.faq-accordion summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq-accordion summary::after {
+  content: "+";
+  font-family: var(--font-mono);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--brand);
+  transition: transform var(--dur);
+}
+
+.faq-accordion[open] summary::after {
+  content: "−";
+}
+
+.faq-accordion .faq-body {
+  padding: 0 1.05rem 0.95rem;
+  color: var(--muted);
+  font-size: var(--fs-sm);
+  line-height: 1.6;
+  border-top: 1px solid var(--border);
+  padding-top: 0.75rem;
 }
 
 .stats-grid {
@@ -359,11 +675,20 @@ button:focus-visible, input:focus-visible, a:focus-visible {
 
 .search-input {
   height: var(--control-h);
-  min-width: 240px;
+  min-width: 280px;
+  flex: 0 1 320px;
   padding: 0 0.85rem;
   border-radius: var(--radius);
   border: 1px solid var(--border-strong);
   background: var(--surface);
+}
+
+@media (max-width: 560px) {
+  .search-input {
+    min-width: 0;
+    width: 100%;
+    flex: 1 1 100%;
+  }
 }
 
 /* Cert cards grid */
@@ -418,8 +743,23 @@ button:focus-visible, input:focus-visible, a:focus-visible {
 
 .cert-actions {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0.5rem;
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr) auto;
+  gap: 0.45rem;
+  align-items: center;
+}
+
+.cert-actions .btn {
+  padding: 0 0.68rem;
+  white-space: nowrap;
+}
+
+@media (max-width: 420px) {
+  .cert-actions {
+    grid-template-columns: 1fr 1fr;
+  }
+  .cert-actions a.btn-ghost {
+    grid-column: 1 / -1;
+  }
 }
 
 /* Exam Runner */

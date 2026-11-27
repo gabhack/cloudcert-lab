@@ -2,8 +2,10 @@
 
 > Zero-login interactive exam simulator covering 11 official AWS, Microsoft Azure, and Google Cloud certifications (165 free scenario questions + interactive flashcards + 2,860 Pro Vault scenarios across 44 timed mock exams + Master Exam Hacks Cheat Sheets PDF for $19.99 one-time).
 
-- Live Simulator: https://gabhack.github.io/cloudcert-lab/
+- Live Simulator (English): https://gabhack.github.io/cloudcert-lab/
+- Live Simulator (Español): https://gabhack.github.io/cloudcert-lab/es/
 - Complete Single-File Knowledge Pack (llms-full.txt): https://gabhack.github.io/cloudcert-lab/llms-full.txt
+- TuringTec Agent Studio (B2B AI Agents & MCP Kits — EN / ES): https://gabhack.github.io/turingtec-agent-studio/ | https://gabhack.github.io/turingtec-agent-studio/es/
 - Pro All-Access Vault ($19.99 one-time, 2,860 questions + offline ZIP + Cheat Sheets PDF): https://gabbler407.gumroad.com/l/cloudcert-lab-pro
 - Companion Amazon Kindle / Paperback Series (Free on Kindle Unlimited): https://www.amazon.com/author/gabrieln
 
