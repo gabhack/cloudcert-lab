@@ -90,7 +90,17 @@ const UDEMY_COMPANIONS = {
 };
 
 // Populate with Udemy instructor referral codes to earn 97% vs 37% revenue share:
-const UDEMY_REFERRAL_CODES = {};
+const UDEMY_REFERRAL_CODES = {
+  "azure-ai-901": "D8A856261A80E97E9117",
+  "gcp-genai-leader": "277C95257CA6174C530B",
+  "aws-aif-c01": "F3F8E6DE85B56E6151A5",
+  "aws-mla-c01": "BA52EE4BBFC11D3A885E",
+  "aws-dea-c01": "A1754747AF112676F0B6",
+  "aws-dva-c02": "5842552C40A062AE0228",
+  "aws-saa-c03": "7A6DE3C64FBA7EF1F2F0",
+  "aws-clf-c02": "AE9A07D6FF925933AD30",
+  "aws-dva-c03": "BAE8E864A6D2DF74ADB3",
+};
 
 function getUdemyCompanion(slug) {
   const base = UDEMY_COMPANIONS[slug] || "";
