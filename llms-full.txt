@@ -239,7 +239,7 @@ Amazon Kindle Unlimited Companion Books ($0 on KU / $2.99 eBook): https://www.am
 
 ### 2026–2027 Cloud & AI Certification Study Plan Generator & 3-Click Path Finder
 - URL: https://gabhack.github.io/cloudcert-lab/exams/cloud-cert-study-plan-generator-2026/
-- Summary: Zero-login utility that recommends the optimal 2026–2027 AWS, Microsoft Azure, or Google Cloud certification based on role, cloud ecosystem, and experience, and generates a domain-weighted week-by-week study checklist with one-click Markdown copy and printable PDF export across all 9 simulator certifications plus AWS AIP-C01.
+- Summary: Zero-login utility that recommends the optimal 2026–2027 AWS, Microsoft Azure, or Google Cloud certification based on role, cloud ecosystem, and experience, and generates a domain-weighted week-by-week study checklist with one-click Markdown copy and printable PDF export across all 11 simulator certifications.
 
 ### Microsoft Azure AI-102 vs AI-103 (2026–2027 Migration Guide)
 - URL: https://gabhack.github.io/cloudcert-lab/exams/azure-ai-102-vs-ai-103/

@@ -22,7 +22,7 @@
       hero_cta_free: "Try 15 Free Questions Now →",
       hero_cta_pro: "Unlock Pro Vault ($19.99 One-Time)",
       hero_microcopy: "✓ No sign-up for 165 free Qs · ✓ Offline ZIP + Master Exam Hacks PDF",
-      hero_util_cheat: "Free 27-Hack Cheat Sheet",
+      hero_util_cheat: "Free 33-Hack Cheat Sheet",
       hero_util_calc: "Retake Risk Calculator",
       hero_util_plan: "2026 Study Plan Generator",
       hero_util_kdp: "Kindle Books (KU $0)",

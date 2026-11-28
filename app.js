@@ -78,15 +78,15 @@ function getKdpCompanion(slug) {
 }
 
 const UDEMY_COMPANIONS = {
-  "azure-ai-901": "https://www.udemy.com/course/microsoft-azure-ai-fundamentals-ai-901-practice-exams-2026-j/",
-  "gcp-genai-leader": "https://www.udemy.com/course/google-cloud-generative-ai-leader-practice-exams-2026-2027/",
-  "aws-aif-c01": "https://www.udemy.com/course/aws-certified-ai-practitioner-aif-c01-practice-exams-2026-mf/",
-  "aws-mla-c01": "https://www.udemy.com/course/aws-machine-learning-engineer-associate-mla-c01-mock-tests/",
-  "aws-dea-c01": "https://www.udemy.com/course/aws-certified-data-engineer-associate-dea-c01-mock-exams-d/",
-  "aws-dva-c02": "https://www.udemy.com/course/aws-certified-developer-associate-dva-c02-practice-exams-dx/",
-  "aws-saa-c03": "https://www.udemy.com/course/aws-solutions-architect-associate-saa-c03-practice-exams-m/",
-  "aws-clf-c02": "https://www.udemy.com/course/aws-certified-cloud-practitioner-clf-c02-practice-exams-eg/",
-  "aws-dva-c03": "https://www.udemy.com/course/aws-certified-developer-associate-dva-c03-practice-exams-p/",
+  "azure-ai-901": "https://www.udemy.com/course/microsoft-azure-ai-fundamentals-ai-901-practice-exams-2026-j/?referralCode=D8A856261A80E97E9117",
+  "gcp-genai-leader": "https://www.udemy.com/course/google-cloud-generative-ai-leader-practice-exams-2026-2027/?referralCode=277C95257CA6174C530B",
+  "aws-aif-c01": "https://www.udemy.com/course/aws-certified-ai-practitioner-aif-c01-practice-exams-2026-mf/?referralCode=F3F8E6DE85B56E6151A5",
+  "aws-mla-c01": "https://www.udemy.com/course/aws-machine-learning-engineer-associate-mla-c01-mock-tests/?referralCode=BA52EE4BBFC11D3A885E",
+  "aws-dea-c01": "https://www.udemy.com/course/aws-certified-data-engineer-associate-dea-c01-mock-exams-d/?referralCode=A1754747AF112676F0B6",
+  "aws-dva-c02": "https://www.udemy.com/course/aws-certified-developer-associate-dva-c02-practice-exams-dx/?referralCode=5842552C40A062AE0228",
+  "aws-saa-c03": "https://www.udemy.com/course/aws-solutions-architect-associate-saa-c03-practice-exams-m/?referralCode=7A6DE3C64FBA7EF1F2F0",
+  "aws-clf-c02": "https://www.udemy.com/course/aws-certified-cloud-practitioner-clf-c02-practice-exams-eg/?referralCode=AE9A07D6FF925933AD30",
+  "aws-dva-c03": "https://www.udemy.com/course/aws-certified-developer-associate-dva-c03-practice-exams-p/?referralCode=BAE8E864A6D2DF74ADB3",
 };
 
 // Populate with Udemy instructor referral codes to earn 97% vs 37% revenue share:
@@ -1309,8 +1309,8 @@ function renderPromoBanner() {
     el.innerHTML = `
       <div>
         <span class="badge badge-brand">LAUNCH COUNTDOWN · ${daysToDva} DAY${daysToDva === 1 ? "" : "S"} TO AWS DVA-C03 (DEC 1, 2026)</span>
-        <div style="font-weight:700; margin-top:0.25rem;">First-Mover AWS DVA-C03 Simulator (Amazon Q Developer &amp; Bedrock Guardrails) + Free 27-Hack Cheat Sheet</div>
-        <div style="font-size:var(--fs-sm); color:var(--muted);">Compare <a href="exams/aws-dva-c02-vs-dva-c03/">DVA-C02 vs DVA-C03</a> · <a href="exams/aws-associate-certifications-comparison-2026/">4 AWS Associate Certs</a> · <a href="exams/free-cloud-ai-exam-cheat-sheet-2026/">Free 27-Hack Cheat Sheet</a></div>
+        <div style="font-weight:700; margin-top:0.25rem;">First-Mover AWS DVA-C03 Simulator (Amazon Q Developer &amp; Bedrock Guardrails) + Free 33-Hack Cheat Sheet</div>
+        <div style="font-size:var(--fs-sm); color:var(--muted);">Compare <a href="exams/aws-dva-c02-vs-dva-c03/">DVA-C02 vs DVA-C03</a> · <a href="exams/aws-associate-certifications-comparison-2026/">4 AWS Associate Certs</a> · <a href="exams/free-cloud-ai-exam-cheat-sheet-2026/">Free 33-Hack Cheat Sheet</a></div>
       </div>
       <a class="btn btn-primary" href="?exam=aws-dva-c03&mode=study">Try DVA-C03 Free (15 Qs) →</a>
     `;
@@ -1318,10 +1318,10 @@ function renderPromoBanner() {
     el.innerHTML = `
       <div>
         <span class="badge badge-info">2026–2027 ROADMAP · FREE CHEAT SHEET &amp; COMPANION BOOKS</span>
-        <div style="font-weight:700; margin-top:0.25rem;">Not sure which exam to take first? Grab our Free 27-Hack Cheat Sheet or read FREE on Kindle Unlimited</div>
-        <div style="font-size:var(--fs-sm); color:var(--muted);">Guides: <a href="exams/free-cloud-ai-exam-cheat-sheet-2026/">Free 27-Hack Cheat Sheet</a> · <a href="exams/aws-associate-certifications-comparison-2026/">AWS Associate Comparison</a> · <a href="exams/ai-certifications-comparison-2026/">2026 AI Certs</a></div>
+        <div style="font-weight:700; margin-top:0.25rem;">Not sure which exam to take first? Grab our Free 33-Hack Cheat Sheet or read FREE on Kindle Unlimited</div>
+        <div style="font-size:var(--fs-sm); color:var(--muted);">Guides: <a href="exams/free-cloud-ai-exam-cheat-sheet-2026/">Free 33-Hack Cheat Sheet</a> · <a href="exams/aws-associate-certifications-comparison-2026/">AWS Associate Comparison</a> · <a href="exams/ai-certifications-comparison-2026/">2026 AI Certs</a></div>
       </div>
-      <a class="btn btn-primary" href="exams/free-cloud-ai-exam-cheat-sheet-2026/">Free 27-Hack Cheat Sheet →</a>
+      <a class="btn btn-primary" href="exams/free-cloud-ai-exam-cheat-sheet-2026/">Free 33-Hack Cheat Sheet →</a>
     `;
   }
 }
