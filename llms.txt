@@ -29,7 +29,7 @@
 - [AWS Associate Certs: SAA-C03 vs DVA-C03 vs DEA-C01 vs MLA-C01](https://gabhack.github.io/cloudcert-lab/exams/aws-associate-certifications-comparison-2026/): Compare all 4 AWS Associate certifications in 2026-2027: Solutions Architect (SAA-C03), Developer (DVA-C03 Dec 2026), Data Engineer (DEA-C01) & ML Engineer (MLA-C01). Exam fees, pass bars & free mock tests.
 - [Azure AI-900 vs AI-901 (2026 Migration)](https://gabhack.github.io/cloudcert-lab/exams/azure-ai-900-vs-ai-901/): Compare retiring Microsoft Azure AI-900 vs new AI-901 (2026-2027): Microsoft Foundry Hubs & Projects, Agentic AI workflows, RAG, Entra ID & 15 free practice questions.
 - [AWS CLF-C02 vs AIF-C01 vs SAA-C03](https://gabhack.github.io/cloudcert-lab/exams/aws-clf-c02-vs-aif-c01-vs-saa-c03/): Should you take AWS Cloud Practitioner (CLF-C02), AI Practitioner (AIF-C01), or Solutions Architect Associate (SAA-C03) first in 2026-2027? Difficulty, salary ROI & free mock tests.
-- [Free 27-Hack Multi-Cloud & AI Exam Cheat Sheet (2026–2027)](https://gabhack.github.io/cloudcert-lab/exams/free-cloud-ai-exam-cheat-sheet-2026/): 3 verified Exam Hacks per certification across all 9 exams + passing bars.
+- [Free 33-Hack Multi-Cloud & AI Exam Cheat Sheet (2026–2027)](https://gabhack.github.io/cloudcert-lab/exams/free-cloud-ai-exam-cheat-sheet-2026/): 3 verified Exam Hacks per certification across all 11 exams + passing bars.
 - [Cloud & AI Certification Exam Traps Glossary (2026–2027)](https://gabhack.github.io/cloudcert-lab/exams/cloud-ai-exam-glossary-2026/): 12 high-yield service comparisons & elimination rules for AWS, Azure AI-901 & GCP.
 - [Cloud & AI Exam Costs, Passing Scores & Retake Fees (2026–2027)](https://gabhack.github.io/cloudcert-lab/exams/cloud-ai-exam-costs-passing-scores-2026/): Official $99–$300 exam fees, 70%–75% pass bars, retake waiting periods & 50% AWS voucher strategy.
 - [2026–2027 Cloud & AI Certification Study Plan Generator & Path Finder](https://gabhack.github.io/cloudcert-lab/exams/cloud-cert-study-plan-generator-2026/): Free 3-click cert recommender and dynamic domain-weighted week-by-week study checklist with Markdown & PDF export for 10 AWS, Azure, and GCP certifications.
@@ -37,15 +37,15 @@
 - [AWS MLA-C01 vs MLA-C02 (2026–2027 Migration Guide)](https://gabhack.github.io/cloudcert-lab/exams/aws-mla-c01-vs-mla-c02/): Side-by-side comparison of classical SageMaker MLOps (MLA-C01) vs Foundation Models, Amazon Bedrock RAG, Guardrails & Agentic MLOps (MLA-C02).
 
 ## Official Udemy Practice Test Courses (260 Scenarios / 4 Full Exams Each)
-- [Microsoft Azure AI-901 Practice Exams on Udemy](https://www.udemy.com/course/microsoft-azure-ai-fundamentals-ai-901-practice-exams-2026-j/)
-- [Google Cloud GenAI Leader Practice Exams on Udemy](https://www.udemy.com/course/google-cloud-generative-ai-leader-practice-exams-2026-2027/)
-- [AWS AIF-C01 Practice Exams on Udemy](https://www.udemy.com/course/aws-certified-ai-practitioner-aif-c01-practice-exams-2026-mf/)
-- [AWS MLA-C01 Practice Exams on Udemy](https://www.udemy.com/course/aws-machine-learning-engineer-associate-mla-c01-mock-tests/)
-- [AWS DEA-C01 Practice Exams on Udemy](https://www.udemy.com/course/aws-certified-data-engineer-associate-dea-c01-mock-exams-d/)
-- [AWS DVA-C02 Practice Exams on Udemy](https://www.udemy.com/course/aws-certified-developer-associate-dva-c02-practice-exams-dx/)
-- [AWS SAA-C03 Practice Exams on Udemy](https://www.udemy.com/course/aws-solutions-architect-associate-saa-c03-practice-exams-m/)
-- [AWS CLF-C02 Practice Exams on Udemy](https://www.udemy.com/course/aws-certified-cloud-practitioner-clf-c02-practice-exams-eg/)
-- [AWS DVA-C03 Practice Exams on Udemy](https://www.udemy.com/course/aws-certified-developer-associate-dva-c03-practice-exams-p/)
+- [Microsoft Azure AI-901 Practice Exams on Udemy](https://www.udemy.com/course/microsoft-azure-ai-fundamentals-ai-901-practice-exams-2026-j/?referralCode=D8A856261A80E97E9117)
+- [Google Cloud GenAI Leader Practice Exams on Udemy](https://www.udemy.com/course/google-cloud-generative-ai-leader-practice-exams-2026-2027/?referralCode=277C95257CA6174C530B)
+- [AWS AIF-C01 Practice Exams on Udemy](https://www.udemy.com/course/aws-certified-ai-practitioner-aif-c01-practice-exams-2026-mf/?referralCode=F3F8E6DE85B56E6151A5)
+- [AWS MLA-C01 Practice Exams on Udemy](https://www.udemy.com/course/aws-machine-learning-engineer-associate-mla-c01-mock-tests/?referralCode=BA52EE4BBFC11D3A885E)
+- [AWS DEA-C01 Practice Exams on Udemy](https://www.udemy.com/course/aws-certified-data-engineer-associate-dea-c01-mock-exams-d/?referralCode=A1754747AF112676F0B6)
+- [AWS DVA-C02 Practice Exams on Udemy](https://www.udemy.com/course/aws-certified-developer-associate-dva-c02-practice-exams-dx/?referralCode=5842552C40A062AE0228)
+- [AWS SAA-C03 Practice Exams on Udemy](https://www.udemy.com/course/aws-solutions-architect-associate-saa-c03-practice-exams-m/?referralCode=7A6DE3C64FBA7EF1F2F0)
+- [AWS CLF-C02 Practice Exams on Udemy](https://www.udemy.com/course/aws-certified-cloud-practitioner-clf-c02-practice-exams-eg/?referralCode=AE9A07D6FF925933AD30)
+- [AWS DVA-C03 Practice Exams on Udemy](https://www.udemy.com/course/aws-certified-developer-associate-dva-c03-practice-exams-p/?referralCode=BAE8E864A6D2DF74ADB3)
 
 ## Companion Amazon Kindle & Paperback Editions (Free on Kindle Unlimited)
 - [Microsoft Azure AI Fundamentals (AI-901) Practice Tests](https://www.amazon.com/dp/B0HS93MZC7): Kindle Unlimited $0.00 · eBook $2.99 · Paperback $11.99

@@ -13,7 +13,7 @@ Amazon Kindle Unlimited Companion Books ($0 on KU / $2.99 eBook): https://www.am
 - Study Guide: https://gabhack.github.io/cloudcert-lab/exams/azure-ai-901/
 - Free Interactive Simulator (15 Qs): https://gabhack.github.io/cloudcert-lab/?exam=azure-ai-901&mode=study
 - Free Flashcards: https://gabhack.github.io/cloudcert-lab/?exam=azure-ai-901&mode=flashcards
-- Official Udemy Course (260 Qs · $49.99): https://www.udemy.com/course/microsoft-azure-ai-fundamentals-ai-901-practice-exams-2026-j/
+- Official Udemy Course (260 Qs · $49.99): https://www.udemy.com/course/microsoft-azure-ai-fundamentals-ai-901-practice-exams-2026-j/?referralCode=D8A856261A80E97E9117
 - Companion Amazon Book: https://www.amazon.com/dp/B0HS93MZC7 (Kindle Unlimited $0.00 · eBook $2.99 · Paperback $11.99)
 - Exam Format: 90 minutes · Passing Bar 70% · 4 Full 65-Q Mocks (260 Pro Qs)
 - Blueprint Domains:
@@ -28,7 +28,7 @@ Amazon Kindle Unlimited Companion Books ($0 on KU / $2.99 eBook): https://www.am
 - Study Guide: https://gabhack.github.io/cloudcert-lab/exams/gcp-genai-leader/
 - Free Interactive Simulator (15 Qs): https://gabhack.github.io/cloudcert-lab/?exam=gcp-genai-leader&mode=study
 - Free Flashcards: https://gabhack.github.io/cloudcert-lab/?exam=gcp-genai-leader&mode=flashcards
-- Official Udemy Course (260 Qs · $49.99): https://www.udemy.com/course/google-cloud-generative-ai-leader-practice-exams-2026-2027/
+- Official Udemy Course (260 Qs · $49.99): https://www.udemy.com/course/google-cloud-generative-ai-leader-practice-exams-2026-2027/?referralCode=277C95257CA6174C530B
 - Companion Amazon Book: https://www.amazon.com/dp/B0HSL1MYYM (Kindle Unlimited $0.00 · eBook $2.99 · Paperback $11.99)
 - Exam Format: 90 minutes · Passing Bar 70% · 4 Full 65-Q Mocks (260 Pro Qs)
 - Blueprint Domains:
@@ -45,7 +45,7 @@ Amazon Kindle Unlimited Companion Books ($0 on KU / $2.99 eBook): https://www.am
 - Study Guide: https://gabhack.github.io/cloudcert-lab/exams/aws-aif-c01/
 - Free Interactive Simulator (15 Qs): https://gabhack.github.io/cloudcert-lab/?exam=aws-aif-c01&mode=study
 - Free Flashcards: https://gabhack.github.io/cloudcert-lab/?exam=aws-aif-c01&mode=flashcards
-- Official Udemy Course (260 Qs · $49.99): https://www.udemy.com/course/aws-certified-ai-practitioner-aif-c01-practice-exams-2026-mf/
+- Official Udemy Course (260 Qs · $49.99): https://www.udemy.com/course/aws-certified-ai-practitioner-aif-c01-practice-exams-2026-mf/?referralCode=F3F8E6DE85B56E6151A5
 - Companion Amazon Book: https://www.amazon.com/dp/B0HQXNM3VY (Kindle Unlimited $0.00 · eBook $2.99 · Paperback $9.99)
 - Exam Format: 90 minutes · Passing Bar 70% · 4 Full 65-Q Mocks (260 Pro Qs)
 - Blueprint Domains:
@@ -63,7 +63,7 @@ Amazon Kindle Unlimited Companion Books ($0 on KU / $2.99 eBook): https://www.am
 - Study Guide: https://gabhack.github.io/cloudcert-lab/exams/aws-mla-c01/
 - Free Interactive Simulator (15 Qs): https://gabhack.github.io/cloudcert-lab/?exam=aws-mla-c01&mode=study
 - Free Flashcards: https://gabhack.github.io/cloudcert-lab/?exam=aws-mla-c01&mode=flashcards
-- Official Udemy Course (260 Qs · $49.99): https://www.udemy.com/course/aws-machine-learning-engineer-associate-mla-c01-mock-tests/
+- Official Udemy Course (260 Qs · $49.99): https://www.udemy.com/course/aws-machine-learning-engineer-associate-mla-c01-mock-tests/?referralCode=BA52EE4BBFC11D3A885E
 - Companion Amazon Book: https://www.amazon.com/dp/B0HS1GKQSQ (Kindle Unlimited $0.00 · eBook $2.99 · Paperback $11.99)
 - Exam Format: 130 minutes · Passing Bar 72% · 4 Full 65-Q Mocks (260 Pro Qs)
 - Blueprint Domains:
@@ -80,7 +80,7 @@ Amazon Kindle Unlimited Companion Books ($0 on KU / $2.99 eBook): https://www.am
 - Study Guide: https://gabhack.github.io/cloudcert-lab/exams/aws-dea-c01/
 - Free Interactive Simulator (15 Qs): https://gabhack.github.io/cloudcert-lab/?exam=aws-dea-c01&mode=study
 - Free Flashcards: https://gabhack.github.io/cloudcert-lab/?exam=aws-dea-c01&mode=flashcards
-- Official Udemy Course (260 Qs · $49.99): https://www.udemy.com/course/aws-certified-data-engineer-associate-dea-c01-mock-exams-d/
+- Official Udemy Course (260 Qs · $49.99): https://www.udemy.com/course/aws-certified-data-engineer-associate-dea-c01-mock-exams-d/?referralCode=A1754747AF112676F0B6
 - Companion Amazon Book: https://www.amazon.com/author/gabrieln (AWS Associate Series · Free on Kindle Unlimited)
 - Exam Format: 130 minutes · Passing Bar 72% · 4 Full 65-Q Mocks (260 Pro Qs)
 - Blueprint Domains:
@@ -97,7 +97,7 @@ Amazon Kindle Unlimited Companion Books ($0 on KU / $2.99 eBook): https://www.am
 - Study Guide: https://gabhack.github.io/cloudcert-lab/exams/aws-dva-c02/
 - Free Interactive Simulator (15 Qs): https://gabhack.github.io/cloudcert-lab/?exam=aws-dva-c02&mode=study
 - Free Flashcards: https://gabhack.github.io/cloudcert-lab/?exam=aws-dva-c02&mode=flashcards
-- Official Udemy Course (260 Qs · $49.99): https://www.udemy.com/course/aws-certified-developer-associate-dva-c02-practice-exams-dx/
+- Official Udemy Course (260 Qs · $49.99): https://www.udemy.com/course/aws-certified-developer-associate-dva-c02-practice-exams-dx/?referralCode=5842552C40A062AE0228
 - Companion Amazon Book: https://www.amazon.com/author/gabrieln (AWS Associate Series · Free on Kindle Unlimited)
 - Exam Format: 130 minutes · Passing Bar 72% · 4 Full 65-Q Mocks (260 Pro Qs)
 - Blueprint Domains:
@@ -114,7 +114,7 @@ Amazon Kindle Unlimited Companion Books ($0 on KU / $2.99 eBook): https://www.am
 - Study Guide: https://gabhack.github.io/cloudcert-lab/exams/aws-saa-c03/
 - Free Interactive Simulator (15 Qs): https://gabhack.github.io/cloudcert-lab/?exam=aws-saa-c03&mode=study
 - Free Flashcards: https://gabhack.github.io/cloudcert-lab/?exam=aws-saa-c03&mode=flashcards
-- Official Udemy Course (260 Qs · $49.99): https://www.udemy.com/course/aws-solutions-architect-associate-saa-c03-practice-exams-m/
+- Official Udemy Course (260 Qs · $49.99): https://www.udemy.com/course/aws-solutions-architect-associate-saa-c03-practice-exams-m/?referralCode=7A6DE3C64FBA7EF1F2F0
 - Companion Amazon Book: https://www.amazon.com/dp/B0HRVB8PZ3 (Kindle Unlimited $0.00 · eBook $2.99 · Paperback $11.99)
 - Exam Format: 130 minutes · Passing Bar 72% · 4 Full 65-Q Mocks (260 Pro Qs)
 - Blueprint Domains:
@@ -131,7 +131,7 @@ Amazon Kindle Unlimited Companion Books ($0 on KU / $2.99 eBook): https://www.am
 - Study Guide: https://gabhack.github.io/cloudcert-lab/exams/aws-clf-c02/
 - Free Interactive Simulator (15 Qs): https://gabhack.github.io/cloudcert-lab/?exam=aws-clf-c02&mode=study
 - Free Flashcards: https://gabhack.github.io/cloudcert-lab/?exam=aws-clf-c02&mode=flashcards
-- Official Udemy Course (260 Qs · $49.99): https://www.udemy.com/course/aws-certified-cloud-practitioner-clf-c02-practice-exams-eg/
+- Official Udemy Course (260 Qs · $49.99): https://www.udemy.com/course/aws-certified-cloud-practitioner-clf-c02-practice-exams-eg/?referralCode=AE9A07D6FF925933AD30
 - Companion Amazon Book: https://www.amazon.com/dp/B0HQ8ZT44Y (Kindle Unlimited $0.00 · eBook $2.99 · Paperback $12.49)
 - Exam Format: 90 minutes · Passing Bar 70% · 4 Full 65-Q Mocks (260 Pro Qs)
 - Blueprint Domains:
@@ -148,7 +148,7 @@ Amazon Kindle Unlimited Companion Books ($0 on KU / $2.99 eBook): https://www.am
 - Study Guide: https://gabhack.github.io/cloudcert-lab/exams/aws-dva-c03/
 - Free Interactive Simulator (15 Qs): https://gabhack.github.io/cloudcert-lab/?exam=aws-dva-c03&mode=study
 - Free Flashcards: https://gabhack.github.io/cloudcert-lab/?exam=aws-dva-c03&mode=flashcards
-- Official Udemy Course (260 Qs · $49.99): https://www.udemy.com/course/aws-certified-developer-associate-dva-c03-practice-exams-p/
+- Official Udemy Course (260 Qs · $49.99): https://www.udemy.com/course/aws-certified-developer-associate-dva-c03-practice-exams-p/?referralCode=BAE8E864A6D2DF74ADB3
 - Companion Amazon Book: https://www.amazon.com/author/gabrieln (AWS Associate Series · Free on Kindle Unlimited)
 - Exam Format: 130 minutes · Passing Bar 72% · 4 Full 65-Q Mocks (260 Pro Qs)
 - Blueprint Domains:
@@ -197,7 +197,7 @@ Amazon Kindle Unlimited Companion Books ($0 on KU / $2.99 eBook): https://www.am
 - Summary: Microsoft transitions Azure AI Fundamentals from legacy AI-900 toward the modern AI-901 blueprint built around Microsoft Foundry, Agentic AI orchestration, serverless partner models, RAG grounding, and Responsible AI governance. Compare both exams and launch 15 free AI-901 scenario questions.
   - **Drill Microsoft Foundry Hubs vs Projects:** AI-901 scenarios heavily test when to isolate teams via Foundry Projects inside a shared Hub with Entra ID Managed Identities instead of sharing raw API keys.
   - **Master RAG vs Fine-Tuning Trade-offs:** Default to Retrieval-Augmented Generation (Azure AI Search + Grounding) when fresh private data or citation accuracy is required; reserve fine-tuning for consistent tone or format.
-  - **Test Yourself Across 260 Scenarios Before Paying $99:** Start with our 15 free interactive AI-901 questions, read the companion Kindle edition (free on Kindle Unlimited), or unlock all 2,340 multi-cloud scenarios for $19.99.
+  - **Test Yourself Across 260 Scenarios Before Paying $99:** Start with our 15 free interactive AI-901 questions, read the companion Kindle edition (free on Kindle Unlimited), or unlock all 2,860 multi-cloud scenarios for $19.99.
 
 ### AWS CLF-C02 vs AIF-C01 vs SAA-C03 (2026–2027): Which AWS Certification First?
 - URL: https://gabhack.github.io/cloudcert-lab/exams/aws-clf-c02-vs-aif-c01-vs-saa-c03/
